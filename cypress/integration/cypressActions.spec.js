@@ -11,7 +11,7 @@ it('User can to register account', () => {
 
     cy.get('#userNumber').type('8800555353');
     cy.get('#dateOfBirthInput').type('{selectall}').type('05 Sep 1997{enter}');
-    cy.get('#subjectsContainer').click('left').type('Maths{enter}');
+    cy.get('#subjectsContainer').type('Maths{enter}');
 
     cy.contains('Sports').click();
     cy.contains('Music').click();
