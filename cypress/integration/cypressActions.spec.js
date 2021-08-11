@@ -47,4 +47,4 @@ describe('Fill fields', () => {
         cy.get('tbody td').contains('Some Text about South Park').should('exist');
         cy.get('tbody td').contains('Uttar Pradesh Agra').should('exist');
     });
-}); 
+});
