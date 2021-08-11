@@ -1,5 +1,28 @@
 /// <reference types='cypress' />
 
+describe('', () => {
+  before('', () => {
+  cy.visit ('https://demoqa.com/automation-practice-form');
+  });
+
+
+it('Basic level', ()=> {
+  cy.get('#firstName').type('hanna');
+  cy.get('#lastName').type('smirnova');
+  cy.get('#userEmail').type('hannayours@gmail.com');
+  cy.get('.custom-control-label').contains('Female').click(); 
+  cy.get('#userNumber').type('4587475877');
+  cy.get('#dateOfBirthInput').type(`{selectall}`).type('4 march 1956{enter}');
+  cy.get('#subjectsContainer').type('His').contains('div', 'History').click({force: true});
+  cy.get('.custom-control-label').contains('Reading').click();
+  cy.get('#currentAddress').type('Ukraine, Kyiv');
+  cy.get('#stateCity-wrapper').click().contains('Haryana').click();
+  cy.get('#city').click().contains('div', 'Karnal').click({force: true}); 
+  cy.get('#submit').click();
+});
+});
+
+
 // Basic level:
 // 1. Fill all fields in forms except "picture" 
 // 2. Click on [Submit] button
