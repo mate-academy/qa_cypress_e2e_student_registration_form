@@ -1,20 +1,34 @@
 /// <reference types='cypress' />
 
-// Basic level:
-// 1. Fill all fields in forms except "picture" 
-// 2. Click on [Submit] button
-// 3. Validate inputed data in modal window
-// Site: https://demoqa.com/automation-practice-form
+it('User can to register account', () => {
+    cy.visit('/automation-practice-form');
+    
+    cy.get('#firstName').type('Ohshit');
+    cy.get('#lastName').type('Imsorry');
+    cy.get('#userEmail').type('gachimuchi@ukr.net');
 
-// Advanced level:
-// Check next test cases:
-// 1. Pagination 
-// 2. Rows count selection
-// 3. Add new worker
-// 4. Delete worker
-// 5. Delete all worker
-// 6. Find worker in search field and edit it
-// 7. Validate data in worker row after creating worker
-// 8. Check search by all column values
+    cy.contains('Other').click();
 
-// https://demoqa.com/webtables
+    cy.get('#userNumber').type('8800555353');
+    cy.get('#dateOfBirthInput').type('{selectall}').type('05 Sep 1997{enter}');
+    cy.get('#subjectsContainer').click('left').type('Maths{enter}');
+
+    cy.contains('Sports').click();
+    cy.contains('Music').click();
+
+    cy.get('#currentAddress').type('Ulitsya Pushkina Dom Kalatushkina');
+    cy.get('#state').type('Haryana{enter}');
+    cy.get('#city').type('Karnal{enter}');
+    
+    cy.get('#submit').click();
+
+    cy.contains('tbody tr', 'Student Name').should('contain', 'Ohshit Imsorry');
+    cy.contains('tbody tr', 'Student Email').should('contain', 'gachimuchi@ukr.net');
+    cy.contains('tbody tr', 'Gender').should('contain', 'Other');
+    cy.contains('tbody tr', 'Mobile').should('contain', '8800555353');
+    cy.contains('tbody tr', 'Date of Birth').should('contain', '05 September,1997');
+    cy.contains('tbody tr', 'Subjects').should('contain', 'Maths');
+    cy.contains('tbody tr', 'Hobbies').should('contain', 'Sports, Music');
+    cy.contains('tbody tr', 'Address').should('contain', 'Ulitsya Pushkina Dom Kalatushkina');
+    cy.contains('tbody tr', 'State and City').should('contain', 'Haryana Karnal');
+});
