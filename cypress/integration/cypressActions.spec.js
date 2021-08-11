@@ -6,24 +6,9 @@
 // 3. Validate inputed data in modal window
 // Site: https://demoqa.com/automation-practice-form
 
-// Advanced level:
-// Check next test cases:
-// 1. Pagination 
-// 2. Rows count selection
-// 3. Add new worker
-// 4. Delete worker
-// 5. Delete all worker
-// 6. Find worker in search field and edit it
-// 7. Validate data in worker row after creating worker
-// 8. Check search by all column values
-
-// https://demoqa.com/webtables
-
-describe('Fill fields', () => {
-    before('', () => {
-            cy.visit('/');
-        });
+describe('tables', () => {
     it('fill all fields', () => {
+        cy.visit('/automation-practice-form');
         cy.get('#firstName').type('Eric');
         cy.get('#lastName').type('Cartman');
         cy.get('#userEmail').type('e.cartman@sp.com');
@@ -46,5 +31,56 @@ describe('Fill fields', () => {
         cy.get('tbody td').contains('Music').should('exist');
         cy.get('tbody td').contains('Some Text about South Park').should('exist');
         cy.get('tbody td').contains('Uttar Pradesh Agra').should('exist');
+
+// Advanced level:
+// Check next test cases:
+// 1. Pagination 
+// 2. Rows count selection
+// 3. Add new worker
+// 4. Delete worker
+// 5. Delete all worker
+// 6. Find worker in search field and edit it
+// 7. Validate data in worker row after creating worker
+// 8. Check search by all column values
+
+// https://demoqa.com/webtables
+
+        cy.visit('/webtables');
+        cy.get('select').select('5').should('have.value', '5');
+        cy.get('#addNewRecordButton').click();
+        cy.get('#firstName').type('Maria');
+        cy.get('#lastName').type('Marinovskaya');
+        cy.get('#userEmail').type('maria@mail.com');
+        cy.get('#age').type('19');
+        cy.get('#salary').type('11000');
+        cy.get('#department').type('Taxi');
+        cy.get('#submit').click();
+
+        cy.get('#addNewRecordButton').click();
+        cy.get('#firstName').type('David');
+        cy.get('#lastName').type('Davidov');
+        cy.get('#userEmail').type('david@mail.com');
+        cy.get('#age').type(29);
+        cy.get('#salary').type(17000);
+        cy.get('#department').type('Cafe');
+        cy.get('#submit').click();
+
+        cy.get('#addNewRecordButton').click();
+        cy.get('#firstName').type('Jhon');
+        cy.get('#lastName').type('Jhonov');
+        cy.get('#userEmail').type('jhon@mail.com');
+        cy.get('#age').type(34);
+        cy.get('#salary').type(21000);
+        cy.get('#department').type('IT');
+        cy.get('#submit').click();
+
+        cy.wait(2000);
+        cy.get('.-btn').contains('Next').should('exist').click();
+        cy.get('.-btn').contains('Previous').should('exist').click();
+
+        cy.get('#delete-record-1').click();
+        cy.get('#searchBox').type('David');
+        cy.get('#edit-record-5').click();
+        cy.get('#salary').type('{selectall}').type('99999{enter}');
     });
 });
