@@ -20,3 +20,22 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 }
+
+const faker = require("faker");
+
+module.exports = (on, config) => {
+    on("task", {
+        newUser() {
+            regForm = {
+                name: faker.name.firstName(),
+                lastName: faker.name.lastName(),
+                email: faker.internet.email(),
+                // phone: faker.random.arrayElements(),
+                // Bdate: faker.date.recent(),
+                subjects: faker.lorem.words(),
+                address: faker.address.streetAddress()
+            };
+            return regForm;
+        },
+    });
+};
