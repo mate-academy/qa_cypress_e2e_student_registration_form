@@ -50,6 +50,5 @@ describe('Filling in the form',() => {
         cy.contains('tbody tr', 'Hobbies').should('contain.text', 'Sports, Reading, Music');
         cy.contains('tbody tr', 'Address').should('contain.text', 'Ukraine, Kyiv');
         cy.contains('tbody tr', 'State and City').should('contain.text', 'Haryana Karnal');
-      });
-    });
-
+  });
+});
