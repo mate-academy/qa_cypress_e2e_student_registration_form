@@ -18,3 +18,9 @@
 // 8. Check search by all column values
 
 // https://demoqa.com/webtables
+
+describe('', () => {
+    before('', () => {
+        cy.visit('https://demoqa.com/automation-practice-form');
+    });
+});
