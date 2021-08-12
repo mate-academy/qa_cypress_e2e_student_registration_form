@@ -5,22 +5,32 @@ describe ('basic level', () => {
     before('open site', () => {
         cy.visit('https://demoqa.com/automation-practice-form');
     })
-
-    it('Login form', () => {
-        cy.get('#firstName').type('murk@');
-        cy.get('#lastName').type('kurv@');
-        cy.get('#userEmail').type('kurv@murka.to');
-        cy.get('[for="gender-radio-3"]').type('{selectall}');
+    it('Register', () => {
+        cy.get('#firstName').type('Lola');
+        cy.get('#lastName').type('Run');
+        cy.get('#userEmail').type('lola@run.com');
+        cy.get('[for="gender-radio-3"]').click();
         cy.get('#userNumber').type('0000000000');
         cy.get('#dateOfBirthInput').type('{selectall}').type('02 April 1993{enter}');
-        cy.get('#subjectsWrapper').type('blabla');
-        cy.get('[for="hobbies-checkbox-3"]').contains('Music').click();
-        cy.get('#currentAddress').type('Come together');
-        cy.get('#state').click().contains('Rajasthan').click();
-        cy.get('#city').click().contains('div', 'Jaipur').click({force: true});
-        cy.get('#submit').click(); 
-        cy.get('#example-modal-sizes-title-lg').should('contain', 'Thanks for submitting the form');
-    });
+        cy.get('#subjectsWrapper').type('Computer Science{enter}');
+        cy.get('[for="hobbies-checkbox-3"]').click({force: true});
+        cy.get('#currentAddress').type('Just run');
+        cy.get('#state').type('Rajasthan{enter}');
+        cy.get('#city').type('Jaipur{enter}');
+        cy.get('#submit').click();
+      });
+
+    it('Validated registration', () => {
+        cy.contains('tbody tr', 'Student Name').should('contain.text', 'Lola Run');
+        cy.contains('tbody tr', 'Student Email').should('contain.text', 'lola@run.com');
+        cy.contains('tbody tr', 'Gender').should('contain.text', 'Other');
+        cy.contains('tbody tr', 'Mobile').should('contain.text', '0000000000');
+        cy.contains('tbody tr', 'Date of Birth').should('contain.text', '02 April,1993');
+        cy.contains('tbody tr', 'Subjects').should('contain.text', 'Computer Science');
+        cy.contains('tbody tr', 'Hobbies').should('contain.text', 'Music');
+        cy.contains('tbody tr', 'Address').should('contain.text', 'Just run');
+        cy.contains('tbody tr', 'State and City').should('contain.text', 'Rajasthan Jaipur');
+        });
 });
 
 
