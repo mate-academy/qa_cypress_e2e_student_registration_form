@@ -39,6 +39,7 @@ describe('Test', () => {
         cy.get('.css-1wa3eu0-placeholder')
         .contains('Select City').type('k{enter}');
         cy.get('#userForm').submit();
+        
         cy.contains('tbody tr', 'Student Name').should('contain', 'John Smith');
         cy.contains('tbody tr', 'Student Email').should('contain', 'john_smith@mail.com');
         cy.contains('tbody tr', 'Gender').should('contain', 'Male');
