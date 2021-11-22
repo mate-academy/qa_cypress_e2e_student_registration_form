@@ -112,9 +112,9 @@ describe('Registration form fields should be filled', () => {
         cy.visit('https://demoqa.com/webtables');
 
         cy.get('select')
-          .click()
-          .contains('20 rows')  
-          .click();
+          .select('10 rows')
+        cy.contains('20 rows')  
+          .click({force: true});
 
         cy.get('#addNewRecordButton')
           .click();
@@ -150,8 +150,9 @@ describe('Registration form fields should be filled', () => {
         cy.get('#submit')
           .click({force: true});
         cy.get('#searchBox')
-          .clear();
-
+          .clear();  
+        cy.get('#delete-record-4 > svg')
+          .click()
     })
 });
 
