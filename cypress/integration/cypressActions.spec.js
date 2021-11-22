@@ -1,57 +1,160 @@
+describe('Registration form fields should be filled', () => {
+    
+    let user;
 
+    before(() => {
+    cy.task('newUser').then((newUser) => {
+        user = newUser;
+    });
+    });
 
-describe('', () => {
-    
-      let user;
-    
-      before(() => {
-        cy.task('newUser').then((newUser) => {
-          user = newUser;
-        });
-      });
-    
-      it('', () => {
+    it('', () => {
         cy.visit('https://demoqa.com/automation-practice-form');
         cy.get('[placeholder="First Name"]')
-          .type(user.userFirstName);
-        cy.get('[placeholder="First Name"]')
-          .type(user.userLastName); 
+            .type(user.userFirstName);
+        cy.get('[placeholder="Last Name"]')
+            .type(user.userLastName); 
         cy.get('#userEmail')
-          .type(user.email);
+            .type(user.email);
         cy.get('#genterWrapper > .col-md-9 > :nth-child(1)')
-          .click({ multiple: true });
+            .click({ multiple: true });
         cy.get('[placeholder="Mobile Number"]')
-          .type('1234567890');
+            .type('1234567890');
+ 
         cy.get('#dateOfBirthInput')
-          .click();
+            .click();
         cy.get('.react-datepicker__month-select')
-          .each(($el, index, $list) => {
+            .each(($el) => {
             let monthName = $el.text()
             if(monthName == 'March')
             {
                 cy.wrap($el).click()
             }     
-            })
+        })
         cy.get('.react-datepicker__year-select')
-        .each(($el, index, $list) => {
+        .each(($el) => {
             let monthName = $el.text()
             if(monthName == '1990')
             {
                 cy.wrap($el).click()
             }     
-            })  
+        }) 
         cy.get('.react-datepicker__day')
-          .each(($el, index, $list) => {
-          let dateName = $el.text()
-          if(dateName == '14')
+        .each(($el) => {
+            let dayName = $el.text()
+            if(dayName == '14')
             {
-              cy.wrap($el).click()
-            }  
-        });
+                cy.wrap($el).click()
+            }     
+        }) 
         cy.get('#dateOfBirthInput')
-        .should('have.value', '14 Mar 2005') 
+          .should('have.value', '14 Nov 2021');
+       
+        cy.get('.subjects-auto-complete__value-container')
+          .type('Administration');
+
+        cy.get('#hobbies-checkbox-1')
+          .click({force: true});
+        cy.get('#hobbies-checkbox-2')
+          .click({force:true});
+ 
+        cy.get('#uploadPicture')
+          .attachFile('my.json');
+
+        cy.get('[placeholder="Current Address"]')
+          .type('Rynok square, 15');
+
+        cy.get('#state')
+          .click()
+          .contains('Uttar Pradesh')
+          .click();
+        cy.get('#city')
+          .click()
+          .contains('Lucknow')    
+          .click();
+        
+        cy.get('#submit')
+          .click();
+          
+        cy.get('.modal-header')
+          .should('exist')
+          .contains('Thanks for submitting the form')  
     })
-})
+
+    it('Table should have user inputs', () => {
+        cy.get('.table')
+          .contains('tr', 'Student Name').should('contain', user.userFirstName + ' ' + user.userLastName);
+        cy.get('.table')
+          .contains('tr', 'Student Email').should('contain', user.email);
+        cy.get('.table')
+          .contains('tr', 'Gender').should('contain', 'Male');
+        cy.get('.table')
+          .contains('tr', 'Mobile').should('contain', '1234567890'); 
+        cy.get('.table')
+          .contains('tr', 'Date of Birth').should('contain', '14 November,2021');
+        cy.get('.table')
+          .contains('tr', 'Subjects').should('contain', ''); 
+        cy.get('.table')
+          .contains('tr', 'Hobbies').should('contain', 'Sports, Reading'); 
+        cy.get('.table')
+          .contains('tr', 'Picture').should('contain', 'my.json');
+        cy.get('.table')
+          .contains('tr', 'Address').should('contain', 'Rynok square, 15');
+        cy.get('.table')
+          .contains('tr', 'State and City').should('contain', 'Uttar Pradesh Lucknow'); 
+          
+        cy.get('#closeLargeModal')
+          .should('exist')
+          .click()  
+    })
+
+    it('Should be able to work with workers table', () => {
+        cy.visit('https://demoqa.com/webtables');
+
+        cy.get('select')
+          .click()
+          .contains('20 rows')  
+          .click();
+
+        cy.get('#addNewRecordButton')
+          .click();
+        cy.get('[placeholder="First Name"]')
+          .type(user.userFirstName);
+        cy.get('[placeholder="Last Name"]')
+          .type(user.userLastName); 
+        cy.get('#userEmail')
+          .type(user.email);
+        cy.get('#age')
+          .type('23');
+        cy.get('#salary')
+          .type(10000);
+        cy.get('#department')
+          .type('IT');  
+        cy.get('#submit')
+          .should('contain','Submit')
+          .click({force: true});
+        cy.get('.rt-table')
+          .should('contain', user.userFirstName);
+        cy.get('#searchBox')
+          .type(user.email);  
+        cy.get('.rt-td')
+          .contains(user.email);
+        cy.get('#edit-record-4 > svg > path')
+          .click();
+        cy.get('#age')
+          .clear()
+          .type('24');
+        cy.get('#department')
+          .clear()
+          .type('Quality Assurance');
+        cy.get('#submit')
+          .click({force: true});
+        cy.get('#searchBox')
+          .clear();
+
+    })
+});
+
 // Basic level:
 // 1. Fill all fields in forms except "picture" 
 // 2. Click on [Submit] button
