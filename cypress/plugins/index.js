@@ -16,6 +16,7 @@
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
+
 const faker = require("faker");
 module.exports = (on, config) => {
 
