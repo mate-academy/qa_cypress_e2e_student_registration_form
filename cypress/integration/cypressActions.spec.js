@@ -12,54 +12,66 @@ describe('Cypress Sign up', () => {
             user = newUser
         });
     })
-    it('Should goes into "demoqa" fill all fiealds and click [Submit]', () => {
-    cy.visit('https://demoqa.com/automation-practice-form');
+    //Basic
+    // it('Should goes into "ToolsQA" fill all fealds and click [Submit]', () => {
+    // cy.visit('https://demoqa.com/automation-practice-form');
 
 
-    cy.get('#firstName.mr-sm-2.form-control')
-    .type(user.username);
+    // cy.get('#firstName.mr-sm-2.form-control')
+    // .type(user.username);
 
-    cy.get('#lastName.mr-sm-2.form-control')
-    .type(user.userLastName);
+    // cy.get('#lastName.mr-sm-2.form-control')
+    // .type(user.userLastName);
 
-    cy.get('#userEmail.mr-sm-2.form-control')
-    .type(user.email);
+    // cy.get('#userEmail.mr-sm-2.form-control')
+    // .type(user.email);
     
-    cy.get('#userNumber.mr-sm-2.form-control')
-    .type(user.mobNumber);
+    // cy.get('#userNumber.mr-sm-2.form-control')
+    // .type(user.mobNumber);
     
-    cy.get('#dateOfBirthInput')
-    .type('{selectall}')
-    .type('21 Sep 2021{enter}');
+    // cy.get('#dateOfBirthInput')
+    // .type('{selectall}')
+    // .type('21 Sep 2021{enter}');
     
-    cy.get('.subjects-auto-complete__value-container')
-    .type('S{enter}');
+    // cy.get('.subjects-auto-complete__value-container')
+    // .type('S{enter}');
     
-    cy.get('#currentAddress')
-    .type(user.address);
+    // cy.get('#currentAddress')
+    // .type(user.address);
     
-    cy.get('[for="gender-radio-1"]')
-    .click({ force: true })
+    // cy.get('[for="gender-radio-1"]')
+    // .click({ force: true })
     
-    cy.get('[for="hobbies-checkbox-3"]')
-    .click({ force: true })
+    // cy.get('[for="hobbies-checkbox-3"]')
+    // .click({ force: true })
 
-    cy.get('#state')
-    .type('Raj{enter}');
+    // cy.get('#state')
+    // .type('Raj{enter}');
 
-    cy.get('#city')
-    .type('Jaip{enter}');
+    // cy.get('#city')
+    // .type('Jaip{enter}');
 
-    cy.get('#submit')
-    .click();
+    // cy.get('#submit')
+    // .click();
 
-    cy.contains('#closeLargeModal', 'Close')
-    .should('exist');
+    // cy.contains('#closeLargeModal', 'Close')
+    // .should('exist');
 
-    cy.contains('#example-modal-sizes-title-lg', 'Thanks for submitting the form')
-    .should('exist');
+    // cy.contains('#example-modal-sizes-title-lg', 'Thanks for submitting the form')
+    // .should('exist');
 
-    cy.contains('[class="table-responsive"]','Label')
-    .should('exist');
+    // cy.contains('[class="table-responsive"]','Label')
+    // .should('exist');
+    // })
+
+    //Advanced
+    it('Should goes into "ToolsQA" check all fealds from the homework list', () => {
+        cy.visit('https://demoqa.com/webtables');
+
+        cy.get('[class="ReactTable -striped -highlight"]', { timeout: 6000})
+        .closest('div')
+        .should('have.class', 'rt-table');
+
+
     })
     });
