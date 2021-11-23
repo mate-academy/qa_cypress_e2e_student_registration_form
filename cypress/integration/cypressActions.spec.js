@@ -9,7 +9,7 @@ describe('Registration form fields should be filled', () => {
     });
 
     it('', () => {
-        cy.visit(`https://demoqa.com/automation-practice-form`);
+        cy.visit(`/automation-practice-form`);
         cy.get('[placeholder="First Name"]')
             .type(user.userFirstName);
         cy.get('[placeholder="Last Name"]')
@@ -99,7 +99,7 @@ describe('Registration form fields should be filled', () => {
     })
 
     it('Should be able to add/edit/delete/search workers in workers table', () => {
-        cy.visit('https://demoqa.com/webtables');
+        cy.visit('/webtables');
 
         cy.get('[aria-label="rows per page"]')
           .select('20 rows')  
