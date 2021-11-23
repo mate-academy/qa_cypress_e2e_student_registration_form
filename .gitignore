@@ -1,0 +1,3 @@
+cypress_third_hw/*
+!cypress_third_hw/cypress/integration/HomeworkLastName.spec.js
+!*.json
