@@ -30,13 +30,13 @@ describe('Registration form fields should be filled', () => {
             .select('1990')
     
         cy.get('.react-datepicker__day')
-        .each(($el) => {
-            let dayName = $el.text()
-            if(dayName == '14')
-            {
-                cy.wrap($el).click()
-            }     
-        }); 
+          .each(($el) => {
+              let dayName = $el.text()
+              if(dayName == '14')
+              {
+                  cy.wrap($el).click()
+              }     
+          }); 
         cy.get('#dateOfBirthInput')
           .should('have.value', '14 Mar 1990');
        
@@ -98,7 +98,7 @@ describe('Registration form fields should be filled', () => {
           .click({force: true});  
     })
 
-    it('Should be able to work with workers table', () => {
+    it('Should be able to add/edit/delete/search workers in workers table', () => {
         cy.visit('https://demoqa.com/webtables');
 
         cy.get('[aria-label="rows per page"]')
