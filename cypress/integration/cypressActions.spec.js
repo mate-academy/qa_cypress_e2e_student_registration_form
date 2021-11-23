@@ -105,16 +105,14 @@ describe('Registration form fields should be filled', () => {
           
         cy.get('#closeLargeModal')
           .should('exist')
-          .click()  
+          .click({force: true});  
     })
 
     it('Should be able to work with workers table', () => {
         cy.visit('https://demoqa.com/webtables');
 
-        cy.get('select')
-          .select('10 rows')
-        cy.contains('20 rows')  
-          .click({force: true});
+        cy.get('[aria-label="rows per page"]').select('20 rows')  
+        cy.get('[value="20"]').contains('20 rows');
 
         cy.get('#addNewRecordButton')
           .click();
@@ -152,7 +150,10 @@ describe('Registration form fields should be filled', () => {
         cy.get('#searchBox')
           .clear();  
         cy.get('#delete-record-4 > svg')
-          .click()
+          .click();
+        cy.get('.rt-td')
+           .contains(user.email)
+           .should('not.exist');  
     })
 });
 
