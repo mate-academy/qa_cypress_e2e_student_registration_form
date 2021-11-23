@@ -101,8 +101,12 @@ describe('Registration form fields should be filled', () => {
     it('Should be able to work with workers table', () => {
         cy.visit('https://demoqa.com/webtables');
 
-        cy.get('[aria-label="rows per page"]').select('20 rows')  
-        cy.get('[value="20"]').contains('20 rows');
+        cy.get('[aria-label="rows per page"]')
+          .select('20 rows')  
+        cy.get('[value="20"]')
+          .contains('20 rows')
+        cy.get('select')
+          .should('have.value', '20')
 
         cy.get('#addNewRecordButton')
           .click();
