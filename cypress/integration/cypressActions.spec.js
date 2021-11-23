@@ -24,21 +24,11 @@ describe('Registration form fields should be filled', () => {
         cy.get('#dateOfBirthInput')
             .click();
         cy.get('.react-datepicker__month-select')
-            .each(($el) => {
-            let monthName = $el.text()
-            if(monthName == 'March')
-            {
-                cy.wrap($el).click()
-            }     
-        })
+            .select('March')
+        
         cy.get('.react-datepicker__year-select')
-        .each(($el) => {
-            let monthName = $el.text()
-            if(monthName == '1990')
-            {
-                cy.wrap($el).click()
-            }     
-        }) 
+            .select('1990')
+    
         cy.get('.react-datepicker__day')
         .each(($el) => {
             let dayName = $el.text()
@@ -46,9 +36,9 @@ describe('Registration form fields should be filled', () => {
             {
                 cy.wrap($el).click()
             }     
-        }) 
+        }); 
         cy.get('#dateOfBirthInput')
-          .should('have.value', '14 Nov 2021');
+          .should('have.value', '14 Mar 1990');
        
         cy.get('.subjects-auto-complete__value-container')
           .type('Administration');
@@ -91,7 +81,7 @@ describe('Registration form fields should be filled', () => {
         cy.get('.table')
           .contains('tr', 'Mobile').should('contain', '1234567890'); 
         cy.get('.table')
-          .contains('tr', 'Date of Birth').should('contain', '14 November,2021');
+          .contains('tr', 'Date of Birth').should('contain', '14 March,1990');
         cy.get('.table')
           .contains('tr', 'Subjects').should('contain', ''); 
         cy.get('.table')
