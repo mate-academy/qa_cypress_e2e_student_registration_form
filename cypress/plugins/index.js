@@ -30,8 +30,10 @@ module.exports = (on, config) => {
                 username: faker.name.firstName(),
                 userLastName: faker.name.lastName(),
                 email: 'test' + `${Math.round(Math.random() * 100000)}` + '@mail.su',
-                mobNumber: `${Math.random() * (9999999999 - 1000000000) + 1000000000}`,
+                mobNumber: faker.phone.phoneNumber(),
+                age: `${Math.round(Math.random() * (76 - 18) + 18)}`,
                 address: faker.lorem.paragraph(),
+                salary: `${Math.round(Math.random() * (8700 - 2400) + 2400)}`
             };
             return user;
         },

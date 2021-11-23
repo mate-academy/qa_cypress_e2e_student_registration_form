@@ -2,8 +2,9 @@
 
 const faker = require("faker");
 const { exists } = require("fs");
+const { getSystemErrorName } = require("util");
 
-describe('Cypress Sign up', () => {
+describe('Sign up', () => {
     let user;
 
     before(() => {
@@ -12,8 +13,9 @@ describe('Cypress Sign up', () => {
             user = newUser
         });
     })
+    
     //Basic
-    // it('Should goes into "ToolsQA" fill all fealds and click [Submit]', () => {
+    // it('should goes into "ToolsQA" fill all fealds and click [Submit]', () => {
     // cy.visit('https://demoqa.com/automation-practice-form');
 
 
@@ -65,13 +67,147 @@ describe('Cypress Sign up', () => {
     // })
 
     //Advanced
-    it('Should goes into "ToolsQA" check all fealds from the homework list', () => {
-        cy.visit('https://demoqa.com/webtables');
+    it('should goes into "ToolsQA" check if pagination', () => {
+    cy.visit('/webtables');
 
-        cy.get('[class="ReactTable -striped -highlight"]', { timeout: 6000})
-        .closest('div')
-        .should('have.class', 'rt-table');
+    cy.get('.-pagination')
+    .contains('Page')
+    .should('exist');
 
+    cy.get('.-pagination')
+    .find('.-previous')
+    .should('exist');
 
+    cy.contains('.-center', '1')
+    .should('exist');
+
+    cy.get('.-pagination')
+    .find('.-pageInfo')
+    .should('exist');
+
+    cy.get('#addNewRecordButton')
+    .click();
+
+    cy.contains('.modal-header', 'Registration Form')
+    .should('exist');
+
+     cy.get('#firstName')
+    .type(user.username);
+
+    cy.get('#lastName')
+    .type(user.userLastName);
+
+    cy.get('#userEmail')
+    .type(user.email);
+
+    cy.get('#age')
+    .type(user.age);
+
+    cy.get('#salary')
+    .type(user.salary);
+
+    cy.get('#department')
+    .type('QA');
+
+    cy.get('#submit')
+    .click();
+
+    cy.url()
+    .should('include', '/webtables');
+
+    cy.get('#delete-record-4')
+    .click();
+    
+    cy.get('[class="rt-tr -odd"]')
+    .find('[role="gridcell"]')
+    .should('exist');
+
+    cy.get('#edit-record-3')
+    .click();
+
+    cy.get('[class="col-md-9 col-sm-12"]')
+    .find('[id="salary"]')
+    .type('{selectall}')
+    .type(user.salary);
+
+    cy.get('#submit')
+    .click();
+
+    cy.contains('Cierra')
+    .parent('[class="rt-tr -odd"]')
+    .within(() => {
+      cy.get('[class="rt-td"]')
+      .contains('Cierra')
+      cy.get('[class="rt-td"]')
+      .contains('Vega')
+      cy.get('[class="rt-td"]')
+      .contains('39')
+      cy.get('[class="rt-td"]')
+      .contains('cierra@example.com')
+      cy.get('[class="rt-td"]')
+      .contains('10000')
+      cy.get('[class="rt-td"]')
+      .contains('Insurance')
+    })
+
+    cy.get('#searchBox')
+    .type('{selectall}')
+    .type('Cier{enter}');
+
+    cy.contains('[role="gridcell"]', 'Cierra')
+    .should('exist');
+
+    cy.get('#searchBox')
+    .type('{selectall}')
+    .type('29{enter}');
+
+    cy.contains('[role="gridcell"]', '29')
+    .should('exist');
+
+    cy.get('#searchBox')
+    .type('{selectall}')
+    .type('120{enter}');
+
+    cy.contains('[role="gridcell"]', '12000')
+    .should('exist');
+
+    cy.get('#searchBox')
+    .type('{selectall}')
+    .type('Compli{enter}');
+
+    cy.contains('[role="gridcell"]', 'Compliance')
+    .should('exist');
+
+    cy.get('#searchBox')
+    .type('{selectall}')
+    .type('Gent{enter}');
+
+    cy.contains('[role="gridcell"]', 'Gentry')
+    .should('exist');
+
+    cy.get('#searchBox')
+    .type('{selectall}')
+    .type('kierra@exa{enter}');
+
+    cy.contains('[role="gridcell"]', 'kierra@example.com')
+    .should('exist');
+
+    cy.get('#searchBox')
+    .type('{selectall}{del}');
+
+    cy.get('#searchBox')
+    .should('be.empty');
+
+    cy.get('#delete-record-1')
+    .click();
+
+    cy.get('#delete-record-2')
+    .click();
+
+    cy.get('#delete-record-3')
+    .click();
+
+    cy.get('[class="rt-tr -padRow -odd"]')
+    .should('not.have.value');
     })
     });
