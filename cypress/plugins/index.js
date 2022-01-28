@@ -16,7 +16,24 @@
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
+const faker = require('faker');
+
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
-}
+    on('task', {
+        freshUser() {
+            const random = Math.round(Math.random() * 1000000);
+
+            return {
+                username: faker.name.firstName() + random,
+                lastname: `Asd${random}`,
+                email: `test_${random}@mail.com`,
+                password: '12345Qwert!',
+                phone: random*1000,
+                address: faker.address.city(),
+                birthdate: '20 Dec 2000',
+                subject: 'Computer Science'
+            };
+        },
+    });
+};
+
