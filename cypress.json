@@ -1,1 +1,4 @@
-{}
+{
+  "baseUrl": "https://demoqa.com/automation-practice-form",
+  "defaultCommandTimeout": 2000
+}
