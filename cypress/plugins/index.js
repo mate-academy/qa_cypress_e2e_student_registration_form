@@ -20,3 +20,22 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 }
+
+const faker = require('faker');
+
+module.exports = (on, config) => {
+    on('task', {
+        freshUser() {
+            const random = Math.round(Math.random() * 1000000);
+
+            return {
+                userFirstName: faker.name.firstName() + random,
+                userLastName: faker.name.lastName(),
+                email: `test_${random}@mail.com`,
+                password: '12345Qwert!',
+                mobileNumber: random,
+                address: faker.address.streetAddress()
+            };
+        },
+    });
+};
