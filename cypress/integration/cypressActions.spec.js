@@ -21,7 +21,7 @@ describe('', () => {
 });
 
 
-it('workers table should works correctly', () => {
+it.only('workers table should works correctly', () => {
 
   cy.visit('https://demoqa.com/webtables');
 
@@ -35,13 +35,10 @@ it('workers table should works correctly', () => {
 
   cy.validateWorkerData();
 
-  cy.get('[class="rt-tr-group"]')
-  .should('contain', 'QA automation');
-
   cy.findById('delete-record-2')
   .click();
   
-  cy.get('[class="rt-tr-group"]')
+  cy.get('[class="rt-tr -even"]')
   .should('not.contain', 'Compliance');
 
   cy.deleteAllWorkers();
@@ -60,7 +57,7 @@ it('workers table should works correctly', () => {
   cy.findByPlaceholder('Last Name')
   .type('{selectall}Stepanenko{enter}')
 
-  cy.get('[class="rt-td"]').should('contain', 'Stepanenko')
+  cy.get('[class="rt-tr -odd"]').should('contain', 'Stepanenko')
 
   cy.checkSearch();
 

@@ -105,15 +105,15 @@ Cypress.Commands.add('deleteAllWorkers', () => {
 
 Cypress.Commands.add('modalWindowContainInfo', () => {
 
-  cy.get('tr td').should('contain', 'test@test.com');
-  cy.get('tr td').should('contain', 'Test Test1');
-  cy.get('tr td').should('contain', 'Male');
-  cy.get('tr td').should('contain', '0936945435');
-  cy.get('tr td').should('contain', '02 September,1999');
-  cy.get('tr td').should('contain', 'Maths, Physics');
-  cy.get('tr td').should('contain', 'Sports');
-  cy.get('tr td').should('contain', 'Ukraine, Lviv');
-  cy.get('tr td').should('contain', 'Haryana Karnal');
+  cy.contains('tr', 'Student Email').should('contain', 'test@test.com');
+  cy.contains('tr', 'Student Name').should('contain', 'Test Test1');
+  cy.contains('tr', 'Gender').should('contain', 'Male');
+  cy.contains('tr', 'Mobile').should('contain', '0936945435');
+  cy.contains('tr', 'Date of Birth').should('contain', '02 September,1999');
+  cy.contains('tr', 'Subjects').should('contain', 'Maths, Physics');
+  cy.contains('tr', 'Hobbies').should('contain', 'Sports');
+  cy.contains('tr', 'Address').should('contain', 'Ukraine, Lviv');
+  cy.contains('tr', 'State and City').should('contain', 'Haryana Karnal');
 
 })
 
@@ -156,17 +156,17 @@ Cypress.Commands.add('fillAllFields', () => {
 
 Cypress.Commands.add('validateWorkerData', () => {
 
-    cy.get('[class="rt-td"]').should('contain', 'Test')
+    cy.contains('[class="rt-tr -even"]', 'Test').should('contain', 'Test')
 
-    cy.get('[class="rt-td"]').should('contain', 'Test1')
+    cy.contains('[class="rt-tr -even"]', 'Test1').should('contain', 'Test1')
 
-    cy.get('[class="rt-td"]').should('contain', 'test@example.com')
+    cy.contains('[class="rt-tr -even"]', 'test@example.com').should('contain', 'test@example.com')
 
-    cy.get('[class="rt-td"]').should('contain', 22)
+    cy.contains('[class="rt-tr -even"]', 22).should('contain', 22)
 
-    cy.get('[class="rt-td"]').should('contain', 1000)
+    cy.contains('[class="rt-tr -even"]', 1000).should('contain', 1000)
     
-    cy.get('[class="rt-td"]').should('contain', 'QA automation')
+    cy.contains('[class="rt-tr -even"]', 'QA automation').should('contain', 'QA automation')
 })
 
 Cypress.Commands.add('checkSearch', () => {
@@ -174,25 +174,25 @@ Cypress.Commands.add('checkSearch', () => {
     cy.findByPlaceholder('Type to search')
     .type('{selectall}Stepanenko');
 
-    cy.get('[class="rt-td"]').should('contain', 'Stepanenko')
+    cy.contains('[class="rt-tr -odd"]', 'Stepanenko').should('contain', 'Stepanenko')
 
     cy.findByPlaceholder('Type to search')
     .type('{selectall}45');
 
-    cy.get('[class="rt-td"]').should('contain', 45)
+    cy.contains('[class="rt-tr -odd"]', 45).should('contain', 45)
 
     cy.findByPlaceholder('Type to search')
     .type('{selectall}alden@example.com');
 
-    cy.get('[class="rt-td"]').should('contain', 'alden@example.com')
+    cy.contains('[class="rt-tr -odd"]', 'alden@example.com').should('contain', 'alden@example.com')
 
     cy.findByPlaceholder('Type to search')
     .type('{selectall}12000');
 
-    cy.get('[class="rt-td"]').should('contain', 12000)
+    cy.contains('[class="rt-tr -odd"]', 12000).should('contain', 12000)
 
     cy.findByPlaceholder('Type to search')
     .type('{selectall}Compliance');
 
-    cy.get('[class="rt-td"]').should('contain', 'Compliance')
+    cy.contains('[class="rt-tr -odd"]', 'Compliance').should('contain', 'Compliance')
 })
