@@ -4,10 +4,10 @@ const { type } = require("os");
 
 describe('automation-practice-form', () => {
   before(() => {
-    cy.visit('/automation-practice-form')
+    cy.visit('sould /automation-practice-form')
   });
 
-  it('fill form', () => {
+  it('sould fill form', () => {
     cy.get('#firstName').type('John');
     cy.get('#lastName').type('Smith');
     cy.get('#userEmail').type('JohnSmith@mail.com');
@@ -32,47 +32,47 @@ describe('automation-practice-form', () => {
     cy.get('#submit').click();
   });
 
-  it('check name', () => {
+  it('sould check name', () => {
     cy.get('tbody > :nth-child(1) > :nth-child(2)')
       .should('contain.text', 'John Smith');
   });
 
-  it('check email', () => {
+  it('sould check email', () => {
     cy.get('tbody > :nth-child(2) > :nth-child(2)')
       .should('contain.text', 'JohnSmith@mail.com');
   });
 
-  it('check gender', () => {
+  it('sould check gender', () => {
     cy.get('tbody > :nth-child(3) > :nth-child(2)')
       .should('contain.text', 'Male');
   });
   
-  it('check mobile', () => {
+  it('sould check mobile', () => {
     cy.get('tbody > :nth-child(4) > :nth-child(2)')
       .should('contain.text', '0677777777');
   });
 
-  it('check date of birth', () => {
+  it('sould check date of birth', () => {
     cy.get('tbody > :nth-child(5) > :nth-child(2)')
       .should('contain.text', '02 September,1992');
   });
 
-  it('check subject', () => {
+  it('sould check subject', () => {
     cy.get('tbody > :nth-child(6) > :nth-child(2)')
       .should('contain.text', 'English');
   });
 
-  it('check hobbies', () => {
+  it('sould check hobbies', () => {
     cy.get('tbody > :nth-child(7) > :nth-child(2)')
       .should('contain', 'Reading');
   });
 
-  it('check address', () => {
+  it('sould check address', () => {
     cy.get('tbody > :nth-child(9) > :nth-child(2)')
       .should('contain', 'Baker str. 10');
   });
 
-  it('check state and city', () => {
+  it('sould check state and city', () => {
     cy.get('tbody > :nth-child(10) > :nth-child(2)')
       .should('contain', 'Uttar Pradesh Agra');
   });
@@ -80,30 +80,30 @@ describe('automation-practice-form', () => {
 
 describe('webtables', () => {
   before(() => {
-    cy.visit('/webtables')
+    cy.visit('sould /webtables')
   });
 
-  it('pagination', () => {
+  it('sould pagination', () => {
     cy.get('.-pageInfo').should('contain', 1)
   });
   
-  it('rows count selection', () => {
+  it('sould rows count selection', () => {
     cy.get('select').select('5').should('have.value', '5')
   });
 
-  it('add new worker and validate', () => {
+  it('sould add new worker and validate', () => {
     cy.get('#addNewRecordButton').click();
     cy.addOrEditWorker();
     cy.validateWorker();
   });
 
-  it('delete worker', () => {
+  it('sould delete worker', () => {
     cy.reload();
     cy.get('#delete-record-1 > svg > path').click()
     cy.get('.rt-tr').should('not.contain.text', 'Cierra')
   });
 
-  it('delete workers', () => {
+  it('sould delete workers', () => {
     cy.reload();
     cy.get('#delete-record-1 > svg > path').click()
     cy.get('#delete-record-2 > svg > path').click()
@@ -111,14 +111,14 @@ describe('webtables', () => {
     cy.get('.rt-noData').should('contain', 'No rows found');
   });
 
-  it('find worker', () => {
+  it('sould find worker', () => {
     cy.reload();
     cy.get('#searchBox').type('kierra' + '{enter}')
     cy.get('.rt-tbody > :nth-child(1) > .rt-tr > :nth-child(1)')
       .should('contain.text', 'Kierra')
   });
 
-  it('edit worker', () => {
+  it('sould edit worker', () => {
     cy.reload();
     cy.get('#edit-record-1').click();
     cy.addOrEditWorker();
