@@ -23,3 +23,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('addOrEditWorker', () => {
+  cy.get('#firstName').type('{selectall}' + 'John')
+  cy.get('#lastName').type('{selectall}' + 'Smith')
+  cy.get('#userEmail').type('{selectall}' + 'JohnSmyth@mail.com')
+  cy.get('#age').type('{selectall}' + '30')
+  cy.get('#salary').type('{selectall}' + '3000')
+  cy.get('#department').type('{selectall}' + 'sales' + '{enter}')
+});
+
+Cypress.Commands.add('validateWorker', () => {
+  cy.get('.rt-td').should('contain.text', 'John')
+  cy.get('.rt-td').should('contain.text', 'Smith')
+  cy.get('.rt-td').should('contain.text', 'JohnSmyth@mail.com')
+  cy.get('.rt-td').should('contain.text', '30')
+  cy.get('.rt-td').should('contain.text', '3000')
+  cy.get('.rt-td').should('contain.text', 'sales')
+})
