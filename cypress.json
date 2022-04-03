@@ -1,5 +1,6 @@
 {
   "baseUrl": "https://demoqa.com",
+  "viewportHeight": 900,
   "waitForAnimations": false,
   "animationDistanceThreshold": 50
 }
