@@ -5,7 +5,6 @@
 } */
 
 /// <reference types='cypress' />
-
 const user = {
   name: 'Sergey',
   surname: 'Brigadir',
