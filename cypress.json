@@ -1,1 +1,5 @@
-{}
+{
+    "baseUrl": "https://demoqa.com",
+    "viewportWidth": 2000,
+    "viewportHeight": 3000  
+}
