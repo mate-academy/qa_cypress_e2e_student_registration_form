@@ -9,7 +9,7 @@ Workflow:
 
 App for testing: `https://demoqa.com/automation-practice-form`
 
-**Your task** is to automate the next test cases:
+**Your task** is to automate the next test cases:g
 
 1. Fill all fields in forms except "picture".
 2. Click on [Submit] button.
