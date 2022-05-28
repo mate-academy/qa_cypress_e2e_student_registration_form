@@ -12,10 +12,10 @@ const userState = "Haryana"
 const userCity = "Karnal"
 
 describe('Registration form:', () => {
-  it('fill all field', () => {
-
+  before(() => {
     cy.visit('automation-practice-form');
-    
+  });
+  it('fill all field', () => {
     cy.get('#firstName')
       .type(userName)
       .should("have.value", userName);
