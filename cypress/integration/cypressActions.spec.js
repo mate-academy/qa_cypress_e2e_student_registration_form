@@ -47,7 +47,7 @@ describe('Registration form:', () => {
       .click({force: true})
       .type(`${user.state}{enter}`);
     
-    cy.get('#city .css-19bqh2r')
+    cy.get('#react-select-4-input')
     .click({force: true})
     .type(`${user.city}{enter}`);;
 
@@ -90,7 +90,7 @@ describe('Registration form:', () => {
       .should('have.text', `${user.state} ${user.city}`);
 
     cy.get('#closeLargeModal')
-      .click()
+      .click({force: true})
 
   });
 });
