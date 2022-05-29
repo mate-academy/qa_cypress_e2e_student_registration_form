@@ -2,7 +2,7 @@
 
 describe('Submit form', () => {
   beforeEach(() => {
-    cy.visit('/')
+    cy.visit('/automation-practice-form')
   });
 
   it('should allow to register', () => {
