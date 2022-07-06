@@ -35,7 +35,7 @@ describe('User should', () => {
       .type(`${bd}{enter}`)
 
     cy.get('[id="subjectsContainer"]')
-    .type(subject)
+      .type(subject)
 
     cy.get('#react-select-2-option-0')
     .click();
