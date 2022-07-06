@@ -16,53 +16,53 @@ describe('User should', () => {
     cy.visit('/');
 
     cy.get('#firstName')
-      .type(firstName);
+    .type(firstName);
 
     cy.get('[id="lastName"]')
-      .type(lastName);
+    .type(lastName);
 
     cy.get('[id="userEmail"]')
-      .type(email);
+    .type(email);
 
     cy.get('#gender-radio-2')
-      .check({ force: true});
+    .check({ force: true});
     
     cy.get('[id="userNumber"]')
-      .type(phoneNumber);
+    .type(phoneNumber);
 
     cy.get('#dateOfBirthInput')
-      .type('{selectall}')
-      .type(`${bd}{enter}`)
+    .type('{selectall}')
+    .type(`${bd}{enter}`)
 
     cy.get('[id="subjectsContainer"]')
-      .type(subject)
+    .type(subject)
 
     cy.get('#react-select-2-option-0')
     .click();
 
     cy.get('[for="hobbies-checkbox-1"]')
-      .click();
+    .click();
     
     cy.get('[for="hobbies-checkbox-3"]')
-      .click();
+    .click();
 
     cy.get('[id="currentAddress"]')
     .type(adress);
 
     cy.get('#state')
-      .click();
+    .click();
 
     cy.contains('div', 'NCR')
-      .click();
+    .click();
 
     cy.get('#city')
-      .click();
+    .click();
 
     cy.contains('div', 'Noida')
-      .click();
+    .click();
 
     cy.get('#submit')
-      .click();
+    .click();
 
     cy.contains('tr', 'Student Name').should('contain', `${firstName} ${lastName}`);
     cy.contains('tr', 'Student Email').should('contain', email);
