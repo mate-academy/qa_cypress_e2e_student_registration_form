@@ -25,7 +25,7 @@ describe('User should', () => {
       .type(email);
 
     cy.get('#gender-radio-2')
-    .check({ force: true});
+      .check({ force: true});
     
     cy.get('[id="userNumber"]')
       .type(phoneNumber);
