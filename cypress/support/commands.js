@@ -23,3 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('random', (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;  
+});
