@@ -29,5 +29,6 @@ Cypress.Commands.add('findByPlaceholder', (placeholder) =>{
 });
 
 Cypress.Commands.add('checkValues', (value1, value2) =>{
-  cy.contains('tr', value1).should('contain',value2)
+  cy.contains('tr', value1)
+    .should('contain',value2)
 });

@@ -1,6 +1,6 @@
 /// <reference types='cypress' />
 
-describe('User should be able', () => {
+describe('User should be able to', () => {
   const user = {
     firstName: "Maksym",
     lastName: "Hukovskyi",
@@ -10,38 +10,33 @@ describe('User should be able', () => {
     address: 'UA'
   };
   before(() => {
-    
+    cy.visit('https://demoqa.com/automation-practice-form');
   });
 
   it('register with valid data', () => {
-    cy.visit('https://demoqa.com/automation-practice-form');
     cy.findByPlaceholder('Last Name')
       .type(user.lastName);
-      cy.findByPlaceholder('name@example.com')
+    cy.findByPlaceholder('name@example.com')
       .type(user.email);
-      cy.get('#dateOfBirthInput')
-        .type('{selectall}')
-        .type('09 July 1997{enter}');
-      cy.get('#gender-radio-1')
-        .click({force: true});
-      cy.findByPlaceholder('Mobile Number')
-        .type(user.mobile);
-      cy.get('[id="subjectsContainer"]')
-        .type(user.subject+'{enter}');
-      cy.get('#hobbies-checkbox-1')
+    cy.get('#dateOfBirthInput')
+      .type('{selectall}')
+      .type('09 July 1997{enter}');
+    cy.get('#gender-radio-1')
       .click({force: true});
-      cy.findByPlaceholder('Current Address')
+    cy.findByPlaceholder('Mobile Number')
+      .type(user.mobile);
+    cy.get('[id="subjectsContainer"]')
+      .type(user.subject+'{enter}');
+    cy.get('#hobbies-checkbox-1')
+      .click({force: true});
+    cy.findByPlaceholder('Current Address')
       .type(user.address);
-      cy.contains('#state', 'Select State')
-        .type('NCR'+'{enter}')
-      cy.contains('#city', 'Select City')
-        .type('Delhi'+'{enter}')
-      // cy.get('#submit')
-      //   .click()
-      cy.findByPlaceholder('First Name')
-      .type(user.firstName+'{enter}');        
-  });
-  it('see data that he input', () => {
+    cy.contains('#state', 'Select State')
+      .type('NCR'+'{enter}')
+    cy.contains('#city', 'Select City')
+      .type('Delhi'+'{enter}')
+    cy.findByPlaceholder('First Name')
+      .type(user.firstName+'{enter}');
 
     cy.checkValues('Student Name', `${user.firstName} ${user.lastName}`);
     cy.checkValues('Student Email', `${user.email}`);
@@ -52,9 +47,5 @@ describe('User should be able', () => {
     cy.checkValues("Hobbies", "Sports");
     cy.checkValues("Address", user.address);
     cy.checkValues("State and City", "NCR Delhi");
-
-
-
-
-  });
+    });
 });
