@@ -23,7 +23,7 @@ describe('DemoQA:', () => {
     cy.visit('https://demoqa.com/automation-practice-form');
   });
 
-  it('1. Registration', () => {
+  it('1. Should register a new user', () => {
     cy.get('#firstName').type(student.name)
     cy.get('#lastName').type(student.lastname)
     cy.get('#userEmail').type(student.email)
@@ -46,7 +46,7 @@ describe('DemoQA:', () => {
     cy.get('#submit').click({force: true})
   });
 
-  it('2. Confirmation', () => {
+  it('2. Should display all the user data entered', () => {
     cy.contains('Student Name').next()
       .should('contain', `${student.name} ${student.lastname}`)
     cy.contains('Student Email').next()
