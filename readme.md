@@ -1,4 +1,5 @@
 Workflow:
+
 1. Fork the repo.
 1. Clone **your** forked repository.
 1. Create a new branch `git checkout -b develop`.
@@ -21,7 +22,7 @@ App for testing: `https://demoqa.com/webtables`
 
 **Your task** is to check next points:
 
-1. Pagination 
+1. Pagination
 2. Rows count selection
 3. Add new worker
 4. Delete worker
