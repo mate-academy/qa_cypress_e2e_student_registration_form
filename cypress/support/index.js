@@ -1,3 +1,8 @@
+Cypress.on('uncaught:exception', () => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+ });
 // ***********************************************************
 // This example support/index.js is processed and
 // loaded automatically before your test files.
