@@ -23,3 +23,12 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('findByPlaceholder', (placeholder) =>{
+    cy.get(`[placeholder="${placeholder}"]`)
+  });
+  
+  Cypress.Commands.add('checkValues', (value1, value2) =>{
+    cy.contains('tr', value1)
+      .should('contain',value2)
+  });
