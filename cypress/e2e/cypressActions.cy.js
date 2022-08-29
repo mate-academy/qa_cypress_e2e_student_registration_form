@@ -8,15 +8,11 @@ describe('Name of the group', () => {
   });
 
   it('should fill all fields in forms except "picture"', () => {
-    const { firstName, lastName, email, mobile, subject } = generateUser(); 
-
-      cy.fillAllFIelds(firstName, lastName, email, mobile, subject);
-
-});
-
-  it.only('should fill all fields in forms except "picture"', () => {
     const { firstName, lastName, email, mobile, adress } = generateUser(); 
       cy.fillAllFIelds(firstName, lastName, email, mobile, adress);
+
+      cy.contains('Thanks for submitting the form')
+        .should('be.visible');
 
       cy.contains('tr', 'Student Name')
         .should('contain', firstName, lastName);
@@ -44,6 +40,5 @@ describe('Name of the group', () => {
 
       cy.contains('tr', 'State and City')
         .should('contain', 'Haryana Karnal');
-
   });
 });
