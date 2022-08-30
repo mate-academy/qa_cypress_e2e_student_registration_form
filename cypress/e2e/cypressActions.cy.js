@@ -2,8 +2,8 @@
 
 describe('Practice Form', () => {
   before(() => {
-    cy.visit('/')
-    cy.viewport(1600, 1200)
+    cy.visit('/');
+    //cy.viewport(1600, 1200);
   });
 
   it('Should register a student filling the required fields', () => {
@@ -23,7 +23,7 @@ describe('Practice Form', () => {
     .type('0998887766');
    
     cy.get('[id="dateOfBirthInput"]')
-    .type('{selectAll}').type('23 May 1900').click();
+    .type('{selectAll}').type('23 May 1900{enter}');
 
     cy.get('[class="subjects-auto-complete__control css-yk16xz-control"]')
     .click('right')
@@ -47,10 +47,14 @@ describe('Practice Form', () => {
     cy.get('[id="submit"]')
     .click();
 
+    cy.contains('[class="modal-body"]', 'John Johnson');
     cy.contains('[class="modal-body"]', 'Johnson@gmail.com');
-
     cy.contains('[class="modal-body"]', 'Male');
-
+    cy.contains('[class="modal-body"]', '0998887766');
     cy.contains('[class="modal-body"]', '23 May,1900');
+    cy.contains('[class="modal-body"]', 'Physics, Computer Science');
+    cy.contains('[class="modal-body"]', 'Sports, Music');
+    cy.contains('[class="modal-body"]', 'There is no available address. Check your permission key.');
+    cy.contains('[class="modal-body"]', 'Uttar Pradesh Agra');
   });
 });
