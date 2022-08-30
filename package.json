@@ -1,0 +1,26 @@
+{
+  "name": "cypress_third_hw",
+  "version": "1.0.0",
+  "description": "Workflow:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arina-Lex-2012/cypress_third_hw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arina-Lex-2012/cypress_third_hw/issues"
+  },
+  "homepage": "https://github.com/Arina-Lex-2012/cypress_third_hw#readme",
+  "dependencies": {
+    "cypress": "^10.6.0"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.5.0"
+  }
+}
