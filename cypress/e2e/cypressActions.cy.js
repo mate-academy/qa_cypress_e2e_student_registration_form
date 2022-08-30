@@ -1,4 +1,5 @@
 /// <reference types='cypress' />
+
 const { generateUser } = require('../support/generateUser');
 
 describe('Name of the group', () => {
