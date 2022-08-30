@@ -2,10 +2,12 @@
 
 describe('Name of the group', () => {
   before(() => {
-    
+    cy.visit('https://demoqa.com/automation-practice-form')
   });
 
-  it('', () => {
+  it('should fill and submit the registration form', () => {
+    
+
     
   });
 });
