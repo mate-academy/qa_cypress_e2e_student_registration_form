@@ -34,7 +34,7 @@ describe('Practice Form', () => {
     cy.get('[class="react-datepicker__year-select"]')
       .select('1984');
 
-    cy.get(':nth-child(5) > .react-datepicker__day--026')
+    cy.get('[class="react-datepicker__day react-datepicker__day--026"]')
       .click();
 
     cy.get('.subjects-auto-complete__value-container')
@@ -52,51 +52,45 @@ describe('Practice Form', () => {
     cy.get('[placeholder="Current Address"]')
       .type('USA, California');
 
-    cy.get('#state > .css-yk16xz-control > .css-1wy0on6 > .css-tlfecz-indicatorContainer > .css-19bqh2r')  
-      .click({force: true});
+    cy.get('#state')  
+      .type(`NCR{enter}`);
 
-    cy.get('#react-select-3-option-3')
-    .click({force: true});
-
-    cy.get('#city > .css-yk16xz-control > .css-1wy0on6 > .css-tlfecz-indicatorContainer > .css-19bqh2r')
-      .click({force: true});
-
-    cy.get('#react-select-4-option-1')
-      .click({force: true});
-      
+    cy.get('#city')
+      .type(`Delhi{enter}`);
+  
     cy.get('[class="btn btn-primary"]')
       .click({force: true});
 
     cy.get('[class="modal-title h4"]')
       .should('contain.text', 'Thanks for submitting the form');
 
-    cy.get('tbody > :nth-child(1) > :nth-child(2)')
-      .should('contain.text', 'Jhon Black');
+    cy.contains('tr', 'Student Name')
+      .should('contain', 'Jhon Black');  
+
+    cy.contains('tr', 'Student Email')
+      .should('contain', 'black1985@ukr.net');  
+
+    cy.contains('tr', 'Gender')
+      .should('contain', 'Male');  
     
-    cy.get('tbody > :nth-child(2) > :nth-child(2)')
-      .should('contain.text', 'black1985@ukr.net');  
+    cy.contains('tr', 'Mobile')
+      .should('contain', '0684563217');  
 
-    cy.get('tbody > :nth-child(3) > :nth-child(2)')
-      .should('contain.text', 'Male'); 
+    cy.contains('tr', 'Date of Birth')
+      .should('contain', '26 December,1984'); 
 
-    cy.get('tbody > :nth-child(4) > :nth-child(2)')
-      .should('contain.text', '0684563217');  
+    cy.contains('tr', 'Subjects')
+      .should('contain', 'Maths, Biology');  
 
-    cy.get('tbody > :nth-child(5) > :nth-child(2)')
-      .should('contain.text', '26 December,1984'); 
+    cy.contains('tr', 'Hobbies')
+      .should('contain', 'Sports, Reading');
       
-    cy.get('tbody > :nth-child(6) > :nth-child(2)')
-      .should('contain.text', 'Maths, Biology'); 
-      
-    cy.get('tbody > :nth-child(7) > :nth-child(2)')
-      .should('contain.text', 'Sports, Reading');
-      
-    cy.get('tbody > :nth-child(9) > :nth-child(2)')
-      .should('contain.text', 'USA, California');
-      
-    cy.get('tbody > :nth-child(10) > :nth-child(2)')
-      .should('contain.text', 'Rajasthan Jaiselmer');  
-      
+    cy.contains('tr', 'Address')
+      .should('contain', 'USA, California');
+
+    cy.contains('tr', 'State and City')
+      .should('contain', 'NCR Delhi');  
+    
     cy.get('#closeLargeModal')
       .click();  
 
