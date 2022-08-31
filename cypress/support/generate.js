@@ -6,9 +6,9 @@ function generateUser() {
   const email = firstName.toLowerCase() + "@gmail.com";
   const phoneNumber = Math.floor(Math.random() * 10000000000);
   const address = faker.address.streetAddress();
-  const password = "12345Qwert!";
 
-  return { firstName, lastName, email, password, phoneNumber, address };
+
+  return { firstName, lastName, email, phoneNumber, address };
 }
 
 module.exports = { generateUser };
