@@ -30,8 +30,8 @@ describe('Practice form', () => {
     cy.get(`#userEmail`)
       .type(email)
 
-    cy.get('#genterWrapper > .col-md-9 > :nth-child(3)')
-      .click();
+    cy.get('[value="Other"]')
+      .click({force: true});
 
     cy.get(`[placeholder="Mobile Number"]`)
       .type(mobile)
