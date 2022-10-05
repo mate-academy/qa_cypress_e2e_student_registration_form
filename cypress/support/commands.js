@@ -11,7 +11,13 @@
 //
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
-//
+Cypress.Commands.add('genderSelector', (gender) => {
+  if (gender == 'Male') {
+    cy.contains('[for=gender-radio-1]', 'Male').click();
+  } else {
+    cy.contains('[for=gender-radio-2]', 'Female').click();
+  };
+});
 //
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
