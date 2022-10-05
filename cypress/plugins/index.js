@@ -17,6 +17,27 @@
  */
 // eslint-disable-next-line no-unused-vars
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
-}
+  
+};
+
+import { faker } from '@faker-js/faker';
+
+function randomUser() {
+
+  const firstName = faker.name.firstName();
+  const lastName = faker.name.lastName();
+  const email = faker.internet.email();
+  const phone = faker.phone.number('##########');
+  const address = faker.address.streetAddress()
+
+  return {firstName, lastName, email, phone, address}
+};
+
+module.exports = {randomUser};
+
+// function getRandomDate() {
+//   const maxDate = Date.now();
+//   const timestamp = Math.floor(Math.random() * maxDate);
+//   return new Date(timestamp).toLocaleDateString('en-GB', { month: 'short', day: '2-digit', year: 'numeric'});
+// }
+// module.exports = {getRandomDate};
