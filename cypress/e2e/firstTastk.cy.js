@@ -9,7 +9,7 @@ describe('User is able to input data in all of the fields', () => {
       return false
   })
 
-    cy.visit('/');
+    cy.visit('/automation-practice-form');
 
     cy.get('#firstName')
       .type('Donald');
