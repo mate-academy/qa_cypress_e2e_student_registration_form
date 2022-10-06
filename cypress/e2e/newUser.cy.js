@@ -5,7 +5,7 @@ const user = {
   email: username+'@mail.com',
   adress: 'adress',
   hobbies: 'hobbies',
-  subjects: 'dwefcwe',
+  subjects: 'English',
   mobile: '1234567890'+Math.random(10)
 };
 
