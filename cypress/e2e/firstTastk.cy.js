@@ -1,16 +1,18 @@
 /// <reference types="cypress" />
 
 describe('User is able to input data in all of the fields', () => {
+  Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+  });
+
+
+  beforeEach(() => {
+    cy.visit('/automation-practice-form');
+  });
 
   it('Data inputting', () => {
-    Cypress.on('uncaught:exception', (err, runnable) => {
-      // returning false here prevents Cypress from
-      // failing the test
-      return false
-  })
-
-    cy.visit('/automation-practice-form');
-
     cy.get('#firstName')
       .type('Donald');
 
@@ -53,7 +55,9 @@ describe('User is able to input data in all of the fields', () => {
       .submit();
   });
 
-  it('should validate the inputed data', () => {
+  it.only('should validate the inputed data', () => {
+    cy.login();
+
     cy.get('tbody > :nth-child(1) > :nth-child(2)')
       .should('include.text', 'Donald Mc Ronald');
 
