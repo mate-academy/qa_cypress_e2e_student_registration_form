@@ -22,8 +22,8 @@ describe('User is able to input data in all of the fields', () => {
     cy.get('#userEmail')
       .type('aReqlMail@gmail.com');
 
-    cy.get('#genterWrapper > .col-md-9 > :nth-child(1)')
-      .click('topRight');
+    cy.get('[for="gender-radio-1"]')
+      .click();
 
     cy.get('#userNumber')
       .type('1234567890');
@@ -35,57 +35,59 @@ describe('User is able to input data in all of the fields', () => {
       .type('{selectAll}')
       .type('20 May 1995 {enter}');
     
-    cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(1) > .custom-control-label')
-      .click('left');
-    cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(2) > .custom-control-label')
-      .click();
-    cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(3) > .custom-control-label')
-      .click();
+    cy.get('#hobbies-checkbox-1')
+      .click({ force:true });
+    cy.get('#hobbies-checkbox-2')
+      .click({ force:true });
+    cy.get('#hobbies-checkbox-3')
+      .click({ force:true });
 
     cy.get('[id="currentAddress"]')
       .type('The Real Street 47');
 
-    cy.get('.css-yk16xz-control > .css-1hwfws3 > .css-1wa3eu0-placeholder')
+    cy.get('[id="state"]')
+      .click()
       .type('NCR{enter}');
-  
-    cy.get('#city > .css-yk16xz-control > .css-1hwfws3')
+
+    cy.get('[id="city"]')
+      .click()
       .type('del{enter}');
 
     cy.get('[id="userForm"]')
       .submit();
   });
 
-  it.only('should validate the inputed data', () => {
+  it('should validate the inputed data', () => {
     cy.login();
 
-    cy.get('tbody > :nth-child(1) > :nth-child(2)')
-      .should('include.text', 'Donald Mc Ronald');
+    cy.contains('tr', 'Student Name')
+      .should('contain', 'Donald Mc Ronald');
 
-    cy.get('tbody > :nth-child(2) > :nth-child(2)')
-      .should('include.text', 'aReqlMail@gmail.com');
+    cy.contains('tr', 'Student Email')
+      .should('contain', 'aReqlMail@gmail.com');
     
-    cy.get('tbody > :nth-child(3) > :nth-child(2)')
-      .should('include.text', 'Male');
+    cy.contains('tr', 'Gender')
+      .should('contain', 'Male');
 
-    cy.get('tbody > :nth-child(4) > :nth-child(2)')
-      .should('include.text', '1234567890');
+    cy.contains('tr', 'Mobile')
+      .should('contain', '1234567890');
 
-    cy.get('tbody > :nth-child(5) > :nth-child(2)')
-      .should('include.text', '20 May,1995');
+    cy.contains('tr', 'Date of Birth')
+      .should('contain', '20 May,1995');
 
-    cy.get('tbody > :nth-child(6) > :nth-child(2)')
-      .should('include.text', 'English');
+    cy.contains('tr', 'Subjects')
+      .should('contain', 'English');
 
-    cy.get('tbody > :nth-child(7) > :nth-child(2)')
-      .should('include.text', 'Sports, Reading, Music');
+    cy.contains('tr', 'Hobbies')
+      .should('contain', 'Sports, Reading, Music');
     
-    cy.get('tbody > :nth-child(8) > :nth-child(2)')
-      .should('be.empty');
+    cy.contains('tr', 'Picture')
+      .should('contain', '');
     
-    cy.get('tbody > :nth-child(9) > :nth-child(2)')
-      .should('include.text', 'The Real Street 47');
+    cy.contains('tr', 'Address')
+      .should('contain', 'The Real Street 47');
       
-    cy.get('tbody > :nth-child(10) > :nth-child(2)')
-      .should('include.text', 'NCR Delhi');
+    cy.contains('tr', 'State and City')
+      .should('contain', 'NCR Delhi');
   });
 });
