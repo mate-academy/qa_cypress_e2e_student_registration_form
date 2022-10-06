@@ -35,43 +35,43 @@ describe('Create new', () => {
     cy.get('[for="hobbies-checkbox-3"]')
     .click();
 
-    cy.get('.css-yk16xz-control > .css-1hwfws3 > .css-1wa3eu0-placeholder')
+    cy.get('[id="state"]')
     .type('Har{enter}');
 
-    cy.get('#stateCity-wrapper > :nth-child(3)')
+    cy.get('[class=" css-1wa3eu0-placeholder"]')
     .type('Kar{enter}');
 
-    cy.get('#genterWrapper > .col-md-9 > :nth-child(1) > .custom-control-label')
+    cy.get('[for="gender-radio-1"]')
     .click()
     .type('{enter}');
   });
 
   it('user table', () => {
-    cy.get('tbody > :nth-child(1) > :nth-child(2)')
+    cy.contains('tr', 'Student Name')
     .should('contain', 'Alexander Anderson');
 
-    cy.get('tbody > :nth-child(2) > :nth-child(2)')
+    cy.contains('tr', 'Student Email')
     .should('contain', 'AlexanderAnderson@gmail.com');
 
-    cy.get('tbody > :nth-child(3) > :nth-child(2)')
+    cy.contains('tr', 'Gender')
     .should('contain', 'Male');
 
-    cy.get('tbody > :nth-child(4) > :nth-child(2)')
+    cy.contains('tr', 'Mobile')
     .should('contain', '8739375883');
 
-    cy.get('tbody > :nth-child(5) > :nth-child(2)')
+    cy.contains('tr', 'Date of Birth')
     .should('contain', '13 December,2000');
 
-    cy.get('tbody > :nth-child(6) > :nth-child(2)')
+    cy.contains('tr', 'Subjects')
     .should('contain', 'Maths');
 
-    cy.get('tbody > :nth-child(7) > :nth-child(2)')
+    cy.contains('tr', 'Hobbies')
     .should('contain', 'Sports, Music');
 
-    cy.get('tbody > :nth-child(9) > :nth-child(2)')
+    cy.contains('tr', 'Address')
     .should('contain', 'Sweet Home Alabama');
 
-    cy.get('tbody > :nth-child(10) > :nth-child(2)')
+    cy.contains('tr', 'State and City')
     .should('contain', 'Haryana Karnal');
   });
 });
