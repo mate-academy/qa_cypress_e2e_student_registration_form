@@ -1,0 +1,25 @@
+{
+  "name": "cypress_third_hw",
+  "version": "1.0.0",
+  "description": "Workflow:",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElinaNechaieva/cypress_third_hw.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ElinaNechaieva/cypress_third_hw/issues"
+  },
+  "homepage": "https://github.com/ElinaNechaieva/cypress_third_hw#readme",
+  "devDependencies": {
+    "cypress": "^10.9.0",
+    "cypress-file-upload": "^5.0.8"
+  },
+  "dependencies": {}
+}
