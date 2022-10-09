@@ -13,12 +13,13 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-Cypress.on('uncaught:exception', () => {
-  return false
+Cypress.on("uncaught:exception", () => {
+  return false;
 });
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+import "cypress-file-upload";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
