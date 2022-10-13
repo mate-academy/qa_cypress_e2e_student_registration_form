@@ -1,6 +1,6 @@
 /// <reference types='cypress' />
 
-describe('Name of the group', () => {
+describe('Student Registration page', () => {
   before(() => {
     
   });
