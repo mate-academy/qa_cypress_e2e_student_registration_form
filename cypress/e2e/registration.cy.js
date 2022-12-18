@@ -1,6 +1,7 @@
 /// <reference types='cypress' />
 
-const { cell_phone } = require("faker/lib/locales/ar");
+//const { cell_phone } = require("faker/lib/locales/ar");
+const { generateUser } = require("../support/generate");
 
 describe('Student Registration page', () => {
   before(() => {
@@ -8,9 +9,7 @@ describe('Student Registration page', () => {
   });
 
   it('should have a text in the header', () => {
-    const randomNumber = Math.random().toString().slice(2, 12)
-    const firstName = `sam_${randomNumber}`;
-    const lastName = `mac_${randomNumber}`;
+    const { randomNumber, firstName, lastName } = generateUser();
 
     //checking the page
     cy.get('[class="main-header"]')
@@ -26,8 +25,8 @@ describe('Student Registration page', () => {
     cy.get('[placeholder="name@example.com"]')
       .type(firstName + '@gmail.com');
 
-    cy.get('#genterWrapper > .col-md-9 > :nth-child(2) > .custom-control-label')
-      .click();
+    cy.get('[id="gender-radio-2"]')
+      .click({force: true});
 
     cy.get('#userNumber')
       .type(randomNumber);
@@ -38,8 +37,8 @@ describe('Student Registration page', () => {
     cy.get('[class="subjects-auto-complete__value-container subjects-auto-complete__value-container--is-multi css-1hwfws3"]')
       .type('Ma' + '{enter}');
 
-    cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(1)')
-      .click();
+    cy.get('[id="hobbies-checkbox-2"]')
+      .click({force: true});
 
     cy.get('[placeholder="Current Address"]')
       .type('any data');
@@ -61,7 +60,7 @@ describe('Student Registration page', () => {
     cy.get('td').contains('18 December,2000')
     cy.get('td').contains(randomNumber)
     cy.get('td').contains('Maths')
-    cy.get('td').contains('Sports')
+    cy.get('td').contains('Reading')
     cy.get('td').contains('any data')
     cy.get('td').contains('Haryana' + ' Panipat')
 
