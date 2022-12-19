@@ -7,11 +7,11 @@ describe('Student Registration page', () => {
     cy.visit('https://demoqa.com/automation-practice-form')
   });
   const firstName = faker.name.firstName();
-  const lastName = faker.name.firstName();
+  const lastName = faker.name.lastName();
   const email = faker.internet.email(firstName, lastName);
-  const phoneNumber = Math.random().toString().slice(2, 14)
+  const phoneNumber = Math.random().toString().slice(2, 12)
 
-  it('All fields are filled with data', () => {
+  it('Should check the registration flow by filling all the fields', () => {
 
     cy.get('#firstName').type(firstName);
     cy.get('#lastName').type(lastName);
@@ -32,7 +32,15 @@ describe('Student Registration page', () => {
     cy.get('.modal-body').should('contain', `${firstName}`);
     cy.get('.modal-body').should('contain', `${lastName}`);
     cy.get('.modal-body').should('contain', `${email}`);
-
+    cy.get('.modal-body').should('contain', 'Other');
+    cy.get('.modal-body').should('contain', `${phoneNumber}`);
+    cy.get('.modal-body').should('contain', '17 February,1995');
+    cy.get('.modal-body').should('contain', 'English');
+    cy.get('.modal-body').should('contain', 'Sports').and('contain', 'Music');
+    cy.get('.modal-body').should('contain', '1750 Finch Avenue');
+    cy.get('.modal-body').should('contain', 'Uttar Pradesh' + ' Agra');
+    cy.get('#closeLargeModal').should('exist')
+    cy.get('#closeLargeModal').should('contain', 'Close')
   });
 });
 
