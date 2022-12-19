@@ -3,7 +3,7 @@
 import { faker } from '@faker-js/faker';
 const firstName = faker.name.firstName();
 const lastName = faker.name.lastName();
-const phoneNumber = Math.random().toString().slice(2);
+const phoneNumber = Math.random().toString().slice(9);
 const street = faker.address.streetName();
 const numberOfStreet = faker.address.streetAddress();
 
@@ -13,7 +13,7 @@ describe('Student Registration page', () => {
     cy.viewport(550, 750);
   });
 
-  it('', () => {
+  it('Filling all fields in forms except "picture"', () => {
     cy.get('[placeholder="First Name"]')
       .click()
       .type(firstName);
@@ -53,7 +53,23 @@ describe('Student Registration page', () => {
       .click({ force: true });
     cy.get('[id="submit"]')
       .click();
-    cy.get('[id="example-modal-sizes-title-lg"]')
-    .should('contain', 'Thanks for submitting the form');
+    cy.get('tbody > :nth-child(1) > :nth-child(2)')
+      .should('contain', `${firstName} ${lastName}`);
+    cy.get('tbody > :nth-child(2) > :nth-child(2)')
+      .should('contain', `${firstName}.${lastName}@gmail.com`);
+    cy.get('tbody > :nth-child(3) > :nth-child(2)')
+      .should('contain', 'Male');
+    cy.get('tbody > :nth-child(4) > :nth-child(2)')
+      .should('contain', `${phoneNumber}`);
+    cy.get('tbody > :nth-child(5) > :nth-child(2)')
+      .should('contain', '16 January,1995');
+    cy.get('tbody > :nth-child(6) > :nth-child(2)')
+      .should('contain', 'Chemistry');
+    cy.get('tbody > :nth-child(7) > :nth-child(2)')
+      .should('contain', 'Sports, Music');
+    cy.get('tbody > :nth-child(9) > :nth-child(2)')
+      .should('contain', `${street} ${numberOfStreet}`);
+    cy.get('tbody > :nth-child(10) > :nth-child(2)')
+      .should('contain', 'Uttar Pradesh Lucknow');
   });
 });
