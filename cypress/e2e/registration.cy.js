@@ -30,5 +30,9 @@ describe('Student Registration page', () => {
     cy.get('.modal-body').should('include.text', `${randName}son`)
     cy.get('.modal-body').should('include.text', `${randName}@mail.com`)
     cy.get('.modal-body').should('include.text', randPhone)
+    cy.get('.modal-body').should('include.text', 'Gender')
+    cy.get('.modal-body').should('include.text', '19 December,1990')
+    cy.get('.modal-body').should('include.text', 'Subjects')
+    cy.get('.modal-body').should('include.text', 'Hobbies')
   });
 });
