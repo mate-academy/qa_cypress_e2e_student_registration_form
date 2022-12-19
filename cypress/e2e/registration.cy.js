@@ -27,14 +27,14 @@ describe('Student Registration page', () => {
     /*Assert inputed data in modal window.*/
     cy.get('#example-modal-sizes-title-lg').should('contain.text', 'Thanks for submitting the form')
     cy.get('.modal-body').should('include.text', randName)
-    cy.get('.modal-body').should('include.text', `${randName}son`)
-    cy.get('.modal-body').should('include.text', `${randName}@mail.com`)
-    cy.get('.modal-body').should('include.text', randPhone)
-    cy.get('.modal-body').should('include.text', 'Gender')
-    cy.get('.modal-body').should('include.text', '19 December,1990')
-    cy.get('.modal-body').should('include.text', 'Subjects')
-    cy.get('.modal-body').should('include.text', 'Hobbies')
-    cy.get('.modal-body').should('include.text', `${randName}, ${randRadio}, ${randCheckbox}`)
-    cy.get('.modal-body').should('include.text', 'State and City')
+    .should('include.text', `${randName}son`)
+    .should('include.text', `${randName}@mail.com`)
+    .should('include.text', randPhone)
+    .should('include.text', 'Gender')
+    .should('include.text', '19 December,1990')
+    .should('include.text', 'Subjects')
+    .should('include.text', 'Hobbies')
+    .should('include.text', `${randName}, ${randRadio}, ${randCheckbox}`)
+    .should('include.text', 'State and City')
   });
 });
