@@ -23,3 +23,26 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('findByPlaceholder', (placeholder)=> {
+    cy.get(`[placeholder = "${placeholder}"]`)
+});
+
+Cypress.Commands.add('submittingFormContainsInBody', (name)=> {
+    cy.get('.modal-body')
+    .should('contain', `${name}`)
+});
+
+Cypress.Commands.add('submittingFormContainsInHeader', (name)=> {
+    cy.get('.modal-header')
+    .should('contain',  `${name}`)
+});
+
+Cypress.Commands.add('submittingFormContainsInFooter', (name)=> {
+    cy.get('.modal-footer')
+    .should('contain', `${name}`)
+});
+
+Cypress.Commands.add('submittingFormExists', () => {
+    cy.get('.modal-content')
+    .should('exist')
+});
