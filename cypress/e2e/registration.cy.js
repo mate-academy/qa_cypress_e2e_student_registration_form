@@ -34,5 +34,6 @@ describe('Student Registration page', () => {
     cy.get('.modal-body').should('include.text', '19 December,1990')
     cy.get('.modal-body').should('include.text', 'Subjects')
     cy.get('.modal-body').should('include.text', 'Hobbies')
+    cy.get('.modal-body').should('include.text', 'State and City')
   });
 });
