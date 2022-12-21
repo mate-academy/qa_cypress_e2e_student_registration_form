@@ -19,6 +19,8 @@ describe('Student Registration page', () => {
     cy.get('#city').type('jai' + '{enter}');
     cy.contains('#submit', 'Submit').click({force:true});
     cy.contains('[class="modal-title h4"]', 'Thanks for submitting the form');
-    
+    cy.get('[class = modal-body]').contains('Eka');
+    cy.contains('0637959971');
+    cy.contains('test@i.ua');
   });
 });
