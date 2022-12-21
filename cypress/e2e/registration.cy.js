@@ -1,14 +1,14 @@
 /// <reference types='cypress' />
 const { generateUser } = require('../support/generate');
+const { firstName, lastName, email, mobile } = generateUser();
 
 describe('Student Registration page', () => {
   before(() => {
-    cy.viewport(1200, 760);
+    cy.viewport(700, 760);
     cy.visit('automation-practice-form');
   });
 
   it('shoud register the new User', () => {
-    const { firstName, lastName, email, mobile } = generateUser();
     cy.get('#firstName').type(firstName);
     cy.get('#lastName').type(lastName);
     cy.get('#userEmail').type(email);
@@ -28,7 +28,15 @@ describe('Student Registration page', () => {
     cy.contains('#submit', 'Submit')
       .click({force: true});
     cy.contains('#example-modal-sizes-title-lg', 'Thanks for submitting the form');
-    cy.contains('tbody > tr > td', `${firstName} ${lastName}`);
-    cy.contains('tbody > tr > td', `${email}`);
+    cy.get('td').should('contain', `${firstName} ${lastName}`);
+    cy.get('td').should('contain', `${email}`);
+    cy.get('td').should('contain', `Female`);
+    cy.get('td').should('contain', `${mobile}`);
+    cy.get('td').should('contain', '30 December,1993');
+    cy.get('td').should('contain', 'Math');
+    cy.get('td').should('contain', 'Sports');
+    cy.get('td').should('contain', 'Adress');
+    cy.get('td').should('contain', 'NCR Delhi');
+    
   });
 });
