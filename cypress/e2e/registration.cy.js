@@ -8,7 +8,7 @@ describe('Student Registration page', () => {
 
   });
 
-  it('it should allow us to register a new user', () => {
+  it('it should allow a new user to register', () => {
     const {firstName, lastName, email, phoneNumber, adresss} = generateUser();
 
     cy.findByIdNumber('firstName')
@@ -45,6 +45,7 @@ describe('Student Registration page', () => {
 
       cy.get('#currentAddress')
         .type(adresss)
+
       cy.get(':nth-child(4) > .group-header > .header-wrapper').click()
 
       cy.findByIdNumber('state').click()
@@ -54,9 +55,11 @@ describe('Student Registration page', () => {
       cy.findByIdNumber('react-select-4-option-0')
       .click()
       
-      cy.get('#submit')
+      cy.get('#submit').contains('button', 'Submit')
         .click()
+      
 
+      cy.get('#example-modal-sizes-title-lg').should('contain.text', 'Thanks for submitting the form')
         
   });
 });
