@@ -61,5 +61,12 @@ describe('Student Registration page', () => {
 
     cy.get('#example-modal-sizes-title-lg').should('contain.text', 'Thanks for submitting the form')
         
+    cy.get('tbody > :nth-child(1) > :nth-child(2)').contains(firstName +' '+lastName)
+
+    cy.get('tbody > :nth-child(2) > :nth-child(2)').contains(email)
+
+    cy.get('tbody > :nth-child(4) > :nth-child(2)').contains(phoneNumber)
+
+    cy.get('tbody > :nth-child(9) > :nth-child(2)').contains(adresss)
   });
 });
