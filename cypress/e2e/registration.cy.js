@@ -29,7 +29,8 @@ describe('Student Registration page', () => {
 
     cy.get('#userNumber').type(phoneNumber);
 
-    cy.get('#dateOfBirthInput').type(`{selectall}${birthDate}{enter}`)
+    cy.get('#dateOfBirthInput')
+      .type(`{selectall}${birthDate.day} ${(birthDate.month).slice(0, 4)} ${birthDate.year}{enter}`)
 
     cy.get('#subjectsInput').type('Maths{enter}');
 
@@ -43,11 +44,13 @@ describe('Student Registration page', () => {
 
     cy.get('#submit').click({force: true});
 
+
     cy.contains('tr', 'Student Name').should('contain', `${firstName} ${lastName}`);
     cy.contains('tr', 'Student Email').should('contain', email);
     cy.contains('tr', 'Gender').should('contain', `${gender[randomIndex - 1]}`);
     cy.contains('tr', 'Mobile').should('contain', phoneNumber);
-    // cy.contains('tr', 'Date of Birth').should('contain.text', birthDate);
+    cy.contains('tr', 'Date of Birth')
+      .should('contain.text', `${birthDate.day} ${birthDate.month},${birthDate.year}`)
     cy.contains('tr', 'Subjects').should('contain', 'Maths');
     cy.contains('tr', 'Hobbies').should('contain', `${subject[randomIndex - 1]}`);
     cy.contains('tr', 'Address').should('contain', street);

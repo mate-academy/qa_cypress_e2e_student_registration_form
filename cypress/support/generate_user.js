@@ -7,10 +7,11 @@ function generateUser() {
   const randomIndex = Math.ceil(Math.random() * 3);
   const gender = ['Male', 'Female', 'Other'];
   const phoneNumber = faker.phone.number('380#######');
-  const date = faker.date.birthdate({min: 18, max: 100, mode: 'age'})
-    .toDateString()
-    .slice(4);
-  const birthDate = date.slice(4,7) + date.slice(0, 4) + date.slice(7, 12);
+  const birthDate = {
+    day: Math.floor(Math.random() * 15),
+    month: faker.date.month(),
+    year: Math.floor(Math.random() * 100) + 1920,
+  }
   const street = faker.address.streetAddress();
   const subject = ['Sports', 'Reading', 'Music'];
 
