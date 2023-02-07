@@ -7,6 +7,6 @@ module.exports = defineConfig({
     baseUrl: 'https://demoqa.com/automation-practice-form'
   },
 
-  viewportWidth: 1280,
-  viewportHeight: 720,
+  viewportWidth: 1320,
+  viewportHeight: 1080,
 })

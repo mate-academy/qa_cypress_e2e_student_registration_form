@@ -8,7 +8,7 @@ describe('Student Registration page', () => {
   });
 
   it('should display entered data', () => {
-    const { firstname, lastname, email, phone, address } = generateUser();
+    const { firstname, lastname, email, phone, address, gender, hobby, randomindex } = generateUser();
 
     cy.get('#firstName')
       .type(firstname);
@@ -19,32 +19,61 @@ describe('Student Registration page', () => {
     cy.get('#userEmail')
       .type(email);
     
-    cy.get('#genterWrapper > .col-md-9 > :nth-child(1)')
-      .click();
+    cy.get('#genterWrapper')
+      .get(`#gender-radio-${randomindex}`)
+      .check({force: true});
     
     cy.get('#userNumber')
       .type(phone);
     
+    cy.get('#dateOfBirthInput')
+      .type('{selectAll}08 Jan 1998{enter}');
+    
+    cy.get('.subjects-auto-complete__value-container')
+      .type('En{enter}');
+      
+    cy.get('#genterWrapper')
+      .get(`#hobbies-checkbox-${randomindex}`)
+      .check({force: true});
+    
     cy.get('#currentAddress')
       .type(address);
     
-    cy.get('#submit')
-      .click({ force: true })
+    cy.get('#state')
+      .type('{enter}');
     
-    cy.get('tbody > :nth-child(1) > :nth-child(2)')
+    cy.get('#city')
+      .type('{enter}');
+    
+    cy.get('#submit')
+      .click();
+    
+    cy.contains('tr', 'Student Name')
       .should('contain', `${firstname} ${lastname}`);
     
-    cy.get('tbody > :nth-child(2) > :nth-child(2)')
+    cy.contains('tr', 'Student Email')
       .should('contain', `${email}`);
     
-    cy.get('tbody > :nth-child(3) > :nth-child(2)')
-      .should('contain', `Male`);
+    cy.contains('tr', 'Gender')
+      .should('contain', `${gender[randomindex]}`);
     
-    cy.get('tbody > :nth-child(4) > :nth-child(2)')
+    cy.contains('tr', 'Mobile')
       .should('contain', `${phone}`);
     
-    cy.get('tbody > :nth-child(9) > :nth-child(2)')
+    cy.contains('tr', 'Date of Birth')
+      .should('contain', '08 January,1998');
+
+    cy.contains('tr', 'Subjects')
+      .should('contain', `English`);
+    
+    cy.contains('tr', 'Hobbies')
+      .should('contain', `${hobby[randomindex]}`);    
+    
+    cy.contains('tr', 'Address')
       .should('contain', `${address}`);
+    
+    cy.contains('tr', 'State and City')
+      .should('contain', `NCR Delhi`);
   });
 });
 
