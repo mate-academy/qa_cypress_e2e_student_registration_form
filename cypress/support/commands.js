@@ -23,3 +23,22 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+const faker = require('faker');
+
+function generateUser() {
+    const randomIndex = Math.floor(Math.random() * 3);
+    const genders = ['Male', 'Female', 'Other'];
+    const hobbies = ['Sports', 'Reading', 'Music'];
+
+    const firstName = faker.name.firstName();
+    const lastName = faker.name.lastName();
+    const gender = genders[randomIndex];
+    const email = faker.internet.email();
+    const phone = faker.phone.phoneNumber('##########');
+    const hobby = hobbies[randomIndex];
+    const address = faker.address.streetAddress();
+
+  return { firstName, lastName, email, phone, address, gender, hobby };
+} 
+
+module.exports = { generateUser };
