@@ -13,15 +13,15 @@ describe('Student Registration page', () => {
   it('should register the user with valid credentials', () => {
     const { username, email, phone,address } = generateUser();
 
-    cy.get('[placeholder="First Name"]').type(username);
+    cy.findByPlaceholder('First Name').type(username);
 
-    cy.get('[placeholder="Last Name"]').type(username);
+    cy.findByPlaceholder('Last Name').type(username);
 
-    cy.get('[placeholder="name@example.com"]').type(email);
+    cy.findByPlaceholder('name@example.com').type(email);
 
     cy.get('#genterWrapper > .col-md-9 > :nth-child(1)').click()
 
-    cy.get('[placeholder="Mobile Number"]').type(phone);
+    cy.findByPlaceholder('Mobile Number').type(phone);
 
     cy.get('#dateOfBirthInput').type('{selectAll}22 Feb 1996 {enter}');
 
