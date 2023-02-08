@@ -46,7 +46,7 @@ describe('Student Registration page', () => {
 
     cy.get('#submit')
       .click();
-
+    // Testing 
       cy.contains('tr', 'Student Name')
       .should('contain', user.firstName)
       .and('contain', user.lastName);
