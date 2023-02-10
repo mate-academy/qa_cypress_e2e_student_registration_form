@@ -57,7 +57,8 @@ describe('Student Registration page', () => {
         .should('contain', mobile);
 
       cy.contains('tr', 'Date of Birth')
-        .should('contain', ' ');
+        .should('contain', birthday.slice(-4))
+        .and('contain', birthday.slice(1, 4));
 
       cy.contains('tr', 'Subjects')
         .should('contain', 'Computer Science');
