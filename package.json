@@ -1,0 +1,22 @@
+{
+  "name": "qa_cypress_e2e_student_registration_form",
+  "version": "1.0.0",
+  "description": "## Workflow",
+  "main": "cypress.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viiktorrr/qa_cypress_e2e_student_registration_form.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Viiktorrr/qa_cypress_e2e_student_registration_form/issues"
+  },
+  "homepage": "https://github.com/Viiktorrr/qa_cypress_e2e_student_registration_form#readme",
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0"
+  }
+}
