@@ -23,3 +23,13 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+const { generateUser } = require('./generate');
+
+Cypress.Commands.add('findById', id => {
+  cy.get(`[id="${id}"]`);
+});
+
+Cypress.Commands.add('registerNewUser', () => {
+  return generateUser();
+});
