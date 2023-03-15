@@ -41,43 +41,11 @@ describe('Registration form', () => {
       .should('contain',`${firstname} ${lastname}`)
       .should('contain', email)
       .should('contain',phoneNumber)
-      .should('contain',`English`)
+      .should('contain', 'English')
       .should('contain', currentAddress);
   });
 
-  it(`The 'First Name' field must be filled in.`, () => {
-    cy.get('#submit').click();
-
-    cy.findById('firstName')
-      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
-  });
-
-  it(`The 'Last Name' field must be filled in.`, () => {
-    cy.get('#submit').click();
-
-    cy.findById('lastName')
-      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
-  });
-
-  it(`The 'Genger' field must be filled in.`, () => {
-    cy.get('#submit').click();
-
-    cy.get('label[for="gender-radio-1"]')
-      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
-    cy.get('label[for="gender-radio-2"]')
-      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
-    cy.get('label[for="gender-radio-3"]')
-      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
-  });
-
-  it(`The 'Mobile' field must be filled in.`, () => {
-    cy.get('#submit').click();
-
-    cy.findById('userNumber')
-      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
-  });
-
-  it(`Check the ability successful registration using only required fields `, () => {
+    it(`Check the ability successful registration using only required fields `, () => {
     const {
       firstname,
       lastname,
@@ -96,9 +64,45 @@ describe('Registration form', () => {
     cy.contains('Thanks for submitting the form').should('exist');
     cy.get('.modal-content')
       .should('contain', `${firstname} ${lastname}`)
-      .should('contain', `Male`)
-      .should('contain', `12 February,2010`)
+      .should('contain', 'Male')
+      .should('contain', '12 February,2010')
       .should('contain', phoneNumber);
+  });
+
+  it(`Empty 'First Name' field is highlighted
+    in red after clicking on the [Submit] button`, () => {
+    cy.get('#submit').click();
+
+    cy.findById('firstName')
+      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
+  });
+
+  it(`Empty 'Last Name' field is highlighted
+  in red after clicking on the [Submit] button`, () => {
+    cy.get('#submit').click();
+
+    cy.findById('lastName')
+      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
+  });
+
+  it(`Empty 'Gender' field is highlighted
+  in red after clicking on the [Submit] button`, () => {
+    cy.get('#submit').click();
+
+    cy.get('label[for="gender-radio-1"]')
+      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
+    cy.get('label[for="gender-radio-2"]')
+      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
+    cy.get('label[for="gender-radio-3"]')
+      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
+  });
+
+  it(`Empty 'Mobile' field is highlighted
+  in red after clicking on the [Submit] button`, () => {
+    cy.get('#submit').click();
+
+    cy.findById('userNumber')
+      .should('have.css', 'border-color', 'rgb(220, 53, 69)');
   });
 
   it(`Check the ability to choose two or more elements using radio-buttons`, () => {
@@ -115,7 +119,8 @@ describe('Registration form', () => {
     cy.findById('userNumber').type(phoneNumber);
     cy.findById('submit').click();
     cy.get('.modal-content')
-      .should('contain', `Female`);
+      .should('contain', 'Female')
+      .should('not.visible', 'Male')
   });
 
   it('Check the ability to choose date of birth selection', () => {  
