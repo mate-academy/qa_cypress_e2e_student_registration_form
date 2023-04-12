@@ -23,3 +23,16 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('findByPlaceholder', (placeholder) => {
+  cy.get(`[placeholder="${placeholder}"]`);
+});
+
+Cypress.Commands.add('findByType', (type) => {
+  cy.get(`[type="${type}"]`);
+});
+
+Cypress.Commands.add('confirmMessage', (number, message) => {
+  cy.get(`tbody > :nth-child(${number}) > :nth-child(2)`)
+    .should('contain.text', `${message}`); 
+});
