@@ -27,7 +27,7 @@ describe('Student Registration page', () => {
     cy.findByPlaceholder('Mobile Number')
       .type(user.mobileNumber);
 
-    cy.get('#dateOfBirthInput').type('{selectAll}'+user.birthDate+'{enter}');
+    cy.get('#dateOfBirthInput').type('{selectAll}'+ user.birthDate +'{enter}');
 
     cy.get('.subjects-auto-complete__value-container').type('ma{enter} ch{enter} his{enter}');
 
@@ -40,5 +40,17 @@ describe('Student Registration page', () => {
     cy.get('#city').type('me{enter}');
 
     cy.get('#submit').click();
+
+    cy.assertMessage(1, user.firstName + ' ' +user.lastName);
+
+    cy.assertMessage(2, user.email);
+
+    cy.assertMessage(3, user.gender);
+
+    cy.assertMessage(4, user.mobileNumber);
+
+    cy.assertMessage(7, user.hobby);
+
+    cy.assertMessage(9, user.adress);
   });
 });
