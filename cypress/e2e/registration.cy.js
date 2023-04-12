@@ -73,7 +73,7 @@ describe("Student Registration page", () => {
        cy.get('#dateOfBirthInput').click()
           .get('.react-datepicker__navigation--previous').click()
           .get('.react-datepicker__month-select').select('November')
-          .get('.react-datepicker__year-select').select('2002')
+          .get('.react-datepicker__year-select').select('2001')
           .get('.react-datepicker__day--017').click();
        cy.get('.subjects-auto-complete__value-container').type('Math{enter}');
        cy.get('#hobbies-checkbox-1').check('1', { force: true });
