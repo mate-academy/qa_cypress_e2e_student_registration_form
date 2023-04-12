@@ -35,8 +35,17 @@ describe('Student Registration page', () => {
       .type('{downArrow}{enter}');
     cy.get('#submit')
       .click();
-    cy.contains('tr', 'Student Name')
+    cy.get('.modal-body')
       .should('contain', user.firstName)
-      .and('contain', user.lastName);
+      .should('contain', user.lastName)
+      .should('contain', user.gender)
+      .should('contain', user.phoneNumber)
+      .should('contain', '27 March,1996')
+      .should('contain', 'Computer Science')
+      .should('contain', user.hobby)
+      .should('contain', user.address)
+      .should('contain', "Uttar Pradesh")
+      .should('contain', "Lucknow");
+      ;
   });
 });

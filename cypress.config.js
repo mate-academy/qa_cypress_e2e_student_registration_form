@@ -18,7 +18,6 @@ module.exports = defineConfig({
             email: faker.internet.email(),
             gender: genders[randomIndex],
             phoneNumber: faker.phone.phoneNumber('##########'),
-            // dateOfBirth: faker.date.birthdate({ min: 18, max: 65, mode: 'age' }),
             hobby: hobbies[randomIndex],
             address: faker.address.streetAddress(),
           }
