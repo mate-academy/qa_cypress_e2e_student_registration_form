@@ -1,24 +1,5 @@
 /// <reference types='cypress' />
 
-// const { generateUser } = require("../support/generate");
-
-// describe('Student Registration page', () => {
-//     before(() => {
-//      cy.visit('/');
-//     //  cy.task('generate user').then(generateUser => {
-//     //   user = generateUser;
-//     const {email, firstName, lastName} = generateUser()
-//      });
-//     });
-
-//   it('should allow to register a new student', () => {
-//   cy.findByPlaceholder('First Name').type(user.firstName);
-//   cy.findByPlaceholder('Last Name').type(user.lastName);
-//   it('should allow to register', () => {
-//   cy.get('#userEmail').type(user.email);
-//   });
-// });
-const { Faker } = require('@faker-js/faker');
 describe('Student Registration page', () => {
   const userData = {
     firstName: 'John',
@@ -41,9 +22,7 @@ describe('Student Registration page', () => {
     cy.get('#userEmail').type(userData.email);
     cy.get('#gender-radio-1').siblings('label').click();
     cy.get('#userNumber').type(userData.mobileNumber)
-    cy.get('#dateOfBirthInput').click()
-    cy.get('#dateOfBirthInput').type('{selectAll}01 Jan 1990{enter}');
-      
+    cy.get('#dateOfBirthInput').click().type('{selectAll}01 Jan 1990{enter}');
     cy.get('.subjects-auto-complete__value-container').type('m{enter} sci{enter}');
 
     cy.findByType('checkbox').check('1', { force: true });
