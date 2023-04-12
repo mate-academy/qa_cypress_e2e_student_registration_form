@@ -11,17 +11,16 @@ describe('Student Registration page', () => {
       firstName,
       lastName,
       email,
+      randomIndex,
       mobileNumber,
-      currentAddress
+      currentAddress,
     } = generateData();
 
     cy.findByPlaceholder('First Name').type(firstName);
     cy.findByPlaceholder('Last Name').type(lastName);
     cy.findByPlaceholder('name@example.com').type(email);
 
-    cy.findByType('radio').check('Other', { force: true });
-    cy.findByType('radio').check('Female', { force: true });
-    cy.findByType('radio').check('Male', { force: true });
+    cy.findByType('radio').eq(randomIndex).click({ force: true });
 
     cy.findByPlaceholder('Mobile Number').type(mobileNumber);
 
@@ -33,8 +32,7 @@ describe('Student Registration page', () => {
 
     cy.get('.subjects-auto-complete__value-container').type('com{enter} p{enter}');
 
-    cy.findByType('checkbox').check('1', { force: true });
-    cy.findByType('checkbox').check('3', { force: true });
+    cy.findByType('checkbox').eq(randomIndex).click({ force: true });
 
     cy.findByPlaceholder('Current Address').type(currentAddress);
 
@@ -44,7 +42,9 @@ describe('Student Registration page', () => {
     cy.get('#city > .css-yk16xz-control').click()
       .get('#react-select-4-option-0').click();
 
-    cy.focused().type('{enter}')
+    cy.focused().type('{enter}');
+
+    cy.get('.modal-content').should('contain.text', 'Thanks for submitting the form');
 
     cy.get('#closeLargeModal').click();
   });
