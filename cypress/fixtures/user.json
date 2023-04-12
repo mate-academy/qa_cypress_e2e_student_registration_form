@@ -1,0 +1,10 @@
+{
+  "firstName": "Veronika",
+  "lastName": "Kondratova",
+  "email": "nkond@test.com",
+  "subjects": ["Maths", "Accounting", "Arts"],
+  "number": "0111222333",
+  "adress": "Test Street, 12",
+  "state": "NCR",
+  "city": "Delhi"
+}
