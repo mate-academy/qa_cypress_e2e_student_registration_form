@@ -32,3 +32,4 @@
   Cypress.Commands.add('findByType', (type) => {
     cy.get(`[type="${type}"]`);
   });
+  
