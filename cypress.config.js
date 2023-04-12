@@ -4,8 +4,8 @@ const { faker } = require('@faker-js/faker');
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://demoqa.com/automation-practice-form',
-    viewportWidth: 1300,
-    viewportHeight: 1100,
+    viewportWidth: 1000,
+    viewportHeight: 1000,
     setupNodeEvents(on, config) {
       on("task", {
         generateUser() {
