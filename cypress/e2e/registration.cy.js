@@ -72,14 +72,14 @@ describe("Student Registration page", () => {
        cy.findByPlaceholder('Mobile Number').type(number);
        cy.get('#dateOfBirthInput').click()
           .get('.react-datepicker__navigation--previous').click()
-          .get('.react-datepicker__month-select').select('July')
-          .get('.react-datepicker__year-select').select('1999')
-          .get('.react-datepicker__day--024').click();
+          .get('.react-datepicker__month-select').select('November')
+          .get('.react-datepicker__year-select').select('2002')
+          .get('.react-datepicker__day--017').click();
        cy.get('.subjects-auto-complete__value-container').type('Math{enter}');
        cy.get('#hobbies-checkbox-1').check('1', { force: true });
        cy.findByPlaceholder('Current Address').type(address);
-       cy.get('#state').click().type('Uttar{enter}');
-       cy.get('#city').click().type('Agra{enter}');
+       cy.get('#state').click().type('Britain{enter}');
+       cy.get('#city').click().type('London{enter}');
        cy.focused().type('{enter}')
  
  
@@ -92,10 +92,10 @@ describe("Student Registration page", () => {
           .should('contain', email)
           .should('contain', 'Male')
           .should('contain', number)
-          .should('contain', '24 July,1999')
+          .should('contain', '17 November,2002')
           .should('contain', 'Maths')
           .should('contain', 'Sports')
           .should('contain', address)
-          .should('contain', 'Uttar Pradesh Agra')
+          .should('contain', 'Britain London')
     })
  });
