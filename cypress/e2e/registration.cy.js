@@ -17,7 +17,7 @@ describe('Student Registration page', () => {
     cy.findByPlaceholder('name@example.com').type(user.email)
     cy.contains('.custom-control-label', user.gender).click()
     cy.findByPlaceholder('Mobile Number').type(user.phoneNumber)
-    cy.get('#dateOfBirthInput').type('{selectAll}28 Apr 1992{enter}')
+    cy.get('#dateOfBirthInput').type('{selectAll} + user.birthDate + {enter}')
     cy.get('.subjects-auto-complete__value-container').type('phy{enter}')
     cy.contains('.custom-control-label', user.hobby).click()
     cy.findByPlaceholder('Current Address').type(user.address)
