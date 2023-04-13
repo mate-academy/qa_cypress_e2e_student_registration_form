@@ -5,6 +5,7 @@ describe('Student Registration page', () => {
 
   before(() => {
     cy.visit('/');
+    
     cy.task('generateUser').then(generatedUser => {
     user = generatedUser;
     });

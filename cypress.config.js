@@ -10,6 +10,7 @@ module.exports = defineConfig({
           let randomIndex = Math.floor(Math.random() * 2);
           let genders = ['Male', 'Female', 'Other'];
           let hobbies = ['Sports', 'Reading', 'Music'];
+          
           return {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
