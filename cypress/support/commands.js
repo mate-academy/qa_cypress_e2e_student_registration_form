@@ -25,5 +25,13 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('findByPlaceholder', (placeholder) => {
-    cy.get(`[placeholder="${placeholder}"]`)
- })
+cy.get(`[placeholder="${placeholder}"]`)
+});
+  
+Cypress.Commands.add('findByRadio', (type) => {
+cy.get(`[type="${type}"]`)
+});
+
+Cypress.Commands.add('findByType', (type) => {
+cy.get(`[type="${type}"]`);
+});

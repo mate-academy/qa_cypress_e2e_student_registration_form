@@ -1,63 +1,52 @@
 /// <reference types='cypress' />
 
 describe('Student Registration page', () => {
-  const user = {
-    firstName: ["John", "Konor", "Will", "Illia", "Wolter"],
-    lastNames: ["Smith", "Wick", "Danirus", "Brown", "White", "Miller"],
-    subjects: ["Math", "Science", "English", "History", "Art"],    
-    address: ["Khreshchatyk", "Golden", "Poshaina"]
-  }
-
-  const randomFirstName = user.firstName[Math.floor(Math.random() * user.firstName.length)];
-  const randomLastName = user.lastNames[Math.floor(Math.random() * user.lastNames.length)];
-  const randomIndex = Math.floor(Math.random() * 3);
-  const randomHobby = Math.floor(Math.random() * 3) + 1;
-  const randomSubject = user.subjects[Math.floor(Math.random() * user.subjects.length)];
-  const randomAddress = `${user.address[Math.floor(Math.random() * user.address.length)]} 69`
-
-  const email = `${randomFirstName.toLowerCase()}${randomLastName.toLowerCase()}@test.com`
-  const phoneNumber ="0" + Math.floor(Math.random() * 1000000000).toString().padStart(9, "0");
+  let user;
 
   before(() => {
     cy.visit('/');
+    cy.task('generateUser').then(generatedUser => {
+    user = generatedUser;
+    });
   });
 
-  it('should allow to register new user', () => {
-    cy.viewport(550, 750);
+  it('should fill all fields',() => {
+    cy.viewport(1980, 1020)
+    cy.findByPlaceholder('First Name').type(user.firstName);
 
-    cy.findByPlaceholder('First Name')
-      .type(randomFirstName);
+    cy.findByPlaceholder('Last Name').type(user.lastName);
 
-    cy.findByPlaceholder('Last Name')
-     .type(randomLastName);
+    cy.get('#userEmail').type(user.email);
 
-    cy.get('#userEmail').type(email);
-    
-    const genderList = cy.get("#genterWrapper > .col-md-9 > :nth-child(1), #genterWrapper > .col-md-9 > :nth-child(2), #genterWrapper > .col-md-9 > :nth-child(3)");
-    genderList.eq(randomIndex).click();
+    cy.findByRadio('radio').check(user.gender, { force: true});
 
-    cy.findByPlaceholder('Mobile Number').type(phoneNumber);
+    cy.findByPlaceholder('Mobile Number').type(user.phoneNumber);
 
-    cy.get('#dateOfBirthInput').click()
-      .get('.react-datepicker__navigation--previous').click().click()
-      .get('.react-datepicker__month-select').select('September')
-      .get('.react-datepicker__year-select').select('2000')
-      .get('.react-datepicker__day--011').click();
+    cy.get('#dateOfBirthInput').type('{selectAll}13 Jun 2001{enter}');
 
-    cy.get(".subjects-auto-complete__value-container").type(`${randomSubject}{enter}`)
+    cy.get('.subjects-auto-complete__value-container').type('En{enter}');
 
-    cy.get(`#hobbiesWrapper > .col-md-9 > :nth-child(${randomHobby})`).click();
+    cy.contains('.custom-control-label', user.hobby).click();
 
-    cy.findByPlaceholder('Current Address').type(randomAddress);
-    cy.get("#state > .css-yk16xz-control")
-      .click()
-      .get("#react-select-3-option-2")
-      .click();
-    
-    cy.focused().type("{enter}");
+    cy.findByPlaceholder('Current Address').type(user.address);
 
-    cy.get("#closeLargeModal").click();
-    
+    cy.get('#state').type('{downArrow}{enter}');
+
+    cy.get('#city').type('{downArrow}{enter}');
+
+    cy.get('.btn.btn-primary').click();
+
     cy.get('#example-modal-sizes-title-lg').should('contain.text', 'Thanks for submitting the form');
+    cy.get('.modal-content')
+      .should('contain', user.firstName)
+      .should('contain', user.lastName)
+      .should('contain', user.email)
+      .should('contain', user.gender)
+      .should('contain', user.phoneNumber)
+      .should('contain.text', '13 June,2001')
+      .should('contain.text', 'Subjects')
+      .should('contain', user.hobby)
+      .should('contain', user.address)
+      .should('contain.text', 'State and City')
   });
 });
