@@ -26,5 +26,11 @@ describe('Student Registration page', () => {
     cy.get('#city').type('lu{enter}');
     cy.get('#submit').click();
     cy.contains('#example-modal-sizes-title-lg', 'Thanks for submitting the form').should('exist');
+    cy.get('tbody > :nth-child(1) > :nth-child(2)').should('contain', `${user.firstName} ${user.lastName}`);
+    cy.get('tbody > :nth-child(2) > :nth-child(2)').should('contain', user.email);
+    cy.get('tbody > :nth-child(3) > :nth-child(2)').should('contain', user.gender);
+    cy.get('tbody > :nth-child(4) > :nth-child(2)').should('contain', user.mobileNumber);
+    cy.get('tbody > :nth-child(7) > :nth-child(2)').should('contain', user.hobby);
+    cy.get('tbody > :nth-child(9) > :nth-child(2)').should('contain', user.adress);
   });
 });
