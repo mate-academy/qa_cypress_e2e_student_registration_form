@@ -16,8 +16,7 @@ module.exports = defineConfig({
             email: faker.internet.email(),
             gender: gender[randomIndex],
             mobile: faker.phone.number('##########'),
-            calendar: faker.date.birthdate(),
-            adress: faker.address.streetAddress()
+            address: faker.address.streetAddress()
           }
         },
       });
