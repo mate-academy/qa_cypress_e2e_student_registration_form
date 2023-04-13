@@ -44,7 +44,16 @@ describe('Student Registration page', () => {
 
     cy.focused().type('{enter}');
 
-    cy.get('.modal-content').should('contain.text', 'Thanks for submitting the form');
+    cy.get('.modal-content').should('contain.text', 'Thanks for submitting the form')
+      .should('contain', `${firstName} ${lastName}`)
+      .should('contain', email)
+      .should('contain', randomIndex)
+      .should('contain', mobileNumber)
+      .should('contain', '11 September,2000')
+      .should('contain', 'Computer Science, Physics')
+      .should('contain', randomIndex)
+      .should('contain', currentAddress)
+      .should('contain', 'Haryana Karnal')
 
     cy.get('#closeLargeModal').click();
   });
