@@ -11,8 +11,7 @@
 
 ## Task
 
-App for testing: `https://demoqa.com/automation-practice-form`
-
+App for testing: 
 **Your task** is to automate the next flow:
 
 1. Fill all fields in forms except "picture".
