@@ -1,3 +1,12 @@
+Cypress.Commands.add('findByType', (type) => {
+    cy.get(`[type="${type}"]`);
+ });
+ 
+ 
+//  Cypress.Commands.add('findByPlaceholder', (placeholder) => {
+    //     cy.get(`[placeholder="${placeholder}"]`);
+    // });
+ 
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
