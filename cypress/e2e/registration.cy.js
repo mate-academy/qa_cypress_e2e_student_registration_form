@@ -5,7 +5,7 @@ describe( 'Student Registration page', () => {
   let user;
 
   before(() => {
-    cy.visit('https://demoqa.com/automation-practice-form/')
+    cy.visit('/')
     cy.task('generateUser').then(generatedUser => {
       user = generatedUser;
     });
