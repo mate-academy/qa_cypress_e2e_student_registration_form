@@ -7,7 +7,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       on("task", {
         generateUser() {
-          let randomIndex = Math.floor(Math.random * 2);
+          let randomIndex = Math.floor(Math.random() * 2);
           let gender = ['Male', 'Female', 'Other']
 
           return {
