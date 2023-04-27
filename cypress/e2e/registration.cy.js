@@ -49,3 +49,4 @@ describe('Student Registration page', () => {
       ;
   });
 });
+
