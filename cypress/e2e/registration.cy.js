@@ -1,5 +1,3 @@
-/// <reference types='cypress' />
-
 const { generateUser } = require('../support/generateUser.js');
 
 describe('Student Registration page', () => {
