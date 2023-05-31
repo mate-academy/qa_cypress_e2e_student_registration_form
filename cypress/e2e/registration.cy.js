@@ -6,13 +6,13 @@ describe('Student Registration page', () => {
     cy.viewport(1280, 960);
   });
 
-  it('Registration with filling by valid data', () => {
+  it('Successfully fill and submit student registration form with valid data', () => {
     const user = {
       firstName: "Dmytro",
       lastName: "Khozieiev",
       email: "hahahahaha22@com.ua",
       number: "0963351244",
-      date: "22 January,1995",
+      date: "1995-01-22",
       subject: "English",
       address: "Ukraine",
       state: "NCR",
