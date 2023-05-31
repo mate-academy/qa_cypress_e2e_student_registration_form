@@ -38,7 +38,7 @@ describe('Student Registration page', () => {
 
     cy.contains('Select State')
       .type('NCR' + '{enter}');
-      
+
     cy.contains('Select City')
       .type('Delhi' + '{enter}');
 
@@ -78,3 +78,4 @@ describe('Student Registration page', () => {
     
   });
 });
+
