@@ -38,3 +38,4 @@ describe('Registration Form', () => {
     cy.get('#submit').click({ force: true });
   });
 });
+
