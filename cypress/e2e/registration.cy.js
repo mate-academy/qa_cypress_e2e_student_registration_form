@@ -3,7 +3,7 @@
 
 const { generateUser } = require('../support/generate');
 
-describe('Login page', () => {
+describe('student account creating', () => {
   beforeEach(() => {
     cy.visit('https://demoqa.com/automation-practice-form');
   });
