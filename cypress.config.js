@@ -1,5 +1,8 @@
 const { defineConfig } = require('cypress');
 const faker = require('faker');
+const genders = ['Female', 'Male', 'Other'];
+const subjects = ['English', 'Chemistry', 'Computer Science', 'Art'];
+const hobbies = ['Music', 'Sports', 'Reading'];
 
 module.exports = defineConfig({
   e2e: {
@@ -8,9 +11,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       on("task",{
         generateUser() {
-          const genders = ['Female', 'Male', 'Other'];
-          const subjects = ['English', 'Chemistry', 'Computer Science', 'Art'];
-          const hobbies = ['Music', 'Sports', 'Reading'];
+          
           return {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
