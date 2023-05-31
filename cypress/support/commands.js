@@ -22,4 +22,19 @@
 //
 //
 // -- This will overwrite an existing command --
+
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("findById", (id) => {
+  cy.get(`#${id}`);
+});
+
+Cypress.Commands.add("pickDate", (date) => {
+  cy.get(`.react-datepicker__${date}`);
+});
+
+Cypress.Commands.add("checkTable", (td1, td2)=>{
+  cy.contains('tr', td1)
+    .should('contain', td2)
+})
+
