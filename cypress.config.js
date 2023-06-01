@@ -1,6 +1,10 @@
 const { defineConfig } = require('cypress')
 const faker = require('faker')
 
+const genders = ['Male', 'Female', 'Other'];
+const subjects = ['Chemistry', 'English', 'Computer Science'];
+const hobbies = ['Sports', 'Reading', 'Music'];
+
 module.exports = defineConfig({
   e2e: {
     viewportHeight: 1080,
@@ -8,10 +12,9 @@ module.exports = defineConfig({
     baseUrl: 'https://demoqa.com/automation-practice-form' , 
     setupNodeEvents(on, config) {
       on("task", {
+        
         generateUser() {
-          genders = ['Male', 'Female', 'Other'];
-          subjects = ['Chemistry', 'English', 'Computer Science'];
-          hobbies = ['Sports', 'Reading', 'Music'];
+      
           return {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
