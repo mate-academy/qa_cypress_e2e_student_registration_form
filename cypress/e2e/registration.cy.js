@@ -18,7 +18,7 @@ describe('Student Registration page', () => {
     cy.get('#userEmail')
       .type(user.email);
     cy.contains('.custom-control-label', user.gender)
-      .click()
+      .click();
     cy.findByPlaceholder('Mobile Number')
       .type(user.mobileNumber);
     cy.get('#dateOfBirthInput')
@@ -31,9 +31,9 @@ describe('Student Registration page', () => {
       .contains(user.birth.day)
       .click();
     cy.get('.subjects-auto-complete__value-container')
-      .type(user.subject + '{enter}')
+      .type(user.subject + '{enter}');
     cy.contains('.custom-control-label', user.hobby)
-      .click()
+      .click();
     cy.findByPlaceholder('Current Address')
       .type(user.address);
     cy.contains('Select State')
