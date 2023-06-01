@@ -66,10 +66,6 @@ describe('Student Registration page', () => {
      .should('contain', 'Uttar Pradesh')
      .and('contain', 'Lucknow');
 
-   
-
-
-
   });
-  });
+});
 
