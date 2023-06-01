@@ -7,7 +7,7 @@ describe('Student Registration page', () => {
     cy.task('generateUser')
       .then(generateUser => {
         user = generateUser;
-      })
+      });
   });
 
   it('should register a new user', () => {
