@@ -42,7 +42,7 @@ describe('Student Registration page', () => {
     .click();
 
     cy.get('.subjects-auto-complete__value-container')
-    .type(user.subject + '{enter}')
+    .type(user.subject + '{enter}');
 
     cy.contains('.custom-control.custom-checkbox', user.hobby)
     .click();

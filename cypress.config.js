@@ -9,9 +9,9 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       on("task", {
         generateUser() {
-          genders = ['Male', 'Female', 'Other'];
-          subjects = ['Math', 'Arts', 'Biology', 'Physics', 'Commerce', 'Economics'];
-          hobbies = ['Sports', 'Reading', 'Music']
+          const genders = ['Male', 'Female', 'Other'];
+          const subjects = ['Math', 'Arts', 'Biology', 'Physics', 'Commerce', 'Economics'];
+          const hobbies = ['Sports', 'Reading', 'Music'];
           return {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
