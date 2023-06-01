@@ -2,7 +2,7 @@ const faker = require('faker');
 
 
 Cypress.Commands.add('findByPlaceholder', (placeholder) => {
-  cy.get(`[placeholder="${placeholder}"]`)
+  cy.get(`[placeholder="${placeholder}"]`);
 })
 
 function generateUser(){

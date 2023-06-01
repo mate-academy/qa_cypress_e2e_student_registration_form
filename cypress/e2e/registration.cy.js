@@ -7,23 +7,23 @@ describe('Student Registration page', () => {
   });
 
   it('User is able to fill a registration form', () => {
-    const{firstName, lastName, email, phone, gender, subjects, hobbies, address} = generateUser()
+    const{firstName, lastName, email, phone, gender, subjects, hobbies, address} = generateUser();
 
     cy.findByPlaceholder('First Name')
-      .type(firstName)
+      .type(firstName);
 
     cy.findByPlaceholder('Last Name')
-      .type(lastName)
+      .type(lastName);
 
     cy.get('#userEmail')
-      .type(email)
+      .type(email);
 
 
     cy.findByPlaceholder('Mobile Number')
-      .type(phone)
+      .type(phone);
 
     cy.get(`[value = ${gender} ]`)
-      .click({force: true})
+      .click({force: true});
 
  
     
@@ -37,7 +37,7 @@ describe('Student Registration page', () => {
      .type(address);
 
      cy.get('#dateOfBirthInput')
-     .type('{selectall} 14 Dec 2003')
+     .type('{selectall} 14 Dec 2003');
 
     cy.contains('Select State')
       .type('{downArrow}{enter}');
