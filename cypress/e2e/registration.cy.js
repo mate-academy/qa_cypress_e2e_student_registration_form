@@ -12,7 +12,7 @@ describe('Registration Form', () => {
     const email = faker.internet.email();
     const phoneNumber = faker.phone.phoneNumber('09########');
     const address = faker.address.streetAddress();
-    const dateOfBirth = '31 May 2023';
+    const dateOfBirth = '31 May,2023';
     const state = 'Uttar Pradesh';
     const city = 'Lucknow';
 
@@ -36,6 +36,21 @@ describe('Registration Form', () => {
     cy.get('#city').click().type(city + '{enter}');
 
     cy.get('#submit').click({ force: true });
+
+    // Перевірка введених даних у модальному вікні
+    cy.get('.modal-content').within(() => {
+      cy.contains(firstName);
+      cy.contains(lastName);
+      cy.contains(email);
+      cy.contains('Male');
+      cy.contains(phoneNumber);
+      cy.contains(dateOfBirth);
+      cy.contains('Maths');
+      cy.contains('Sports');
+      cy.contains(address);
+      cy.contains(state);
+      cy.contains(city);
+    });
   });
 });
 
