@@ -8,7 +8,7 @@ describe('Student Registration page', () => {
     cy.task('generateUser')
       .then(generateUser => {
         user = generateUser;
-      })
+      });
   });
 
   it('should register a new student', () => {
@@ -32,9 +32,9 @@ describe('Student Registration page', () => {
       .contains(user.birth.day)
       .click();
     cy.get('.subjects-auto-complete__value-container')
-      .type(user.subject + '{enter}')
+      .type(user.subject + '{enter}');
     cy.contains('.custom-control-label', user.hobby)
-      .click()
+      .click();
     cy.findByPlaceholder('Current Address')
       .type(user.address);
     cy.contains('Select State')
