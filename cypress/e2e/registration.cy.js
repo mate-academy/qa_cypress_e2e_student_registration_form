@@ -2,9 +2,9 @@
 
 import faker from 'faker';
 
-describe('Registration Form', () => {
+describe('Registration Form new', () => {
   beforeEach(() => {
-    cy.viewport(640, 480); // Змінити розмір сторінки
+    cy.viewport(640, 480); 
     cy.visit('https://demoqa.com/automation-practice-form');
   });
 
