@@ -26,4 +26,4 @@
 
 Cypress.Commands.add('pickDate', (date) => { 
   cy.get(`.react-datepicker__${date}`);
- })
+ });
