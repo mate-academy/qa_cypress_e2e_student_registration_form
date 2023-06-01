@@ -7,12 +7,7 @@ describe('Student Registration page', () => {
   const {firstName, lastName, email, gender, mobileNumber, birth, subject, hobby, address} = generateUser();
 
   beforeEach(() => {
-    cy.visit('https://demoqa.com/automation-practice-form')
-  });
-  it('should do something', {
-    defaultCommandTimeout: 10000
-  }, () => {
- 
+    cy.visit('/');
   });
   it('should provide an ability to register new student', () => {
     cy.get('#firstName')
@@ -32,13 +27,13 @@ describe('Student Registration page', () => {
     cy.get('.subjects-auto-complete__value-container')
       .type(subject + '{enter}')
     cy.contains('.custom-control-label', hobby)
-      .click();
+      .click({ force: true });
     cy.get('#currentAddress')
       .type(address);
     cy.contains('Select State')
-      .type('{downArrow}{enter}');
+      .type('Haryana {enter}');
     cy.contains('Select City')
-      .type('{downArrow}{enter}');
+      .type('Karnal {enter}');
     cy.get('#submit')
       .click({force: true});
     
