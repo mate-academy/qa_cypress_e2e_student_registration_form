@@ -2,6 +2,10 @@ const { defineConfig } = require("cypress");
 // const { subtract } = require("cypress/types/lodash");
 const faker = require("faker");
 
+const genders = ['Male', 'Female', 'Other'];
+const subjects = ['Accounting', 'Maths', 'Biology'];
+const hobbies = ['Sports', 'Reading', 'Music'];
+
 module.exports = defineConfig({
   e2e: {
     baseUrl: "https://demoqa.com/automation-practice-form",
@@ -10,9 +14,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       on("task", {
         generateUser() {
-          genders = ["Male", "Female", "Other"];
-          subjects = ['Accounting', 'Maths', 'Biology'];
-          hobbies = ['Sports', 'Reading', 'Music'];
           return {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
