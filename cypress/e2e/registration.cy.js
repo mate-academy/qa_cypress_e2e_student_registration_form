@@ -41,5 +41,21 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Student Name')
       .should('contain', user.firstName)
       .and('contain', user.lastName);
+    cy.contains('tr', 'Student Email')
+      .should('contain', user.email);
+    cy.contains('tr', 'Gender')
+      .should('contain', user.gender);
+    cy.contains('tr', 'Mobile')
+      .should('contain', user.mobileNumber);
+    cy.contains('tr', 'Date of Birth')
+      .should('contain', '23 February,2000');
+    cy.contains('tr', 'Subjects')
+      .should('contain', user.subjects);
+    cy.contains('tr', 'Hobbies')
+      .should('contain', user.hobbies);  
+    cy.contains('tr', 'Address')
+      .should('contain', user.address);
+      cy.contains('tr', 'State and City')
+      .should('contain', 'Uttar Pradesh Lucknow'); 
   });
 });

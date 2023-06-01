@@ -12,7 +12,7 @@ module.exports = defineConfig({
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
             gender: faker.random.arrayElement(['Male', 'Female', 'Other']),
-            mobileNumber: faker.phone.phoneNumber('###########'),
+            mobileNumber: faker.phone.phoneNumber('##########'),
             subjects: faker.random.arrayElement(['Physics', 'English', 'Chemistry']),
             hobbies: faker.random.arrayElement(['Sports', 'Reading', 'Music']),
             address: faker.address.streetAddress(),
