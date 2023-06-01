@@ -64,5 +64,7 @@ describe('Student Registration page', () => {
       .should('contain', user.hobby);
     cy.contains('tr', 'Address')
       .should('contain', user.currentAdress);
+    cy.contains('tr', 'State and City')
+      .should('not.be.empty');
   });
 });
