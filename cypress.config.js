@@ -1,8 +1,8 @@
 const { defineConfig } = require('cypress');
 const faker = require('faker');
-genders = ['Male', 'Female', 'Other'];
-subjects = ['English', 'Computer Science', 'Economics'];
-hobbies = ['Sports', 'Reading', 'Music'];
+const genders = ['Male', 'Female', 'Other'];
+const subjects = ['English', 'Computer Science', 'Economics'];
+const hobbies = ['Sports', 'Reading', 'Music'];
 
 module.exports = defineConfig({
   e2e: {
