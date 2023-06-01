@@ -30,4 +30,4 @@ Cypress.Commands.add('findByPlaceholder', (placeholder) => {
 
 Cypress.Commands.add('pickDate', (date) => {
   cy.get(`.react-datepicker__${date}`);
-})
+});
