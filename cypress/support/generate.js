@@ -1,9 +1,10 @@
 const faker = require('faker');
 
+const genders = ['Male', 'Female', 'Other'];
+const subjects = ['Chemistry', 'English', 'Computer Science'];
+const hobbies = ['Sports', 'Reading', 'Music'];
+
 function generateUser() {
-  const genders = ['Male', 'Female', 'Other'];
-  const subjects = ['Chemistry', 'English', 'Computer Science'];
-  const hobbies = ['Sports', 'Reading', 'Music'];
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
   const email = faker.internet.email();
