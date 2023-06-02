@@ -2,10 +2,10 @@
 
 describe('Student Registration page', () => {
   before(() => {
-    
+
   });
 
   it('', () => {
-    
+
   });
 });
