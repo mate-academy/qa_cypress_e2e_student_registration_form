@@ -1,10 +1,10 @@
 /// <reference types='cypress' />
 
 describe('Student Registration page', () => {
-  let user; 
+  let user;
   
   beforeEach(() => {
-    cy.visit('/');
+    cy.visit('/automation-practice-form');
     cy.task('generateUser')
       .then(generateUser => {
         user = generateUser;
@@ -15,25 +15,32 @@ describe('Student Registration page', () => {
     cy.findByPlaceholder('First Name')
       .type(user.firstName); 
     cy.findByPlaceholder('Last Name')
-      .type(user.lastName)
+      .type(user.lastName);
     cy.findByPlaceholder('name@example.com')
       .type(user.email); 
     cy.contains('.custom-control-label', user.gender)
       .click();
     cy.findByPlaceholder('Mobile Number')
-      .type(user.mobileNumber);
+      .type(user.mobileNumber);   
     cy.get('#dateOfBirthInput')
-      .type('{selectAll}20 Apr 2000{enter}');
-   cy.get('.subjects-auto-complete__value-container')
+      .click();
+    cy.pickDate('year-select')
+      .select(`${user.birth.year}`);
+    cy.pickDate('month-select')
+      .select(`${user.birth.month}`);
+    cy.pickDate('day')
+      .contains(user.birth.day)
+      .click();
+    cy.get('.subjects-auto-complete__value-container')
       .type(user.subject + '{enter}');
     cy.contains('.custom-control-label', user.hobby)
       .click();
     cy.findByPlaceholder('Current Address')
-      .type(user.address);
+      .type(user.address);    
     cy.contains('Select State')
-      .type('NCR{enter}');
+      .type('{downArrow}{enter}');
     cy.contains('Select City')
-      .type('Delhi{enter}');
+      .type('{downArrow}{enter}'); 
     cy.get('#submit')
       .click({force: true});
 
@@ -56,6 +63,6 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Address')
       .should('contain', user.address);
     cy.contains('tr', 'State and City')
-      .should('contain', 'NCR Delhi'); 
+      .should('contain.text', 'Uttar Pradesh Lucknow');
   });
 });
