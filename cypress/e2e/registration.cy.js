@@ -46,14 +46,17 @@ describe('Student Registration page', () => {
     
     cy.get('#submit').click({force: true});
     
-    cy.contains('tr', 'Student Name')
+    cy.get('tbody')
       .should('contain', firstName)
-      .and ('contain', lastName);
-    
-    cy.contains('tr', 'Student Email')
-      .should('contain', email);
-
-    cy.contains('tr', 'Subjects')
-      .should('contain', 'Chemistry');
+      .and('contain', lastName)
+      .and('contain', email)
+      .and('contain.text', 'Male')
+      .and('contain', mobileNumber)
+      .and('contain', '23 December,2000')
+      .and('contain', 'Chemistry')
+      .and('contain', 'Sport')
+      .and('contain', address)
+      .and('contain', 'Uttar Pradesh')
+      .and('contain', 'Lucknow');
   });
 });
