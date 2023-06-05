@@ -1,6 +1,6 @@
 const { defineConfig } = require('cypress')
-const faker = require('faker');
 
+const faker = require('faker');
 genders = ['Male','Female', 'Other'];
 subjects =['Math', 'Physics', 'History'];
 hobbies = ['Sports','Reading', 'Music'];
