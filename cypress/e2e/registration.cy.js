@@ -1,6 +1,5 @@
 /// <reference types='cypress' />
 
-const { add } = require('lodash');
 const { generateUser } = require('../support/generate');
 
 describe('Student Registration page', () => {
@@ -28,9 +27,7 @@ describe('Student Registration page', () => {
       .check({ force: true });
     cy.get('#currentAddress')
       .type(address);
-    cy.get('#state').click()
-      .get(`#react-select-3-option-${Math.floor(Math.random() * 4)}`)
-      .click({ force: true });
+    cy.contains('Select State').type('NCR{enter}');
     cy.get('#city').click().get(`#react-select-4-option-${Math.floor(Math.random() * 2)}`)
       .click({ force: true });
     cy.get('#currentAddress')
