@@ -24,15 +24,15 @@ describe('Student Registration page', () => {
     cy.contains('#submit', 'Submit').click();
 
     cy.get('#example-modal-sizes-title-lg').should('contain.text', 'Thanks for submitting the form');
-    cy.get('tbody > :nth-child(1) > :nth-child(2)').should('contain', user.firstName);
-    cy.get('tbody > :nth-child(1) > :nth-child(2)').should('contain', user.lastName);
-    cy.get('tbody > :nth-child(2) > :nth-child(2)').should('contain', user.email);
-    cy.get('tbody > :nth-child(3) > :nth-child(2)').should('contain', user.gender);
-    cy.get('tbody > :nth-child(4) > :nth-child(2)').should('contain', user.number);
-    cy.get('tbody > :nth-child(5) > :nth-child(2)').should('contain', '8 June,1998');
-    cy.get('tbody > :nth-child(6) > :nth-child(2)').should('contain', user.subject);
-    cy.get('tbody > :nth-child(7) > :nth-child(2)').should('contain', user.hobby);
-    cy.get('tbody > :nth-child(9) > :nth-child(2)').should('contain', user.address);
-    cy.get('tbody > :nth-child(10) > :nth-child(2)').should('contain', 'Uttar Pradesh Lucknow');
+    cy.contains('tr', 'Student Name').should('contain', user.lastName);
+    cy.contains('tr', 'Student Name').should('contain', user.lastName);
+    cy.contains('tr', 'Student Email').should('contain', user.email);
+    cy.contains('tr', 'Gender').should('contain', user.gender);
+    cy.contains('tr', 'Mobile').should('contain', user.number);
+    cy.contains('tr', 'Date of Birth').should('contain', '8 June,1998');
+    cy.contains('tr', 'Subjects').should('contain', user.subject);
+    cy.contains('tr', 'Hobbies').should('contain', user.hobby);
+    cy.contains('tr', 'Address').should('contain', user.address);
+    cy.contains('tr', 'State and City').should('contain', 'Uttar Pradesh Lucknow');
   });
 });
