@@ -22,7 +22,7 @@ describe('Student Registration page', () => {
     cy.findByPlaceholder('Mobile Number')
       .type(user.mobileNumber);
     cy.get('#dateOfBirthInput')
-      .type('{selectall}26 May 2019{enter}');
+      .type('{selectall}26 May 2000{enter}');
     cy.get('.subjects-auto-complete__value-container')
       .type('en{enter}' + 'phy{enter}');
     cy.contains('.custom-control-label', user.hobby)
@@ -37,6 +37,9 @@ describe('Student Registration page', () => {
 
     cy.get('#submit').click();
 
+    cy.get('.modal-header')
+      .should('contain.text', 'Thanks for submitting the form');
+
     cy.contains('tr', user.firstName).should('be.visible', user.firstName);
 
     cy.contains('tr', user.lastName).should('be.visible', user.lastName);
@@ -47,6 +50,8 @@ describe('Student Registration page', () => {
 
     cy.contains('tr', user.mobileNumber)
       .should('be.visible', user.mobileNumber);
+
+    cy.contains('tr', 'Date of Birth').should('contain', '26 May,2000');
 
     cy.contains('tr', user.hobby).should('be.visible', user.hobby);
 
