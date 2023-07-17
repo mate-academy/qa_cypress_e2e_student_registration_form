@@ -33,16 +33,29 @@ describe('Student Registration page', () => {
 
     cy.get('#submit').click();
 
-    cy.get('#example-modal-sizes-title-lg').should('be.visible');
-    cy.contains('tr', user.firstName).should('be.visible');
-    cy.contains('tr', user.email).should('be.visible');
-    cy.contains('tr', user.gender).should('be.visible');
-    cy.contains('tr', user.mobileNumber).should('be.visible');
-    cy.contains('tr', user.birth.month).should('be.visible');
-    cy.contains('tr', user.birth.year).should('be.visible');
-    cy.contains('tr', user.birth.day).should('be.visible');
-    cy.contains('tr', 'English', 'Phisics').should('be.visible');
-    cy.contains('tr', user.hobby).should('be.visible');
-    cy.contains('tr', user.address).should('be.visible');
+    cy.get('#example-modal-sizes-title-lg')
+      .should('contain', 'Thanks for submitting the form');
+    cy.contains('tr', 'Student Name')
+      .should('contain', user.firstName);
+    cy.contains('tr', 'Student Name')
+      .should('contain', user.lastName);
+    cy.contains('tr', 'Student Email')
+      .should('contain', user.email);
+    cy.contains('tr', 'Gender')
+      .should('contain', user.gender);
+    cy.contains('tr', 'Mobile')
+      .should('contain', user.mobileNumber);
+    cy.contains('tr', 'Date of Birth')
+      .should('contain', user.birth.day);
+    cy.contains('tr', 'Date of Birth')
+      .should('contain', user.birth.month);
+    cy.contains('tr', 'Date of Birth')
+      .should('contain', user.birth.year);
+    cy.contains('tr', 'Subjects')
+      .should('contain', 'English', 'Phisics');
+    cy.contains('tr', 'Hobbies')
+      .should('contain', user.hobby);
+    cy.contains('tr', 'Address')
+      .should('contain', user.address);
   });
 });
