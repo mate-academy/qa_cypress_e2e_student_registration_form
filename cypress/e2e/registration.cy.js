@@ -27,8 +27,8 @@ describe('Student Registration page', () => {
 
     cy.contains('#example-modal-sizes-title-lg', 'Thanks for submitting the form');
 
-    cy.contains('tr', 'Student Name').should('contain', user.firstName)
-    cy.contains('tr', 'Student Name').should('contain', user.lastName)
+    cy.contains('tr', 'Student Name').should('contain', user.firstName);
+    cy.contains('tr', 'Student Name').should('contain', user.lastName);
     cy.contains('tr', 'Student Email').should('contain', user.email);
     cy.contains('tr', 'Gender').should('contain', user.gender);
     cy.contains('tr', 'Mobile').should('contain', user.phoneNumber);
