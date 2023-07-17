@@ -2,6 +2,7 @@
 
 describe('Student Registration page', () => {
   let user;
+
   before(() => {
     cy.visit('/');
     cy.task('generateUser').then((generateUser) => {
@@ -34,26 +35,26 @@ describe('Student Registration page', () => {
       .type('{downarrow}{enter}');
     cy.get('#submit')
       .click();
-    cy.get('tbody > :nth-child(1) > :nth-child(2)')
+    cy.contains('tr', 'Student Name')
       .should('contain.text', user.firstName)
       .and('contain.text', user.lastName);
-    cy.get('tbody > :nth-child(2) > :nth-child(2)')
+    cy.contains('tr', 'Student Email')
       .should('contain.text', user.email);
-    cy.get('tbody > :nth-child(3) > :nth-child(2)')
+    cy.contains('tr', 'Gender')
       .should('contain.text', user.gender);
-    cy.get('tbody > :nth-child(4) > :nth-child(2)')
+    cy.contains('tr', 'Mobile')
       .should('contain.text', user.mobileNumber);
-    cy.get('tbody > :nth-child(5) > :nth-child(2)')
+    cy.contains('tr', 'Date of Birth')
       .should('contain.text', '11 January,2000');
-    cy.get('tbody > :nth-child(6) > :nth-child(2)')
+    cy.contains('tr', 'Subject')
       .should('contain.text', 'English, Chemistry, Biology');
-    cy.get('tbody > :nth-child(7) > :nth-child(2)')
+    cy.contains('tr', 'Hobbies')
       .should('contain.text', user.hobby);
-    cy.get('tbody > :nth-child(8) > :nth-child(2)')
+    cy.contains('tr', 'Picture')
       .should('contain.text', '');
-    cy.get('tbody > :nth-child(9) > :nth-child(2)')
+    cy.contains('tr', 'Address')
       .should('contain.text', user.address);
-    cy.get('tbody > :nth-child(10) > :nth-child(2)')
+    cy.contains('tr', 'State and City')
       .should('contain.text', 'Uttar Pradesh Lucknow');
   });
 });
