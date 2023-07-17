@@ -24,7 +24,8 @@ describe('Student Registration page', () => {
     cy.get('#dateOfBirthInput')
       .type('{selectall}23 Oct 2003{enter}');
 
-    cy.get('.subjects-auto-complete__value-container').type('e' + '{enter}');
+    cy.get('.subjects-auto-complete__value-container')
+      .type(user.subject + '{enter}');
 
     cy.contains('.custom-control-label', user.hobby).click();
 
@@ -52,7 +53,7 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Date of Birth')
       .should('contain', '23 October,2003');
 
-    cy.contains('tr', 'Subject').should('contain.text', 'English');
+    cy.contains('tr', 'Subject').should('contain.text', user.subject);
 
     cy.contains('tr', 'Hobbies').should('contain.text', user.hobby);
 

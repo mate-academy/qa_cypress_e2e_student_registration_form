@@ -19,6 +19,7 @@ module.exports = defineConfig({
             gender: genders[randomIndex],
             hobby: hobbies[randomIndex],
             mobileNumber: faker.phone.phoneNumber('##########'),
+            subject: faker.random.arrayElement(['English', 'Math', 'Physics']),
             address: faker.address.streetAddress()
           };
         }
