@@ -29,23 +29,15 @@ describe('Student Registration page', () => {
     cy.get('#submit').click();
 
     cy.contains('.modal-content', 'Thanks for submitting the form');
-    cy.contains('tr', 'Student Name')
-      .should('contain', user.firstName);
-    cy.contains('tr', 'Student Name')
-      .should('contain', user.lastName);
-    cy.contains('tr', 'Student Email')
-      .should('contain', user.email);
-    cy.contains('tr', 'Gender')
-      .should('contain', user.gender);
-    cy.contains('tr', 'Mobile')
-      .should('contain', user.mobileNumber);
+    cy.contains('tr', 'Student Name').should('contain', user.firstName);
+    cy.contains('tr', 'Student Name').should('contain', user.lastName);
+    cy.contains('tr', 'Student Email').should('contain', user.email);
+    cy.contains('tr', 'Gender').should('contain', user.gender);
+    cy.contains('tr', 'Mobile').should('contain', user.mobileNumber);
     cy.contains('tr', 'Date of Birth').should('contain', `${user.birth.day} ${user.birth.month},${user.birth.year}`);
     cy.contains('tr', 'Subject').should('contain', user.subject);
-    cy.contains('tr', 'Hobbies')
-      .should('contain', user.hobby);
-    cy.contains('tr', 'Address')
-      .should('contain', user.address);
-    cy.contains('tr', 'State and City')
-      .should('contain', 'Uttar Pradesh Agra');
+    cy.contains('tr', 'Hobbies').should('contain', user.hobby);
+    cy.contains('tr', 'Address').should('contain', user.address);
+    cy.contains('tr', 'State and City').should('contain', 'Uttar Pradesh Agra');
   });
 });
