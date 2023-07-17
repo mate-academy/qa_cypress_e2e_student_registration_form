@@ -30,10 +30,9 @@ describe('Student Registration page', () => {
 
     cy.findByPlaceholder('Current Address').type(user.address);
 
-    cy.get('#state')
-      .type('{downarrow}{enter}');
-    cy.get('#city')
-      .type('{downarrow}{enter}');
+    cy.get('#state').type('{downarrow}{enter}');
+
+    cy.get('#city').type('{downarrow}{enter}');
 
     cy.contains('#submit', 'Submit').click();
 
