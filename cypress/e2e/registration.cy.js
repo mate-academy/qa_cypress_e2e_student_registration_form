@@ -31,15 +31,26 @@ describe('Student Registration page', () => {
 
     cy.get('#submit').click();
 
-    cy.contains('tr', user.firstName).should('be.visible');
-    cy.contains('tr', user.lastName).should('be.visible');
-    cy.contains('tr', user.email).should('be.visible');
-    cy.contains('tr', user.gender).should('be.visible');
-    cy.contains('tr', user.mobileNumber).should('be.visible');
-    cy.get('tbody > :nth-child(5) > :nth-child(2)').should('be.visible');
-    cy.get('tbody > :nth-child(6) > :nth-child(2)').should('be.visible');
-    cy.contains('tr', user.hobby).should('be.visible');
-    cy.contains('tr', user.address).should('be.visible');
-    cy.get('tbody > :nth-child(10) > :nth-child(2)').should('be.visible');
+    cy.contains('tr', 'Student Name')
+      .should('contain.text', user.firstName)
+      .and('contain.text', user.lastName);
+    cy.contains('tr', 'Student Email')
+      .should('contain.text', user.email);
+    cy.contains('tr', 'Gender')
+      .should('contain.text', user.gender);
+    cy.contains('tr', 'Mobile')
+      .should('contain.text', user.mobileNumber);
+    cy.get('tbody > :nth-child(5) > :nth-child(2)')
+      .should('be.visible');
+    cy.get('tbody > :nth-child(6) > :nth-child(2)')
+      .should('be.visible');
+    cy.contains('tr', 'Hobbies')
+      .should('contain.text', user.hobby);
+    cy.contains('tr', 'Picture')
+      .should('contain.text', '');
+    cy.contains('tr', 'Address')
+      .should('contain.text', user.address);
+    cy.contains('tr', 'State and City')
+      .should('contain.text', 'Uttar Pradesh Lucknow');
   });
 });
