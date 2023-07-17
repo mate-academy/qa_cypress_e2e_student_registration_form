@@ -12,7 +12,7 @@ module.exports = defineConfig({
           const randomNum = Math.floor(Math.random() * 2);
           const genders = ['Male', 'Female', 'Other'];
           const hobbies = ['Sports', 'Reading', 'Music'];
-          const subjects = ['Math', 'Ukrainian', 'Biology', 'Chemistry', 'English'];
+          const subjects = ['Maths', 'Biology', 'Chemistry', 'English'];
           return {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
