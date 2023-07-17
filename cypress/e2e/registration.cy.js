@@ -16,7 +16,7 @@ describe('Student Registration page', () => {
     cy.get('#userEmail').type(user.email);
     cy.contains('.custom-control-label', user.gender).click();
     cy.findByPlaceholder('Mobile Number').type(user.phoneNumber);
-    cy.get('#dateOfBirthInput').type('{selectAll}17 July 2023{enter}');
+    cy.get('#dateOfBirthInput').type('{selectAll}23 July 1992{enter}');
     cy.get('.subjects-auto-complete__value-container').type('ma{enter}' + 'ar{enter}');
     cy.contains('.custom-control-label', user.hobby).click();
     cy.findByPlaceholder('Current Address').type(user.address);
@@ -32,7 +32,7 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Student Email').should('contain', user.email);
     cy.contains('tr', 'Gender').should('contain', user.gender);
     cy.contains('tr', 'Mobile').should('contain', user.phoneNumber);
-    cy.contains('tr', 'Date of Birth').should('contain', '17 July,2023');
+    cy.contains('tr', 'Date of Birth').should('contain', '23 July,1992');
     cy.contains('tr', 'Subjects').should('contain', 'Maths, Arts');
     cy.contains('tr', 'Hobbies').should('contain', user.hobby);
     cy.contains('tr', 'Address').should('contain', user.address);
