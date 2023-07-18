@@ -3,19 +3,19 @@
 describe('Student Registration page', () => {
   let user;
   before(() => {
-    cy.visit('');
+    cy.visit('/');
     cy.task('generateUser').then((generateUser) => { user = generateUser; });
   });
   it('Registration with all fields except adding picture', () => {
-    cy.get('[placeholder="First Name"]')
+    cy.findByPlaceholder('First Name')
       .type(user.firstName);
-    cy.get('[placeholder="Last Name"]')
+    cy.findByPlaceholder('Last Name')
       .type(user.lastName);
     cy.get('#userEmail')
       .type(user.email);
     cy.contains('.custom-control-label', user.gender)
       .click();
-    cy.get('[placeholder="Mobile Number"]')
+    cy.findByPlaceholder('Mobile Number')
       .type(user.mobile);
     cy.get('#dateOfBirthInput')
       .type('{selectall}23 October{enter}');
@@ -23,7 +23,7 @@ describe('Student Registration page', () => {
       .type('en{enter}' + 'phy{enter}');
     cy.contains('.custom-control-label', user.hobby)
       .click();
-    cy.get('[placeholder="Current Address"]')
+    cy.findByPlaceholder('Current Address')
       .type(user.address);
     cy.get('#state')
       .type('{downarrow}{enter}');
