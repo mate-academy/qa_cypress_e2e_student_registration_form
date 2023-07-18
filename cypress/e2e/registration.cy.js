@@ -50,7 +50,7 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Mobile')
       .should('be.visible', user.mobileNumber);
     cy.contains('tr', 'Date of Birth')
-      .should('contain', '22 DecemberS ,2009');
+      .should('contain', '22 December,2009');
     cy.contains('tr', 'Subjects')
       .should('contain', 'English');
     cy.contains('tr', 'Hobbies')
@@ -58,7 +58,7 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Picture')
       .should('contain.text', '');
     cy.contains('tr', 'Address')
-      .should('contain', user.streetAddress);
+      .should('contain', user.address);
     cy.contains('tr', 'State and City')
       .should('contain', 'Uttar Pradesh Lucknow');
   });
