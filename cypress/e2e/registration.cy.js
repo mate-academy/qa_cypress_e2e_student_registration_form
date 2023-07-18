@@ -12,29 +12,35 @@ describe('Student Registration page', () => {
   });
 
   it('should successfully register user', () => {
-    cy.get('[placeholder="First Name"]').
-      click();
-    cy.get('[placeholder="First Name"]').
+    cy.pickPlaceholder("First Name").
       type(user.firstName);
 
-    cy.get('[placeholder="Last Name"]').
-      click();
-    cy.get('[placeholder="Last Name"]').
-      type(user.lastName);
+    cy.pickPlaceholder("Last Name").
+      type(user.lastName);  
 
-    cy.get('[placeholder="name@example.com"]').
-      click();
-    cy.get('[placeholder="name@example.com"]').
-      type(user.email);
+    cy.pickPlaceholder("name@example.com").
+      type(user.email);    
 
     cy.contains('.custom-radio', user.gender).
       click();
 
-    cy.get('[placeholder="Mobile Number"]').
-      type(user.mobileNumber);
+    cy.pickPlaceholder("Mobile Number").
+      type(user.mobileNumber);  
 
     cy.get('#dateOfBirthInput').
-      type('{selectall}23 Feb 2003{enter}');
+      click();
+      
+    cy.pickDate('month-select').
+      select(user.birth.month); 
+
+    cy.pickDate('year-select').
+      select(user.birth.year);
+
+    cy.pickDate('day').
+      contains(user.birth.day).click();  
+
+    cy.get('.subjects-auto-complete__value-container').
+      click();
 
     cy.get('.subjects-auto-complete__value-container').
       type("en{enter}co{enter}");
@@ -42,8 +48,8 @@ describe('Student Registration page', () => {
     cy.contains('.custom-checkbox', user.hobby).
       click();
 
-    cy.get('[placeholder="Current Address"]').
-      type(user.address);
+    cy.pickPlaceholder("Current Address").
+      type(user.address);    
 
     cy.get('#state').
       type('{downArrow}{downArrow}{enter}');
@@ -56,15 +62,14 @@ describe('Student Registration page', () => {
 
     cy.get('#example-modal-sizes-title-lg').should('have.text', 'Thanks for submitting the form');
 
-    cy.contains('tr', user.firstName).should('be.visible');
-    cy.contains('tr', user.lastName).should('be.visible');
-    cy.contains('tr', user.email).should('be.visible');
-    cy.contains('tr', user.gender).should('be.visible');
-    cy.contains('tr', user.mobileNumber).should('be.visible');
-    cy.contains('tr', '23 February,2003').should('be.visible');
-    cy.contains('tr', 'English, Computer Science').should('be.visible');
-    cy.contains('tr', user.hobby).should('be.visible');
-    cy.contains('tr', user.address).should('be.visible');
-    cy.contains('tr', 'Haryana Panipat').should('be.visible');
+    cy.contains('tr', 'Student Name').should('contain', `${user.firstName} ${user.lastName}`);
+    cy.contains('tr', 'Student Email').should('contain', user.email);
+    cy.contains('tr', 'Gender').should('contain', user.gender);
+    cy.contains('tr', 'Mobile').should('contain', user.mobileNumber);
+    cy.contains('tr', 'Date of Birth').should('contain', `${user.birth.day} ${user.birth.month},${user.birth.year}`);
+    cy.contains('tr', 'Subjects').should('contain', 'English, Computer Science');
+    cy.contains('tr', 'Hobbies').should('contain', user.hobby);
+    cy.contains('tr', 'Address').should('contain', user.address);
+    cy.contains('tr', 'State and City').should('contain', 'Haryana Panipat');
   });
 });

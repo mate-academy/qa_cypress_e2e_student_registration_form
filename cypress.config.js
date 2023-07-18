@@ -19,7 +19,12 @@ module.exports = defineConfig({
             gender: genders[randomIndex],
             mobileNumber: faker.phone.phoneNumber("##########"),
             hobby: hobbies[randomIndex],
-            address: faker.address.streetAddress()
+            address: faker.address.streetAddress(),
+            birth: {
+              year: String(Math.floor(1980 + Math.random() * 40)),
+              day: Math.ceil(Math.random() * 29),
+              month: faker.date.month()
+            }
           }
         }
       })
