@@ -53,43 +53,52 @@ describe('Student Registration page', () => {
     cy.get('#submit')
       .click();
 
-    cy.contains('tr', user.firstName)
-      .should('exist');
+    cy.contains('tr td', 'Student Name')
+      .first()
+      .should('have.text', 'Student Name')
+      .next()
+      .should('contain', user.firstName, user.lastName);
 
-    cy.get('table tbody tr')
-      .should('contain', 'Student Name')
-      .and('contain', user.firstName)
-      .and('contain', user.lastName);
+    cy.contains('tr td', 'Student Email')
+      .first()
+      .should('have.text', 'Student Email')
+      .next()
+      .should('contain', user.email);
 
-    cy.get('table tbody tr')
-      .should('contain', 'Student Email')
-      .and('contain', user.email);
+    cy.contains('tr td', 'Gender')
+      .first()
+      .should('have.text', 'Gender')
+      .next()
+      .should('contain', user.gender);
 
-    cy.get('table tbody tr')
-      .should('contain', 'Gender')
-      .and('contain', user.gender);
+    cy.contains('tr td', 'Mobile')
+      .first()
+      .should('have.text', 'Mobile')
+      .next()
+      .should('contain', user.mobileNumber);
 
-    cy.get('table tbody tr')
-      .should('contain', 'Mobile')
-      .and('contain', user.mobileNumber);
+    cy.contains('tr td', 'Date of Birth')
+      .first()
+      .should('have.text', 'Date of Birth')
+      .next()
+      .should('contain', user.birth.day, user.birth.year);
 
-    cy.get('table tbody tr')
-      .should('contain', 'Date of Birth')
-      .and('contain', user.birth.day)
-      .and('contain', user.birth.year);
+    cy.contains('tr td', 'Subjects')
+      .should('have.text', 'Subjects');
 
-    cy.get('table tbody tr')
-      .should('be.visible', 'Subjects');
+    cy.contains('tr td', 'Hobbies')
+      .first()
+      .should('have.text', 'Hobbies')
+      .next()
+      .should('contain', user.hobbies);
 
-    cy.get('table tbody tr')
-      .should('contain', 'Hobbies')
-      .and('contain', user.hobbies);
+    cy.contains('tr td', 'Address')
+      .first()
+      .should('have.text', 'Address')
+      .next()
+      .should('contain', user.address);
 
-    cy.get('table tbody tr')
-      .should('contain', 'Address')
-      .and('contain', user.address);
-
-    cy.get('table tbody tr')
-      .should('be.visible', 'State and City');
+    cy.contains('tr td', 'State and City')
+      .should('have.text', 'State and City');
   });
 });
