@@ -7,8 +7,8 @@ describe('Student Registration page', () => {
   });
 
   const email = faker.internet.email();
-  const firstName = 'name';
-  const lastName = 'surname';
+  const firstName = faker.name.firstName();
+  const lastName = faker.name.lastName();
 
   it('should register new user with valid credentials"', () => {
     cy.viewport(1920, 1080);
@@ -36,6 +36,8 @@ describe('Student Registration page', () => {
     cy.get('.modal-header')
       .should('contain.text', 'Thanks for submitting the form');
     cy.get('.modal-body').should('exist');
+    cy.get('.modal-body').should('contain', firstName);
+    cy.get('.modal-body').should('contain', lastName);
     cy.get('.modal-body').should('contain', email);
   });
 });
