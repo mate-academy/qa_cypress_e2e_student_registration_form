@@ -6,6 +6,7 @@ module.exports = defineConfig({
     viewportHeight: 1080,
     baseUrl: 'https://demoqa.com/',
     setupNodeEvents(on, config) {
+      
     }
   }
 });

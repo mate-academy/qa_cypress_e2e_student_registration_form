@@ -25,4 +25,4 @@ describe('Student Registration page', () => {
     cy.get('.modal-content').should('exist')
     cy.get('.modal-header').should('contain.text', 'Thanks for submitting the form')
   });
-});
+}); 
