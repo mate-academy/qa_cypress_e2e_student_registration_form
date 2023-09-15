@@ -12,7 +12,6 @@ const {
   email,
   mobilePhone,
   currentAddress,
-  randomSubject,
   randomHobby,
   randomYear,
   randomDate
@@ -30,7 +29,7 @@ describe('Student Registration page', () => {
     fillIn('userEmail', email);
     fillIn('userNumber', mobilePhone);
     fillIn('currentAddress', currentAddress);
-    cy.get('.subjects-auto-complete__value-container').type(randomSubject);
+    cy.get('.subjects-auto-complete__value-container').type(`M{enter}`);
 
     cy.get('[for="gender-radio-1"]').click();
     cy.get(`[for="hobbies-checkbox-${randomHobby}"]`).click();
@@ -54,7 +53,7 @@ describe('Student Registration page', () => {
     assertData('Gender', 'Male');
     assertData('Mobile', mobilePhone);
     assertData('Date of Birth', `${randomDate} September,${randomYear}`);
-
+    assertData('Subjects', 'Maths');
     cy.get('@hobby').then((hobby) => {
       assertData('Hobbies', hobby);
     });
