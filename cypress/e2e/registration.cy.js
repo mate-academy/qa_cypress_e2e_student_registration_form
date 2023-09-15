@@ -16,11 +16,11 @@ describe('Student Registration page', () => {
   it('should register new user with valid credentials"', () => {
     cy.viewport(1920, 1080);
 
-    cy.get('[placeholder="First Name"]').type(firstName);
-    cy.get('[placeholder="Last Name"]').type(lastName);
-    cy.get('[placeholder="name@example.com"]').type(email);
+    cy.findbyPlaceholder('First Name').type(firstName);
+    cy.findbyPlaceholder('Last Name').type(lastName);
+    cy.findbyPlaceholder('name@example.com').type(email);
     cy.get('[for=gender-radio-3]').click();
-    cy.get('[placeholder="Mobile Number"]').type(phoneNumber);
+    cy.findbyPlaceholder('Mobile Number').type(phoneNumber);
 
     cy.get('#dateOfBirthInput').click();
     cy.get('.react-datepicker__month-select').select('0');
@@ -29,7 +29,7 @@ describe('Student Registration page', () => {
 
     cy.get('.subjects-auto-complete__value-container').type('com{enter}');
     cy.get('.custom-checkbox [for="hobbies-checkbox-3"]').click();
-    cy.get('[placeholder="Current Address"]').type(currentAddress);
+    cy.findbyPlaceholder('Current Address').type(currentAddress);
     cy.get('#state').type('Hary{enter}');
     cy.get('#city').type('Ka{enter}');
 
