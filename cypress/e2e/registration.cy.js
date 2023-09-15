@@ -1,7 +1,8 @@
 /// <reference types='cypress' />
 const {
   createRegistrationData,
-  fillIn
+  fillIn,
+  assertData
 } = require('../support/regFunctions');
 
 const {
@@ -11,6 +12,7 @@ const {
   email,
   mobilePhone,
   currentAddress,
+  randomSubject,
   randomHobby,
   randomYear,
   randomDate
@@ -28,9 +30,14 @@ describe('Student Registration page', () => {
     fillIn('userEmail', email);
     fillIn('userNumber', mobilePhone);
     fillIn('currentAddress', currentAddress);
+    cy.get('.subjects-auto-complete__value-container').type(randomSubject);
 
     cy.get('[for="gender-radio-1"]').click();
     cy.get(`[for="hobbies-checkbox-${randomHobby}"]`).click();
+    cy.get(`[for="hobbies-checkbox-${randomHobby}"]`).then((message) => {
+      const hobby = message.text();
+      cy.wrap(hobby).as('hobby');
+    });
 
     cy.get('#state').type(`Uttar{enter}`);
     cy.get('#city').type(`Agra{enter}`);
@@ -41,5 +48,18 @@ describe('Student Registration page', () => {
 
     cy.get('#submit').click();
     cy.get('#example-modal-sizes-title-lg').should('contain', success);
+
+    assertData('Student Name', `${firstName} ${lastName}`);
+    assertData('Student Email', email);
+    assertData('Gender', 'Male');
+    assertData('Mobile', mobilePhone);
+    assertData('Date of Birth', `${randomDate} September,${randomYear}`);
+
+    cy.get('@hobby').then((hobby) => {
+      assertData('Hobbies', hobby);
+    });
+
+    assertData('Address', currentAddress);
+    assertData('State and City', 'Uttar Pradesh Agra');
   });
 });

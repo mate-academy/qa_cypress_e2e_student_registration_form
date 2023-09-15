@@ -7,6 +7,7 @@ function createRegistrationData () {
   const email = faker.internet.email();
   const mobilePhone = faker.phone.phoneNumber('1#########');
   const currentAddress = faker.address.streetAddress();
+  const randomSubject = faker.lorem.words();
   const randomHobby = Math.floor(Math.random() * 3) + 1;
   const randomYear = getRandomNumber(1980, 2010);
   const randomDate = getRandomNumber(10, 30);
@@ -17,6 +18,7 @@ function createRegistrationData () {
     email,
     mobilePhone,
     currentAddress,
+    randomSubject,
     randomHobby,
     randomYear,
     randomDate
@@ -33,4 +35,8 @@ function fillIn(id, data) {
   cy.get(`[id=${id}]`).type(data);
 };
 
-module.exports = { createRegistrationData, fillIn };
+function assertData(section, data) {
+  cy.contains('tr', section).should('contain', data);
+};
+
+module.exports = { createRegistrationData, fillIn, assertData };
