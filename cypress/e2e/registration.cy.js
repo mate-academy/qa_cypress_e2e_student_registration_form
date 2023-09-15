@@ -31,7 +31,7 @@ describe('Student Registration page', () => {
     cy.get('.react-datepicker__year-select').select(randomYear);
     cy.contains('.react-datepicker__day', '15').click();
 
-    cy.get('#subjectsInput').type('a{enter}');
+    cy.get('#subjectsInput').type('Math{enter}');
 
     cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(1)').click();
 
@@ -45,10 +45,16 @@ describe('Student Registration page', () => {
     cy.get('.modal-content').should('exist');
     cy.get('.modal-header').should('contain', 'Thanks for submitting the form');
     cy.get('.modal-body').should('contain', randomEmail);
+    cy.get('.modal-body').should('contain', 'Male');
     cy.get('.modal-body').should('contain', randomName);
     cy.get('.modal-body').should('contain', randomLastName);
     cy.get('.modal-body').should('contain', number);
     cy.get('.modal-body').should('contain', randomAddress);
+    cy.get('.modal-body').should('contain', randomMonth);
+    cy.get('.modal-body').should('contain', randomYear);
+    cy.get('.modal-body').should('contain', 'Math');
+    cy.get('.modal-body').should('contain', 'Sports');
+    cy.get('.modal-body').should('contain', 'Uttar Pradesh Agra');
     cy.get('[id="closeLargeModal"]').click();
   });
 });
