@@ -10,6 +10,7 @@ const subject = 'Computer Science';
 const currentAddress = faker.address.streetAddress();
 const randomGender = Math.floor(Math.random() * 3) + 1;
 const randomHobbie = Math.floor(Math.random() * 3) + 1;
+const birthDate = '15 September';
 
 export {
   baseUrl,
@@ -20,5 +21,6 @@ export {
   subject,
   currentAddress,
   randomGender,
-  randomHobbie
+  randomHobbie,
+  birthDate
 };

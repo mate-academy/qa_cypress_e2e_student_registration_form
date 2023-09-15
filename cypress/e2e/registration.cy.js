@@ -8,7 +8,8 @@ import {
   subject,
   currentAddress,
   randomGender,
-  randomHobbie
+  randomHobbie,
+  birthDate
 } from '../support/userVars.js';
 
 cy.faker = require('faker');
@@ -27,8 +28,7 @@ describe('Student Registration page', () => {
     cy.get('[placeholder="Mobile Number"]').type(mobile);
     cy.get('#dateOfBirthInput').click();
     cy.get('.react-datepicker__day--015').click();
-    cy.get('[id="subjectsContainer"]').type(subject);
-    cy.get('[id="subjectsContainer"]').click();
+    cy.get('.subjects-auto-complete__value-container').type(`${subject}{enter}`);
     cy.get(`.custom-checkbox [for="hobbies-checkbox-${randomHobbie}"]`).click();
     cy.get('[placeholder="Current Address"]').type(currentAddress);
     cy.get('#state').type('Raja{enter}');
@@ -37,6 +37,16 @@ describe('Student Registration page', () => {
     cy.get('.modal-content').should('exist');
     cy.get('.modal-header').should('contain', 'Thanks for submitting the form');
     cy.get('.modal-body').should('contain', email);
+    cy.get('.modal-body').should('contain', name);
+    cy.get('.modal-body').should('contain', lastName);
+    cy.get('.modal-body').should('contain', randomGender);
+    cy.get('.modal-body').should('contain', mobile);
+    cy.get('.modal-body').should('contain', name);
+    cy.get('.modal-body').should('contain', subject);
+    cy.get('.modal-body').should('contain', birthDate);
+    cy.get('.modal-body').should('contain', randomHobbie);
+    cy.get('.modal-body').should('contain', currentAddress);
+    cy.get('.modal-body').should('contain', 'Raja', 'Jaipur');
     cy.get('[id="closeLargeModal"]').click();
   });
 });
