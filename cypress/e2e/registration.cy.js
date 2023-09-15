@@ -29,9 +29,13 @@ describe('Student Registration page', () => {
 
     cy.get('.modal-content').should('exist');
     cy.get('.modal-header').should('contain', 'Thanks for submitting the form');
-    cy.get('.modal-body').should('contain', 'ianOchka Kozak');
+    cy.get('.modal-body').should('contain', 'Haryana Karnal');
     cy.get('.modal-body').should('contain', email);
     cy.get('.modal-body').should('contain', userNumber);
-    cy.get('.modal-body').should('contain', 'Haryana Karnal');
+    cy.get('.modal-body').should('contain', username);
+    cy.get('.modal-body').should('contain', lastName);
+    cy.get('.modal-body').should('contain', username);
+    cy.get('.modal-body').should('contain', 'Sports');
+    cy.get('.modal-body').should('contain', '17 September,2005');
   });
 });
