@@ -23,5 +23,7 @@ describe('Student Registration page', () => {
     cy.get('#submit').click();
     cy.get('.modal-content').should('exist');
     cy.get('.modal-header').should('contain', 'Thanks for submitting the form');
+    cy.get('tbody > :nth-child(2) > :nth-child(2)').should('contain', 'test@test.com');
+    cy.get('tbody > :nth-child(3) > :nth-child(2)').should('contain', 'Female');
   });
 });
