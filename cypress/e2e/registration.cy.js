@@ -1,4 +1,5 @@
 /// <reference types='cypress' />
+
 const faker = require('faker');
 const name = faker.name.firstName();
 const lastNmae = faker.name.lastName();
