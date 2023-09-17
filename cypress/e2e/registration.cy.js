@@ -14,7 +14,7 @@ describe('Student Registration page', () => {
       .number({ min: 1000000000, max: 9999999999 }).toString();
     const currentAddress = faker.address.streetAddress();
 
-    cy.viewport(1980, 1120);
+    cy.viewport(1980, 1130);
     cy.get('[placeholder="First Name"]').type(firstName);
     cy.get('[placeholder="Last Name"]').type(lastName);
     cy.get('[placeholder="name@example.com"]').type(email);
