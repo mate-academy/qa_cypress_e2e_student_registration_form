@@ -29,7 +29,7 @@ describe('Student Registration page', () => {
       .type('{selectAll}15 Sep 2005{enter}');
 
     cy.get('.subjects-auto-complete__value-container')
-      .type('m{enter}' + 'e{enter}' + 'p{enter}');
+      .type(user.subject + '{enter}');
 
     cy.contains('.custom-control-label', user.hobby)
       .click();
@@ -67,7 +67,7 @@ describe('Student Registration page', () => {
       .should('contain', '15 September,2005');
 
     cy.contains('tr', 'Subjects')
-      .should('contain', 'Maths, English, Physics');
+      .should('contain', user.subject);
 
     cy.contains('tr', 'Hobbies')
       .should('contain', user.hobby);

@@ -11,6 +11,7 @@ module.exports = defineConfig({
         generateUser() {
           const randomIndex = Math.floor(Math.random() * 2);
           const genders = ['Male', 'Female', 'Other'];
+          const subjects = ['Maths', 'English', 'Physics'];
           const hobbies = ['Sports', 'Reading', 'Music'];
           return {
             firstName: faker.name.firstName(),
@@ -18,6 +19,7 @@ module.exports = defineConfig({
             email: faker.internet.email(),
             gender: genders[randomIndex],
             mobileNumber: faker.phone.phoneNumber('##########'),
+            subject: faker.random.arrayElement(subjects),
             hobby: hobbies[randomIndex],
             address: faker.address.streetAddress()
           };
