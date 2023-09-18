@@ -37,7 +37,12 @@ describe('Student Registration page', () => {
     cy.get('.modal-body').should('contain', firstName);
     cy.get('.modal-body').should('contain', lastName);
     cy.get('.modal-body').should('contain', email);
-    cy.get('.modal-body').should('contain', address);
+    cy.contains('tr', 'Gender').should('contain', 'Male');
     cy.get('.modal-body').should('contain', phoneNumber);
+    cy.contains('tr', 'Date of Birth').should('contain', '26 April,1986');
+    cy.contains('tr', 'Subjects').should('contain', 'Maths');
+    cy.contains('tr', 'Hobbies').should('contain', 'Sports');
+    cy.get('.modal-body').should('contain', address);
+    cy.contains('tr', 'State and City').should('contain', 'NCR Delhi');
   });
 });
