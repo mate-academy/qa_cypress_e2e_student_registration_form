@@ -17,9 +17,9 @@ describe('Student Registration page', () => {
 
     cy.get('[placeholder="name@example.com"]').type(email);
 
-    cy.get('[for="gender-radio-2"]').click();
+    cy.get('[for="gender-radio-1"]').click();
 
-    cy.get('[placeholder="Mobile Number"]').type('3809769438');
+    cy.get('[placeholder="Mobile Number"]').type('3809761337');
 
     cy.get('[id="dateOfBirthInput"]').click();
 
@@ -31,7 +31,7 @@ describe('Student Registration page', () => {
 
     cy.get('[for="hobbies-checkbox-2"]').click();
 
-    cy.get('[placeholder="Current Address"]').type('Kyiv,Grushevskogo,9');
+    cy.get('[placeholder="Current Address"]').type('Lviv');
 
     cy.get('#state').type('Utt{enter}');
 
@@ -49,15 +49,15 @@ describe('Student Registration page', () => {
 
     cy.get('.modal-body').should('contain', 'email');
 
-    cy.get('.modal-body').should('contain', 'Gender', 'female');
+    cy.get('.modal-body').should('contain', 'Gender', 'male');
 
-    cy.get('.modal-body').should('contain', 'Mobile', '3809954638');
+    cy.get('.modal-body').should('contain', 'Mobile', '3809761337');
 
     cy.get('.modal-body').should('contain', 'Date of Birth', '28 September');
 
-    cy.get('.modal-body').should('contain', 'Hobbies', 'Readung');
+    cy.get('.modal-body').should('contain', 'Hobbies', 'Reading');
 
-    cy.get('.modal-body').should('contain', 'Address', 'Kyiv, Grushevskogo,9');
+    cy.get('.modal-body').should('contain', 'Address', 'Lviv');
 
     cy.get('.modal-body').should('contain', 'State', 'Uttar Pradesh');
 
