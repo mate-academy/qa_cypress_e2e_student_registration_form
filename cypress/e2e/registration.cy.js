@@ -22,7 +22,16 @@ describe('Student Registration page', () => {
     cy.get('#state').type('Hary{enter}');
     cy.get('#city').type('Ka{enter}')
     cy.get('#submit').click()
-    cy.get('.modal-content').should('exist')
-    cy.get('.modal-header').should('contain.text', 'Thanks for submitting the form')
+    // Tests //
+
+    cy.get('.modal-content').should('exist');
+    cy.get('#example-modal-sizes-title-lg')
+      .should('contain', 'Thanks for submitting the form');
+    cy.get('.modal-body').should('exist');
+    cy.get('.modal-body').should('contain', firstName);
+    cy.get('.modal-body').should('contain', lastName);
+    cy.get('.modal-body').should('contain', email);
+    cy.get('.modal-body').should('contain', randomNumber);
+    cy.get('.modal-body').should('exist');
   });
 }); 
