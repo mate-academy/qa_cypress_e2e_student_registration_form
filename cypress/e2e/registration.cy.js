@@ -4,10 +4,10 @@ describe('Student Registration page', () => {
   before(() => {
     cy.visit('https://demoqa.com/automation-practice-form');
   });
-  const userName = 'userFirstName';
-  const userSurname = 'userLastName';
-  const email = 'useremail@gmail.com';
-  const subject = 'No subkects';
+  const userName = 'Bohdan';
+  const userSurname = 'Svystun';
+  const email = 'randomemail@gmail.com';
+  const subject = 'No subjects';
   it('should successfully register the user with valid credentials', () => {
     cy.viewport(1920, 1080);
 
@@ -43,9 +43,9 @@ describe('Student Registration page', () => {
 
     cy.get('.modal-header').should('contain', 'Thanks for submitting the form');
 
-    cy.get('.modal-body').should('contain', 'userFirstName');
+    cy.get('.modal-body').should('contain', 'Bohdan');
 
-    cy.get('.modal-body').should('contain', 'userLastName');
+    cy.get('.modal-body').should('contain', 'Svystun');
 
     cy.get('.modal-body').should('contain', 'email');
 
