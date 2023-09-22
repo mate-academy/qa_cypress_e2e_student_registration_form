@@ -22,6 +22,9 @@ describe('Student Registration page', () => {
     cy.get('.modal-header')
       .should('contain.text', 'Thanks for submitting the form');
     cy.get('.modal-body').should('exist');
+    cy.get('.modal-body').should('contain', 'firstName');
+    cy.get('.modal-body').should('contain', 'lastName');
     cy.get('.modal-body').should('contain', 'email@gmail.com');
+    cy.get('.modal-body').should('contain', '1234567890');
   });
 });
