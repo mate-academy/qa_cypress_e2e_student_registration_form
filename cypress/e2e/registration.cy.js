@@ -1,7 +1,5 @@
 /// <reference types='cypress' />
 
-const { name } = require("faker/lib/locales/az");
-
 const randomEmail = `user_${Math.floor(Math.random() * 1000000)}@gmail.com`;
 const firstName = "Mykhailo";
 const lastName = "Rozmaznin";
