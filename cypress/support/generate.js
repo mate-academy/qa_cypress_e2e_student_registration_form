@@ -8,7 +8,9 @@ function generateUser() {
 	const mobile = randomNumber;
 	const subjects = "Example subjects";
 	const address = "Current address";
+	const state = "NCR";
+	const city = "Delhi";
 
-	return { firstName, lastName, email, mobile, subjects, address };
+	return { firstName, lastName, email, mobile, subjects, address, state, city };
 }
 module.exports = { generateUser };

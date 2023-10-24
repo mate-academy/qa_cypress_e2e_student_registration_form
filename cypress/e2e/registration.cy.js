@@ -10,23 +10,33 @@ describe("Student Registration page", () => {
 		cy.get("#genterWrapper")
 			.find(".custom-control-label")
 			.each((gender) => {
-				const { firstName, lastName, email, mobile, subjects, address } =
-					generateUser();
+				const {
+					firstName,
+					lastName,
+					email,
+					mobile,
+					subjects,
+					address,
+					state,
+					city,
+				} = generateUser();
 
 				cy.get("#firstName").type(firstName);
 				cy.get("#lastName").type(lastName);
 				cy.get("#userEmail").type(email);
-
 				cy.wrap(gender).click();
-
 				cy.get("#userNumber").type(mobile);
 				cy.get(".subjects-auto-complete__value-container").type(subjects);
 				cy.get("#hobbiesWrapper")
 					.find(".custom-control-label")
 					.click({ multiple: true });
 				cy.get("#currentAddress").type(address);
-				cy.get(".css-yk16xz-control").eq(0).click({ force: true });
-				cy.get("#city").click({ force: true });
+				cy.get("#react-select-3-input").type(`${state}{enter}`, {
+					force: true,
+				});
+				cy.get("#react-select-4-input").type(`${state}{enter}`, {
+					force: true,
+				});
 
 				cy.get("#submit")
 					.click({ force: true })
@@ -51,24 +61,21 @@ describe("Student Registration page", () => {
 					mobile
 				);
 				cy.get("tbody > :nth-child(6) > :nth-child(2)").should(
-					"contain.text",
+					"contain",
 					subjects
 				);
 				cy.get("tbody > :nth-child(7) > :nth-child(2)").should(
 					"contain.text",
 					"Sports, Reading, Music"
 				);
-				cy.get("tbody > :nth-child(8) > :nth-child(2)").should(
-					"contain.text",
-					""
-				);
+
 				cy.get("tbody > :nth-child(9) > :nth-child(2)").should(
 					"contain.text",
 					address
 				);
 				cy.get("tbody > :nth-child(10) > :nth-child(2)").should(
 					"contain.text",
-					""
+					`${state} ${city}`
 				);
 
 				cy.get("#closeLargeModal").click({ force: true });
