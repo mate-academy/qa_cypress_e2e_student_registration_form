@@ -1,5 +1,5 @@
 const { defineConfig } = require('cypress');
-const facker = require('faker');
+const faker = require('faker');
 
 module.exports = defineConfig({
   e2e: {
@@ -11,14 +11,14 @@ module.exports = defineConfig({
         generateUser() {
           randomIndex = Math.floor(Math.random() * 2);
           genders = ['Male', 'Female', 'Other'];
-          hobbies = []
+          hobbies = ['Sports', 'Reading', 'Music' ]
           return {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
             gender: genders[randomIndex],
             phoneNumber: faker.phone.phoneNumber('##########'),
-            birthDate: facker.date.past(),
+            birthDate: faker.date.past(),
             birth: {
               month: faker.date.month(),
               year: Math.floor(1920 + Math.random() * 16),

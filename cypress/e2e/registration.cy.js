@@ -13,12 +13,12 @@ describe('Student Registration page', () => {
   it('should provite the ability to register', () => {
     cy.get('#firstName')
       .type(user.firstName);
-    cy.gey('#lastName')
+    cy.get('#lastName')
       .type(user.lastName);
     cy.get('#userEmail')
       .type(user.email);
     cy.log(user.gender);
-    cy.contains('.coustom-control-label', user.gender)
+    cy.contains('.custom-control-label', user.gender)
       .click();
     cy.get('#userNumber')
       .type(user.phoneNumber);
@@ -39,9 +39,9 @@ describe('Student Registration page', () => {
     cy.get('#currentAddress')
       .type(user.address);
     cy.get('#state')
-      .type('{drwnarrow}{enter}')
+      .type('{drnarrow}{enter}')
     cy.get('#city')
-      .type('{drwnarrow}{enter}');
+      .type('{drnarrow}{enter}');
     cy.get('#submit')
       .click();
     cy.contains('tr', 'Student Name')
