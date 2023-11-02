@@ -1,17 +1,14 @@
 /// <reference types='cypress' />
 
+const { generateUser } = require('../support/commands.js');
+
 describe('Student Registration page', () => {
   before(() => {
-    cy.visit('https://demoqa.com/automation-practice-form');
+    cy.visit('/automation-practice-form');
   });
 
-  it('should register', () => {
-    const firstName = 'Illidan';
-    const lastName = 'Stormrage';
-    const email = 'illidan@hotline.com';
-    const mobileNumber = '0953545657';
-    const subject = 'Qashnik';
-    const address = 'Berduchiv';
+  it('should fill all fields in forms except "picture".', () => {
+    const { firstName, lastName, email, phoneNumber, address } = generateUser();
 
     cy.get('#firstName')
       .type(firstName);
@@ -19,52 +16,44 @@ describe('Student Registration page', () => {
       .type(lastName);
     cy.get('#userEmail')
       .type(email);
-    cy.get('[for="gender-radio-1"]')
+    cy.contains('.custom-control-label', 'Male')
       .click();
     cy.get('#userNumber')
-      .type(mobileNumber);
+      .type(phoneNumber);
     cy.get('#dateOfBirthInput')
-      .click();
-    cy.get('.react-datepicker__month-select')
-      .select('July');
-    cy.get('.react-datepicker__year-select')
-      .select('2001');
-    cy.get(':nth-child(2) > .react-datepicker__day--009')
-      .click();
+      .type('{selectAll}09 Jul 2001{enter}');
     cy.get('.subjects-auto-complete__value-container')
-      .type(subject);
-    cy.get('[for="hobbies-checkbox-2"]')
+      .type('en{enter}');
+    cy.contains('.custom-control-label', 'Sports')
       .click();
     cy.get('#currentAddress')
       .type(address);
     cy.get('#state')
-      .type('Haryana{enter}');
+      .type('{downarrow}{enter}');
     cy.get('#city')
-      .type('Karnal{enter}');
+      .type('{downarrow}{enter}');
     cy.get('#submit')
       .click();
-
-    cy.get('.modal-content')
-      .should('exist');
-    cy.get('.modal-header')
+    cy.get('#example-modal-sizes-title-lg')
       .should('contain', 'Thanks for submitting the form');
-    cy.get('.modal-body')
-      .should('contain', firstName);
-    cy.get('.modal-body')
+    cy.contains('tr', 'Student Name')
+      .should('contain', firstName)
       .should('contain', lastName);
-    cy.get('.modal-body')
+    cy.contains('tr', 'Email')
       .should('contain', email);
-    cy.get('.modal-body')
+    cy.contains('tr', 'Gender')
       .should('contain', 'Male');
-    cy.get('.modal-body')
-      .should('contain', mobileNumber);
-    cy.get('.modal-body')
-      .should('contain', '9 July,2001');
-    cy.get('.modal-body')
-      .should('contain', 'Reading');
-    cy.get('.modal-body')
+    cy.contains('tr', 'Mobile')
+      .should('contain', phoneNumber);
+    cy.contains('tr', 'Date of Birth')
+      .should('contain', '09 July,2001');
+    cy.contains('tr', 'Subjects')
+      .should('contain', 'English');
+    cy.contains('tr', 'Hobbies')
+      .should('contain', 'Sports');
+    cy.contains('tr', 'Address')
       .should('contain', address);
-    cy.get('.modal-body')
-      .should('contain', 'Haryana Karnal');
+    cy.contains('tr', 'State and City')
+      .should('contain', 'Uttar Pradesh Lucknow');
   });
 });
