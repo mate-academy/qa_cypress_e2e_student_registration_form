@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('FindByPlaceholder', (placeholder) => {
+  cy.get(`[placehoder="${placeholder}]`);
+});
+
+Cypress.Commands.add('pickDate', (date) => {
+  cy.get(`.react-datepicker__${date}`);
+});
