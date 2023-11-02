@@ -1,18 +1,17 @@
 /// <reference types='cypress' />
 
+const { user } = require("pg/lib/defaults")
+
 describe('Student Registration page', () => {
   before(() => {
     cy.visit('https://demoqa.com/automation-practice-form');
     cy.viewport(1920, 1080);
   });
 
-  it('Automation registration form', () => {
-    const firstName = 'Tanjiro';
-    const lastName = 'Kamado';
-    const email = 'tanjirokamado213@gmail.com';
-    const phoneNumber = '0997548712';
-    const subject = 'English';
-    const adress = 'Japan, Kutomori';
+  it('Should successfully register a student and assert the data in a modal window', () => {
+  cy.userInfo().then((info) => {
+  const { firstName, lastName, email, phoneNumber, subject, adress  } = info;
+
     cy.get('#firstName')
       .type(firstName);
     cy.get('#lastName')
@@ -71,4 +70,5 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'State and City')
       .should('contain', 'NCR Delhi');
   });
+});
 });
