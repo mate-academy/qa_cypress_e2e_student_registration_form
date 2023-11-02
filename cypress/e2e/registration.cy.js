@@ -6,7 +6,7 @@ describe('Student Registration page', () => {
     cy.viewport(1920, 1080);
   });
 
-  it('Automation registration form', () => {
+  it('Should successfully register a student and assert the data in a modal window', () => {
     const firstName = 'Tanjiro';
     const lastName = 'Kamado';
     const email = 'tanjirokamado213@gmail.com';
