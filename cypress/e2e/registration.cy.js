@@ -26,7 +26,19 @@ describe('Student Registration page', () => {
     cy.get('#currentAddress').type(randomAddress);
     cy.get('[id="submit"]').click();
 
-    cy.contains('.modal-content', 'Thanks for submitting the form');
+    cy.contains('.modal-content', 'Thanks for submitting the form')
+      .should('be.visible');
+    cy.contains('.modal-content', 'Student Name').should('be.visible');
+    cy.contains('.modal-content', 'Student Email').should('be.visible');
+    cy.contains('.modal-content', 'Gender').should('be.visible');
+    cy.contains('.modal-content', 'Mobile').should('be.visible');
+    cy.contains('.modal-content', 'Date of Birth').should('be.visible');
+    cy.contains('.modal-content', 'Subjects').should('be.visible');
+    cy.contains('.modal-content', 'Hobbies').should('be.visible');
+    cy.contains('.modal-content', 'Picture').should('be.visible');
+    cy.contains('.modal-content', 'Address').should('be.visible');
+    cy.contains('.modal-content', 'State and City').should('be.visible');
+
     cy.contains(randomFirstName);
     cy.contains(randomLastName);
     cy.contains(randomEmail);
