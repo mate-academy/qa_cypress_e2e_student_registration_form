@@ -24,7 +24,6 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-
 Cypress.Commands.add('userInfo', () => {
     const firstName = 'Tanjiro';
     const lastName = 'Kamado';
@@ -35,4 +34,3 @@ Cypress.Commands.add('userInfo', () => {
 
     return { firstName, lastName, email, phoneNumber, subject, adress };
 });
-
