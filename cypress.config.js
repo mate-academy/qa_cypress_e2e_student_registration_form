@@ -11,7 +11,7 @@ module.exports = defineConfig({
         generateUser() {
           randomIndex = Math.floor(Math.random() * 2);
           genders = ['Male', 'Female', 'Other'];
-          hobbies = ['Sports', 'Reading', 'Music' ]
+          hobbies = ['Sports', 'Reading', 'Music']
           return {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
