@@ -39,9 +39,9 @@ describe('Student Registration page', () => {
     cy.get('#currentAddress')
       .type(user.address);
     cy.get('#state')
-      .type('{drnarrow}{enter}')
+      .type('{downarrow}{enter}')
     cy.get('#city')
-      .type('{drnarrow}{enter}');
+      .type('{downarrow}{enter}');
     cy.get('#submit')
       .click();
     cy.contains('tr', 'Student Name')
