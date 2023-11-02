@@ -21,9 +21,18 @@ describe('Student Registration page', () => {
     cy.get('input[id="userEmail"]').type(randomEmail);
     cy.get('[for="gender-radio-3"]').click();
     cy.get('input[id="userNumber"]').type(randomPhoneNumber);
+    cy.get('.react-datepicker__input-container [id="dateOfBirthInput"]')
+      .click();
+    cy.get('.react-datepicker__month-select').select('October');
+    cy.get('.react-datepicker__year-select').select('2000');
+    cy.get('.react-datepicker__day--014').click();
     cy.get('#subjectsInput').type(reandomLorem);
     cy.get('[for="hobbies-checkbox-2"]').click();
     cy.get('#currentAddress').type(randomAddress);
+    cy.get('[id="state"]').click();
+    cy.get('#react-select-3-option-0').click();
+    cy.get('[id="city"]').click();
+    cy.get('#react-select-4-option-0').click();
     cy.get('[id="submit"]').click();
 
     cy.contains('.modal-content', 'Thanks for submitting the form')
@@ -39,11 +48,13 @@ describe('Student Registration page', () => {
     cy.contains('.modal-content', 'Address').should('be.visible');
     cy.contains('.modal-content', 'State and City').should('be.visible');
 
-    cy.contains(randomFirstName);
-    cy.contains(randomLastName);
-    cy.contains(randomEmail);
-    cy.contains(randomPhoneNumber);
-    cy.contains(randomAddress);
-    cy.contains(reandomLorem);
+    cy.contains(randomFirstName).should('be.visible');
+    cy.contains(randomLastName).should('be.visible');
+    cy.contains(randomEmail).should('be.visible');
+    cy.contains(randomPhoneNumber).should('be.visible');
+    cy.contains('14 October,2000').should('be.visible');
+    cy.contains(randomAddress).should('be.visible');
+    cy.contains(reandomLorem).should('be.visible');
+    cy.contains('NCR Delhi').should('be.visible');
   });
 });
