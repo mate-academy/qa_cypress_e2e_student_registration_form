@@ -7,8 +7,8 @@ describe('Student Registration page', () => {
     cy.visit('/');
     cy.task('generateUser').then((generateUser) => {
       user = generateUser;
+    });
   });
-});
 
   it('should have an ability to register a new student', () => {
     cy.get('#firstName')

@@ -25,14 +25,13 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('findByPlaceholder', (placeholder) => {
-    cy.get(`[placeholder="${placeholder}]`);
-  });
-  
-  Cypress.Commands.add('pickDate', (date) => {
-    cy.get(`.react-datepicker__${date}`);
-  });
-  
-  Cypress.Commands.add('ourCommand', (command) => {
+  cy.get(`[placeholder="${placeholder}]`);
+});
+
+Cypress.Commands.add('pickDate', (date) => {
+  cy.get(`.react-datepicker__${date}`);
+});
+
+Cypress.Commands.add('ourCommand', (command) => {
     cy.get('').click();
-  });
-  
+});
