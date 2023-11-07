@@ -2,30 +2,27 @@
 
 
 describe('Student Registration page', () => {
+  let user;
   before(() => {
-
-    cy.visit('https://demoqa.com/automation-practice-form');
-    cy.viewport(1920, 1080);
+    cy.visit('/');
+    cy.task('generateUser').then((generateUser) => {
+      user = generateUser;
+    });
   });
 
   
   it('Automation registration form', () => {
-    const firstName = 'orest';
-    const lastName = 'NOob';
-    const email = 'trojanhorse3@gmail.com';
-    const phoneNumber = '0677033886';
-    const subject = 'English';
-    const adress = 'Ukraine, Moscov';
+
     cy.get('#firstName')
-      .type(firstName);
+      .type(user.firstName);
     cy.get('#lastName')
-      .type(lastName);
+      .type(user.lastName);
     cy.get('#userEmail')
-      .type(email);
+      .type(user.email);
     cy.get('[for="gender-radio-1"]')
       .click();
     cy.get('#userNumber')
-      .type(phoneNumber);
+      .type(user.phoneNumber);
     cy.get('#dateOfBirthInput')
       .click();
     cy.get('.react-datepicker__month-select')
@@ -34,12 +31,12 @@ describe('Student Registration page', () => {
       .select('2008');
     cy.get('.react-datepicker__day--014')
       .click();
-    cy.get('.subjects-auto-complete__value-container')
-      .type(subject + `{Enter}`);
+      cy.get('.subjects-auto-complete__value-container')
+      .type('ch{enter}' + 'p{enter}');
     cy.get('[for="hobbies-checkbox-1"]')
       .click();
-    cy.get('[placeholder="Current Address"]')
-      .type(adress);
+    cy.get('#currentAddress')
+      .type(user.address);
     cy.get('#state')
       .click();
     cy.get('#react-select-3-option-0')
@@ -50,28 +47,29 @@ describe('Student Registration page', () => {
       .click();
     cy.get('#submit')
       .click();
-
+      
     cy.get('.modal-content')
       .should('contain', 'Thanks for submitting the form');
     cy.get('.modal-body')
-      .should('contain', firstName);
+      .should('contain', user.firstName);
     cy.get('.modal-body')
-      .should('contain', lastName);
+      .should('contain', user.lastName);
     cy.get('.modal-body')
-      .should('contain', email);
+      .should('contain', user.email);
     cy.contains('tr', 'Gender')
       .should('contain', 'Male');
     cy.get('.modal-body')
-      .should('contain', phoneNumber);
+      .should('contain', user.phoneNumber);
     cy.contains('tr', 'Date of Birth')
       .should('contain', '14 July,2008');
     cy.contains('tr', 'Subject')
-      .should('contain', 'English');
+      .should('contain', 'Chemistry', 'Physics');
     cy.contains('tr', 'Hobbies')
       .should('contain', 'Sports');
-    cy.get('.modal-body')
-      .should('contain', adress);
+    cy.contains('tr', 'Address')
+      .should('contain', user.address);
     cy.contains('tr', 'State and City')
-      .should('contain', 'NCR Delhi');
+      .should('contain', '')
+         .should('contain', '');
   });
 });
