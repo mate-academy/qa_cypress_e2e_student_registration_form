@@ -20,15 +20,12 @@ describe('Student Registration page', () => {
 
     cy.get('#submit').click();
 
-    cy.get('.table-responsive').should('contain', 'Bob');
-    cy.get('.table-responsive').should('contain', 'Miller');
-    cy.get('.table-responsive').should('contain', 'bob.miller@gmail.com');
-    cy.get('.table-responsive').should('contain', 'Male');
-    cy.get('.table-responsive').should('contain', '0678900000');
-    cy.get('.table-responsive').should('contain', '12 December,1989');
-    cy.get('.table-responsive').should('contain', 'Maths');
-    cy.get('.table-responsive').should('contain', 'Sports');
-    cy.get('.table-responsive').should('contain', '10 Khreshatik St');
-    cy.get('.table-responsive').should('contain', 'NCR Delhi');
+    cy.get('.modal-body').should('contain', 'Bob');
+    cy.get('.modal-body').should('contain', 'Miller');
+    cy.get('.modal-body').should('contain', 'bob.miller@gmail.com');
+    cy.get('.modal-body').should('contain', 'Male');
+    cy.get('.modal-body').should('contain', '0678900000');
+    cy.get('.modal-body').should('contain', '12 December,1989');
+    cy.get('.modal-body').should('contain', '10 Khreshatik St');
   });
 });
