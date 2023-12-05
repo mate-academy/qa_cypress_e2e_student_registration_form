@@ -2,10 +2,28 @@
 
 describe('Student Registration page', () => {
   before(() => {
-
+    cy.visit('https://demoqa.com/automation-practice-form');
   });
 
   it('', () => {
-
+    cy.get('input[placeholder="First Name"]').type('testName');
+    cy.get('input[placeholder="Last Name"]').type('testSurname');
+    cy.get('input[placeholder="name@example.com"]').type('testName@test.com');
+    cy.get('input[placeholder="Mobile Number"]').type('1234567890');
+    cy.get('#genterWrapper').contains('Male').click();
+    // date picker
+    cy.get('#dateOfBirthInput').click();
+    cy.get('.react-datepicker__year-select').select('1989');
+    cy.get('.react-datepicker__month-select').select('August');
+    cy.get('.react-datepicker__day--015').click();
+    cy.get('[for="hobbies-checkbox-1"]').click();
+    cy.get('#currentAddress').type('testAddress');
+    cy.get('#subjectsInput').type('Math{enter}');
+    cy.get('#stateCity-wrapper').contains('Select State').type('NCR{enter}');
+    cy.get('#stateCity-wrapper').contains('Select City').type('Delhi{enter}');
+    cy.get('#submit').click();
+    // modal window
+    cy.get('#example-modal-sizes-title-lg')
+      .should('contain', 'Thanks for submitting the form');
   });
 });
