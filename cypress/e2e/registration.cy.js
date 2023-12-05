@@ -23,7 +23,25 @@ describe('Student Registration page', () => {
     cy.get('#stateCity-wrapper').contains('Select City').type('Delhi{enter}');
     cy.get('#submit').click();
     // modal window
-    cy.get('#example-modal-sizes-title-lg')
-      .should('contain', 'Thanks for submitting the form');
+    // cy.get('#example-modal-sizes-title-lg')
+    //   .should('contain', 'Thanks for submitting the form');
+    cy.get('.modal-content').contains('Student Name').next('td')
+      .should('have.text', 'testName testSurname');
+    cy.get('.modal-content').contains('Student Email').next('td')
+      .should('have.text', 'testName@test.com');
+    cy.get('.modal-content').contains('Gender').next('td')
+      .should('have.text', 'Male');
+    cy.get('.modal-content').contains('Mobile').next('td')
+      .should('have.text', '1234567890');
+    cy.get('.modal-content').contains('Date of Birth').next('td')
+      .should('have.text', '15 August,1989');
+    cy.get('.modal-content').contains('Subjects').next('td')
+      .should('have.text', 'Maths');
+    cy.get('.modal-content').contains('Hobbies').next('td')
+      .should('have.text', 'Sports');
+    cy.get('.modal-content').contains('Address').next('td')
+      .should('have.text', 'testAddress');
+    cy.get('.modal-content').contains('State and City').next('td')
+      .should('have.text', 'NCR Delhi');
   });
 });
