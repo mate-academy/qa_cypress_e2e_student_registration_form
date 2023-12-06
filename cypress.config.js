@@ -2,8 +2,9 @@ const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
-    viewportHeight: 1080,
-    viewportWidth: 1300,
+    baseUrl: 'https://demoqa.com/automation-practice-form',
+    viewportHeight: 1920,
+    viewportWidth: 1080,
     setupNodeEvents(on, config) {
     }
   }
