@@ -1,16 +1,19 @@
 /// <reference types='cypress' />
 
+const { generateUser, generatePhone } = require('../support/generateUser');
+
 describe('Student Registration page', () => {
   before(() => {
     cy.visit('/');
   });
 
-  it('Student Registration Form', () => {
-    cy.debug('[crossorigin="CORS"]');
-    cy.get('form').get('input[placeholder="First Name"]').type('testName');
-    cy.get('form').get('input[placeholder="Last Name"]').type('testLastName');
-    cy.get('form').get('input[id="userEmail"]').type('test@test.pl');
-    cy.get('form').get('input[id=userNumber]').type('500000100');
+  it('Student should register on the page', () => {
+    const user = generateUser();
+    cy.get('form').get('#firstName').type(user.firstName);
+    cy.get('form').get('#lastName').type(user.lastName);
+    cy.get('form').get('#userEmail').type(user.userEmail);
+    const digit = generatePhone();
+    cy.get('form').get('#userNumber').type(digit.number);
     cy.get('.subjects-auto-complete__value-container')
       .type('English{enter}');
     cy.get('.subjects-auto-complete__value-container')
@@ -27,26 +30,28 @@ describe('Student Registration page', () => {
       .get('.custom-control-label').contains('Music').click();
 
     // Set DateOfBirthday
-    cy.get('input[id="dateOfBirthInput"]').click();
+    cy.get('#dateOfBirthInput').click();
     cy.get('.react-datepicker__month-select').select('April');
     cy.get('.react-datepicker__year-select').select('2024');
     cy.get('.react-datepicker__day--015').click();
 
     // Current Address
-    cy.get('textarea[placeholder="Current Address"]').type('Testowa 15, Test');
-    cy.get('#state > .css-yk16xz-control > .css-1hwfws3').type('ncr{enter}');
-    cy.get('#city > .css-yk16xz-control > .css-1hwfws3').type('Delhi{enter}');
+    cy.get('#currentAddress').type(user.userAddress);
+    cy.get('#stateCity-wrapper').contains('Select State').type('ncr{enter}');
+    cy.get('#stateCity-wrapper').contains('Select City').type('Delhi{enter}');
 
-    // CLick Button
-    cy.get('button[id="submit"]').contains('Submit').click();
+    // CLick Button & assert
+    cy.get('#submit').contains('Submit').click();
+    cy.get('.modal-header')
+      .should('have.text', 'Thanks for submitting the form');
 
     // Assert Name
     cy.get('.modal-body').contains('Student Name').next()
-      .should('have.text', 'testName testLastName');
+      .should('have.text', `${user.firstName} ${user.lastName}`);
 
     // Assert Email
     cy.get('.modal-body').contains('Student Email').next()
-      .should('have.text', 'test@test.pl');
+      .should('have.text', `${user.userEmail}`);
 
     // Assert Gender
     cy.get('.modal-body').contains('Gender').next()
@@ -54,7 +59,7 @@ describe('Student Registration page', () => {
 
     // Assert Mobile
     cy.get('.modal-body').contains('Mobile').next()
-      .should('have.text', '500000100');
+      .should('have.text', `${digit.number}`);
 
     // Assert Date
     cy.get('.modal-body').contains('Date of Birth').next()
@@ -70,13 +75,13 @@ describe('Student Registration page', () => {
 
     // Assert Address
     cy.get('.modal-body').contains('Address').next()
-      .should('have.text', 'Testowa 15, Test');
+      .should('have.text', `${user.userAddress}`);
 
     // Assert State & City
     cy.get('.modal-body').contains('State and City').next()
       .should('have.text', 'NCR Delhi');
 
     // Close Modal Window
-    cy.get('button[id="closeLargeModal"]').click();
+    cy.get('#closeLargeModal').click();
   });
 });
