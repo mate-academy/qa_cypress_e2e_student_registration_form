@@ -23,8 +23,6 @@ describe('Student Registration page', () => {
     cy.get('#stateCity-wrapper').contains('Select City').type('Delhi{enter}');
     cy.get('#submit').click();
     // modal window
-    // cy.get('#example-modal-sizes-title-lg')
-    //   .should('contain', 'Thanks for submitting the form');
     cy.get('.modal-content').contains('Student Name').next('td')
       .should('have.text', 'testName testSurname');
     cy.get('.modal-content').contains('Student Email').next('td')
