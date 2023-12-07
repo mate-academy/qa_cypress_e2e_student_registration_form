@@ -1,25 +1,28 @@
 /// <reference types='cypress' />
 
 describe('Student Registration page', () => {
-  before(() => {
-    cy.visit('https://demoqa.com/automation-practice-form');
+  const { generateUser } = require('../support/generateUser');
+
+  beforeEach(() => {
+    cy.visit('/');
   });
 
   it('should fill the form and assert modal content', () => {
+    const randomData = generateUser();
     // first name, last name
     cy.get('[placeholder="First Name"]')
-      .type('Testing');
+      .type(randomData.firstName);
     cy.get('[placeholder="Last Name"]')
-      .type('Again');
+      .type(randomData.lastName);
     // email
     cy.get('[placeholder="name@example.com"]')
-      .type('testing@again.com');
+      .type(randomData.email);
     // gender radio
     cy.get('label[for="gender-radio-1"]')
       .click();
     // mobile
     cy.get('[placeholder="Mobile Number"]')
-      .type('1234567890');
+      .type(randomData.phone);
     // date of birth
     cy.get('#dateOfBirthInput')
       .click();
@@ -39,7 +42,7 @@ describe('Student Registration page', () => {
       .click();
     // address textfield
     cy.get('[id="currentAddress"]')
-      .type('Testowa 17, 22-222 Testowo');
+      .type(randomData.address);
     // state dropdown
     cy.get('#state')
       .click();
@@ -61,11 +64,15 @@ describe('Student Registration page', () => {
     cy.get('.modal-content')
       .contains('Student Name')
       .next('td')
-      .should('have.text', 'Testing Again');
+      .should('contain', randomData.firstName);
+    cy.get('.modal-content')
+      .contains('Student Name')
+      .next('td')
+      .should('contain', randomData.lastName);
     cy.get('.modal-content')
       .contains('Student Email')
       .next('td')
-      .should('have.text', 'testing@again.com');
+      .should('contain', randomData.email);
     cy.get('.modal-content')
       .contains('Gender')
       .next('td')
@@ -73,7 +80,7 @@ describe('Student Registration page', () => {
     cy.get('.modal-content')
       .contains('Mobile')
       .next('td')
-      .should('have.text', '1234567890');
+      .should('contain', randomData.phone);
     cy.get('.modal-content')
       .contains('Date of Birth')
       .next('td')
@@ -89,7 +96,7 @@ describe('Student Registration page', () => {
     cy.get('.modal-content')
       .contains('Address')
       .next('td')
-      .should('have.text', 'Testowa 17, 22-222 Testowo');
+      .should('contain', randomData.address);
     cy.get('.modal-content')
       .contains('State and City')
       .next('td')
