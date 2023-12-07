@@ -1,19 +1,27 @@
 /// <reference types='cypress' />
 
-const { generateUser, generatePhone } = require('../support/generateUser');
-
 describe('Student Registration page', () => {
+  let user;
+
   before(() => {
-    cy.visit('/');
+    cy.visit('https://demoqa.com/automation-practice-form');
+    cy.task('generateUser').then((generatedUser) => {
+      user = generatedUser;
+    });
   });
 
   it('Student should register on the page', () => {
-    const user = generateUser();
-    cy.get('form').get('#firstName').type(user.firstName);
-    cy.get('form').get('#lastName').type(user.lastName);
-    cy.get('form').get('#userEmail').type(user.userEmail);
-    const digit = generatePhone();
-    cy.get('form').get('#userNumber').type(digit.number);
+    // Fill student data
+    cy.get('#firstName').type(user.firstName);
+    cy.get('#lastName').type(user.lastName);
+    cy.get('#userEmail').type(user.email);
+    cy.get('#userNumber').type(user.number);
+
+    // Gender
+    cy.get('.custom-control-label')
+      .contains(user.gender, { matchCase: false }).click();
+
+    // Subjects
     cy.get('.subjects-auto-complete__value-container')
       .type('English{enter}');
     cy.get('.subjects-auto-complete__value-container')
@@ -36,7 +44,7 @@ describe('Student Registration page', () => {
     cy.get('.react-datepicker__day--015').click();
 
     // Current Address
-    cy.get('#currentAddress').type(user.userAddress);
+    cy.get('#currentAddress').type(user.address);
     cy.get('#stateCity-wrapper').contains('Select State').type('ncr{enter}');
     cy.get('#stateCity-wrapper').contains('Select City').type('Delhi{enter}');
 
@@ -51,7 +59,7 @@ describe('Student Registration page', () => {
 
     // Assert Email
     cy.get('.modal-body').contains('Student Email').next()
-      .should('have.text', `${user.userEmail}`);
+      .should('have.text', `${user.email}`);
 
     // Assert Gender
     cy.get('.modal-body').contains('Gender').next()
@@ -59,7 +67,7 @@ describe('Student Registration page', () => {
 
     // Assert Mobile
     cy.get('.modal-body').contains('Mobile').next()
-      .should('have.text', `${digit.number}`);
+      .should('have.text', `${user.number}`);
 
     // Assert Date
     cy.get('.modal-body').contains('Date of Birth').next()
@@ -75,7 +83,7 @@ describe('Student Registration page', () => {
 
     // Assert Address
     cy.get('.modal-body').contains('Address').next()
-      .should('have.text', `${user.userAddress}`);
+      .should('have.text', `${user.address}`);
 
     // Assert State & City
     cy.get('.modal-body').contains('State and City').next()
