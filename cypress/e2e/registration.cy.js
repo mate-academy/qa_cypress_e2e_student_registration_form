@@ -7,7 +7,7 @@ describe('Student Registration page', () => {
     cy.viewport(1800, 1200);
   });
 
-  it('', ('Form filling with validation') => {
+  it('Registration form and validation', () => {
     // Filling data
     cy.findByPlaceholder('First Name').type('Patrick');
     cy.findByPlaceholder('Last Name').type('Paul');
@@ -36,7 +36,7 @@ describe('Student Registration page', () => {
     cy.get('table').should('contain', 'Picture');
     cy.get('table').should('contain', 'Address');
     cy.get('table').should('contain', 'State and City');
-    // inputed data values check
+    // inputted data values check
     cy.get('table').should('contain', 'Patrick Paul');
     cy.get('table').should('contain', 'john.paul2@vatican.com');
     cy.get('table').should('contain', 'English');
