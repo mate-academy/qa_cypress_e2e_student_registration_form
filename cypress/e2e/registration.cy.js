@@ -23,10 +23,10 @@ describe('Student Registration page', () => {
     // date of birth
     cy.get('#dateOfBirthInput')
       .click();
-    // cy.get('.react-datepicker_month-select')
-    //   .select('December');
-    cy.get('.react-datepicker__month-select').select('5');
-    cy.get('.react-datepicker__year-select').select('2002');
+    cy.get('.react-datepicker__month-select')
+      .select('5');
+    cy.get('.react-datepicker__year-select')
+      .select('2002');
     cy.get('.react-datepicker__day--017')
       .click();
     // subjects
@@ -38,7 +38,8 @@ describe('Student Registration page', () => {
     cy.get('label[for="hobbies-checkbox-3"]')
       .click();
     // address textfield
-    cy.get('[id="currentAddress"]').type('Testowa 17, 22-222 Testowo');
+    cy.get('[id="currentAddress"]')
+      .type('Testowa 17, 22-222 Testowo');
     // state dropdown
     cy.get('#state')
       .click();
@@ -55,7 +56,8 @@ describe('Student Registration page', () => {
       .click();
 
     // assert modal content
-    cy.get('.modal').should('exist');
+    cy.get('.modal')
+      .should('exist');
     cy.get('.modal-content')
       .contains('Student Name')
       .next('td')
