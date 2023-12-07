@@ -7,7 +7,7 @@ describe('Student Registration page', () => {
     cy.viewport(1800, 1200);
   });
 
-  it('', () => {
+  it('', ('Form filling with validation') => {
     // Filling data
     cy.findByPlaceholder('First Name').type('Patrick');
     cy.findByPlaceholder('Last Name').type('Paul');
