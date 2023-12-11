@@ -6,7 +6,6 @@ const generateUser = () => {
   const randomEmail = faker.internet.email();
   // eslint-disable-next-line max-len
   const randomPhone = faker.random.number({ min: 100000000, max: 999999999 }).toString();
-  const randomDateOfBirth = '01 Nov 1980';
   const randomAddress = faker.address.streetAddress();
 
   return {
@@ -14,7 +13,6 @@ const generateUser = () => {
     lastName: randomLastName,
     email: randomEmail,
     phone: randomPhone,
-    dateOfBirth: randomDateOfBirth,
     address: randomAddress
   };
 };

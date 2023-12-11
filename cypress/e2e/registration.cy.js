@@ -36,12 +36,12 @@ describe('Student Registration page', () => {
     cy.get('#subjectsInput')
       .type('Physics{enter}');
     // hobbies checkbox
-    cy.get('label[for="hobbies-checkbox-1"]')
+    cy.get('[for="hobbies-checkbox-1"]')
       .click();
-    cy.get('label[for="hobbies-checkbox-3"]')
+    cy.get('[for="hobbies-checkbox-3"]')
       .click();
     // address textfield
-    cy.get('[id="currentAddress"]')
+    cy.get('#currentAddress')
       .type(randomData.address);
     // state dropdown
     cy.get('#state')
