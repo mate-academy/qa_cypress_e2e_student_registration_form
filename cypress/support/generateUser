@@ -1,0 +1,22 @@
+const faker = require('faker');
+
+const generateUser = () => {
+  const randomFirstName = faker.name.firstName();
+  const randomLastName = faker.name.lastName();
+  const randomEmail = faker.internet.email();
+  // eslint-disable-next-line max-len
+  const randomPhone = faker.random.number({ min: 100000000, max: 999999999 }).toString();
+  const randomAddress = faker.address.streetAddress();
+
+  return {
+    firstName: randomFirstName,
+    lastName: randomLastName,
+    email: randomEmail,
+    phone: randomPhone,
+    address: randomAddress
+  };
+};
+
+module.exports = {
+  generateUser
+};
