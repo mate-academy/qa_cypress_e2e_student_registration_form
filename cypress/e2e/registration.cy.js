@@ -13,7 +13,7 @@ describe('Student Registration page', () => {
     cy.findByPlaceholder('Last Name').type('Paul');
     cy.findByPlaceholder('name@example.com').type('john.paul2@vatican.com');
     cy.get('label').contains('Other').click();
-    cy.findByPlaceholder('Mobile Number').type(1234567890);
+    cy.findByPlaceholder('Mobile Number').type('1234567890');
     cy.get('#dateOfBirthInput').type('{selectall}');
     cy.get('#dateOfBirthInput').type('20 OCT 2020');
     cy.get('#dateOfBirthInput').type('{enter}');
