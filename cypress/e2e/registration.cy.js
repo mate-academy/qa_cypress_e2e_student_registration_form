@@ -10,7 +10,7 @@ describe('Student Registration page', () => {
     cy.visit('https://demoqa.com/automation-practice-form');
   });
 
-  it('', () => {
+  it('should allow users to create an account', () => {
     // enter basic data
     cy.get('#firstName').type(user.userName);
     cy.get('#lastName').type(user.userSurname);
