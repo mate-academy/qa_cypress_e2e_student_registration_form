@@ -5,7 +5,7 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: 'https://demoqa.com',
     viewportHeight: 1900,
-    viewportHeight: 1500,
+    viewportWidth: 1500,
     setupNodeEvents(on, config) {
       on('task', {
         generateUser() {
