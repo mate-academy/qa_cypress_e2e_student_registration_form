@@ -11,8 +11,8 @@ module.exports = defineConfig({
       on('task', {
         generateUser() {
           const gender = faker.person.sex();
-          const firstName = faker.person.firstName(gender);
-          const lastName = faker.person.lastName(gender);
+          const firstName = faker.person.firstName();
+          const lastName = faker.person.lastName();
           return {
             firstName,
             lastName,
