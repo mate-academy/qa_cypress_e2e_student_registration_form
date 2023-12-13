@@ -3,21 +3,6 @@
 describe('Student Registration page', () => {
   let user;
 
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
-
   before(() => {
     cy.task('generateUser').then((generatedUser) => {
       user = generatedUser;
@@ -26,12 +11,6 @@ describe('Student Registration page', () => {
 
   it('should register new student', () => {
     cy.visit('/automation-practice-form');
-
-    const birthDate = new Date(user.birthDate);
-
-    const day = String(birthDate.getDate()).padStart(2, '0');
-    const month = months[birthDate.getMonth()];
-    const year = birthDate.getFullYear();
 
     // Verify registration form
     cy.get('.main-header').contains('Practice Form').should('exist');
@@ -80,7 +59,7 @@ describe('Student Registration page', () => {
     cy.get('.modal-body')
       .contains('td', 'Date of Birth')
       .next()
-      .should('contain', `${day} ${month},${year}`);
+      .should('contain', `${user.day} ${user.month},${user.year}`);
     cy.get('.modal-body')
       .contains('td', 'Subjects')
       .next()
