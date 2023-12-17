@@ -4,7 +4,6 @@ describe('should register new student', () => {
   let user;
 
   before(() => {
-    cy.visit('/automation-practice-form');
     cy.task('generateUser').then((generatedUser) => {
       user = generatedUser;
     });
@@ -12,6 +11,7 @@ describe('should register new student', () => {
 
   it('should register new student', () => {
     // Fill form with student data
+    cy.visit('/automation-practice-form');
     cy.findByPlaceholder('First Name').type(user.firstName);
     cy.findByPlaceholder('Last Name').type(user.lastName);
     cy.findByPlaceholder('name@example.com').type(user.email);
@@ -19,10 +19,10 @@ describe('should register new student', () => {
       .click();
     cy.findByPlaceholder('Mobile Number').type(user.phoneNumber);
     cy.get('#dateOfBirthInput')
-      .type('{selectAll}' + user.birthdate + '{enter}');
+      .type('{selectAll}' + '17 Dec 2023' + '{enter}');
     cy.get('#subjectsContainer').type('ec{enter}');
     cy.get('#hobbiesWrapper').contains('Music').click();
-    cy.findByPlaceholder('Current Address', 'textarea');
+    cy.findByPlaceholder('Current Address', 'textarea').type(user.address);
     cy.get('#stateCity-wrapper').contains('Select State').type('R{enter}');
     cy.get('#stateCity-wrapper').contains('Select City').type('Jaip{enter}');
     // Submit form
@@ -45,18 +45,18 @@ describe('should register new student', () => {
       .should('have.text', `${user.phoneNumber}`);
     cy.get('.modal-content').get('table')
       .contains('Date of Birth').next('td')
-      .should('exist');
+      .should('have.text', `17 December,2023`);
     cy.get('.modal-content').get('table')
       .contains('Subjects').next('td')
-      .should('exist');
+      .should('have.text', 'Economics');
     cy.get('.modal-content').get('table')
       .contains('Hobbies').next('td')
-      .should('exist');
+      .should('have.text', 'Music');
     cy.get('.modal-content').get('table')
       .contains('Address').next('td')
-      .should('exist');
+      .should('have.text', `${user.address}`);
     cy.get('.modal-content').get('table')
-      .contains('State and Cit').next('td')
-      .should('exist');
+      .contains('State and City').next('td')
+      .should('have.text', '');
   });
 });

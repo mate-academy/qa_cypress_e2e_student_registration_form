@@ -21,7 +21,8 @@ module.exports = defineConfig({
               .email({ firstName, lastName }),
             gender,
             phoneNumber: faker.phone.number('##########'),
-            birthDate: faker.date.birthdate().toDateString().slice(4)
+            birthDate: faker.date.birthdate().toDateString().slice(3),
+            address: faker.location.streetAddress()
           };
         }
       });
