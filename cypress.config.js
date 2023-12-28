@@ -10,10 +10,8 @@ module.exports = defineConfig({
       on('task', {
         generateUser() {
           const randomIndex = Math.floor(Math.random() * 2);
-          const randomIndexForState = Math.floor(Math.random() * 3);
           const genders = ['Male', 'Female', 'Other'];
           const hobbies = ['Sport', 'Reading', 'Music'];
-          const states = ['NCR', 'Uttar Pradesh', 'Haryana', 'Rajasthan'];
           return {
             gender: genders[randomIndex],
             hobbie: hobbies[randomIndex],
@@ -21,8 +19,7 @@ module.exports = defineConfig({
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
             phone: faker.phone.phoneNumber('##########'),
-            address: faker.address.streetAddress(),
-            state: states[randomIndexForState]
+            address: faker.address.streetAddress()
           };
         }
       });
