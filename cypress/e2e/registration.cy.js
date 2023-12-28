@@ -48,16 +48,16 @@ describe('Student Registration page', () => {
       .type(user.address);
 
     cy.get('#state')
-      .type('{downArrow}{enter}');
+      .type('U{downArrow}{enter}');
 
     cy.get('#city')
-      .type('{downArrow}{enter}');
+      .type('L{downArrow}{enter}');
 
     cy.get('#submit')
       .click();
 
-    cy.contains('tr', 'Student Name').should('contain', user.firstName);
-    cy.contains('tr', 'Student Name').should('contain', user.lastName);
+    cy.contains('tr', 'Student Name').should('contain', user.firstName)
+      .and('contain', user.lastName);
     cy.contains('tr', 'Student Email').should('contain', user.email);
     cy.contains('tr', 'Gender').should('contain', user.gender);
     cy.contains('tr', 'Mobile').should('contain', user.phone);
@@ -65,6 +65,7 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Subjects').should('contain', 'Accounting');
     cy.contains('tr', 'Hobbies').should('contain', user.hobbie);
     cy.contains('tr', 'Address').should('contain', user.address);
-    cy.contains('tr', 'State and City').should('contain', 'Uttar Pradesh Lucknow');
+    cy.contains('tr', 'State and City').should('contain', 'Uttar Pradesh')
+      .and('contain', 'Lucknow');
   });
 });
