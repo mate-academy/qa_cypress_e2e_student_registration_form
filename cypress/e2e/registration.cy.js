@@ -25,7 +25,7 @@ describe('Student Registration page', () => {
     cy.get('.css-2b097c-container').type('{downArrow}{enter}');
     cy.get('#submit').click();
 
-    cy.contains('tr', 'Student Name').should('contain', user.firstName);
+    cy.contains('tr', 'Student Name').should('contain', user.firstName).and('contain', user.lastName);
     cy.contains('tr', 'Student Email').should('contain', user.email);
     cy.contains('tr', 'Gender').should('contain', user.gender);
     cy.contains('tr', 'Mobile').should('contain', user.phone);
