@@ -3,8 +3,8 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   });
  
  
- describe('Automation Practice Form', () => {
-    it('should fill all fields in the form with random data, submit it, and assert inputted data in the modal window', () => {
+ describe('Student Registration Form', () => {
+    it('should fill all fields and submit', () => {
       cy.visit('https://demoqa.com/automation-practice-form')
   
       
@@ -17,7 +17,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
       monthOfBirth: 'September',
       yearOfBirth: '1990',
       dayOfBirth: '13',
-      subject: 'English',
+      subject: 'Civics',
       hobbies:{
         Sports: '1',
         Reading: '2',
@@ -37,7 +37,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     cy.get('.react-datepicker__year-select').select(user.yearOfBirth);
     cy.get('.react-datepicker__day').contains(user.dayOfBirth).click();
     cy.get('.subjects-auto-complete__value-container').type(`${user.subject}{enter}`)
-    cy.get(`input[value=${user.hobbies.Reading}]`).check({force: true});
+    cy.get(`input[value=${user.hobbies.Sports}]`).check({force: true});
     cy.get('#currentAddress').type(user.currentAddress.join(' '));
     cy.get('#stateCity-wrapper')
       .contains('Select State')
