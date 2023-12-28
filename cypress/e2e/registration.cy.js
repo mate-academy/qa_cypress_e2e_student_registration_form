@@ -37,15 +37,23 @@ describe('Student Registration page', () => {
     cy.get('#city').type(`${user.userCity}{Enter}`);
     cy.get('#submit').click();
 
-    cy.get('td').should('contain', user.firstName);
-    cy.get('td').should('contain', user.lastName);
-    cy.get('td').should('contain', user.userEmail);
-    cy.get('td').should('contain', user.gender);
-    cy.get('td').should('contain', user.userNumber);
-    cy.get('td').should('contain', user.userSubject);
-    cy.get('td').should('contain', user.userHobbie.Music);
-    cy.get('td').should('contain', user.userAddress);
-    cy.get('td').should('contain', user.userState);
-    cy.get('td').should('contain', user.userCity);
+    cy.contains('tr', 'Student Name')
+      .should('contain', user.firstName)
+      .and('contain', user.lastName);
+    cy.contains('tr', 'Student Email')
+      .should('contain', user.userEmail);
+    cy.contains('tr', 'Gender')
+      .should('contain', user.gender);
+    cy.contains('tr', 'Mobile')
+      .should('contain', user.userNumber);
+    cy.contains('tr', 'Subjects')
+      .should('contain', user.userSubject);
+    cy.contains('tr', 'Hobbies')
+      .should('contain', 'Music');
+    cy.contains('tr', 'Address')
+      .should('contain', user.userAddress);
+    cy.contains('tr', 'State and City')
+      .should('contain', user.userState)
+      .and('contain', user.userCity);
   });
 });
