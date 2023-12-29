@@ -31,7 +31,10 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Gender').should('contain', user.gender);
     cy.contains('tr', 'Mobile').should('contain', user.phone);
     cy.contains('tr', 'Date of Birth').should('contain', user.birthDate);
+    cy.contains('tr', 'Subjects').should('contain', 'Accounting');
     cy.contains('tr', 'Hobbies').should('contain', user.hobbie);
     cy.contains('tr', 'Address').should('contain', user.address);
+    cy.contains('tr', 'State and City').should('contain',
+      'Uttar Pradesh Lucknow');
   });
 });
