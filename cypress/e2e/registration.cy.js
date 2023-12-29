@@ -31,7 +31,9 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Mobile').should('contain', user.phone);
     cy.contains('tr', 'Date of Birth').should('contain', '30 Aug 1986');
     cy.contains('tr', 'Address').should('contain', 'USA, Manhattan, Ousean street 1');
-    
+    cy.contains('tr', 'Subjects').should('contain', 'Biology');
+    cy.contains('tr', 'Hobbies').should('contain', user.hobbies);
+    cy.contains('tr', 'State and City').should('contain', 'Manhattan').and('contain', 'Merrut');
     });
-  
-});
+  });
+
