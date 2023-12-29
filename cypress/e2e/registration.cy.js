@@ -21,8 +21,8 @@ describe('Student Registration page', () => {
     cy.get('.subjects-auto-complete__value-container').type('A{downArrow}{enter}');
     cy.contains('.custom-control-label', user.hobbies).click({force: true}); 
     cy.findByPlaceholder('Current Address').type('USA, Manhattan, Ousean street 1');
-    cy.get('.css-yk16xz-control').type('{downArrow}{enter}');
-    cy.get('.css-2b097c-container').type('{downArrow}{enter}');
+    cy.get('#state').type('{downArrow}{enter}');
+    cy.get('#city').type('{downArrow}{enter}');
     cy.get('#submit').click();
 
     cy.contains('tr', 'Student Name').should('contain', user.firstName).and('contain', user.lastName);
