@@ -35,5 +35,10 @@ describe('Student Registration page', () => {
       .should('contain', '01 December,1980');
     cy.contains('tr', 'Address')
       .should('contain', user.address);
+    cy.contains('tr', 'Subjects')
+      .should('contain', 'Chemistry');
+    cy.contains('tr', 'Hobbies')
+      .should('contain', user.hobbie);
+    cy.contains('tr', 'Rajasthan Jaipur');
   });
 });
