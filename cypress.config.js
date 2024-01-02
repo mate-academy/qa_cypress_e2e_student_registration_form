@@ -19,7 +19,9 @@ module.exports = defineConfig({
           phone: faker.phone.phoneNumber('093#######'),
           hobby: hobby[randomIndex],
           street: faker.address.streetAddress(),
-
+          city: 'Delhi',
+          state: 'NCR',
+          subject: 'Maths',
         }
       }
      })                        
