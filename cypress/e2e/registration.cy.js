@@ -20,8 +20,10 @@ describe('Student Registration page', () => {
     cy.get('#subjectsInput').type('a{upArrow}{enter}');
     cy.contains('.custom-control-label', user.hobbies).click();
     cy.findByPlaceholder('Current Address').type(user.address);
-    cy.get('#react-select-3-input').type('a{upArrow}{enter}');
-    cy.get('#react-select-4-input').type('a{upArrow}{enter}');
+    cy.get('#state > .css-yk16xz-control > .css-1hwfws3')
+      .type('a{upArrow}{enter}');
+    cy.get('#city > .css-yk16xz-control > .css-1hwfws3')
+      .type('a{upArrow}{enter}');
     cy.get('#submit').click();
 
     cy.contains('tr', 'Student Name')
