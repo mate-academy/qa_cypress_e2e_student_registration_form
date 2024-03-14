@@ -30,18 +30,18 @@ Cypress.Commands.add('getAndTypeText', (selector, text) => {
   cy.get(selector).type(text);
 });
 
-Cypress.Commands.add('chechTableDataBySelector', (selector) => {
+Cypress.Commands.add('checkTableDataBySelector', (selector) => {
   cy.get(selector).then(function($value) {
     const selectedValue = $value.text();
     cy.get('td').should('contain.text', selectedValue);
   });
 });
 
-Cypress.Commands.add('chechTableDataByValue', (value) => {
+Cypress.Commands.add('checkTableDataByValue', (value) => {
   cy.get('td').should('contain.text', value);
 });
 
-Cypress.Commands.add('chechBirthDate', () => {
+Cypress.Commands.add('checkBirthDate', () => {
   cy.get('#dateOfBirthInput').then(function($value) {
     const fullMonth = $value.val().split(' ');
     const month = convertShortMonthToFull(fullMonth[1]);

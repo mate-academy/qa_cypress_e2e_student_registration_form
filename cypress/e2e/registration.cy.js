@@ -32,15 +32,15 @@ describe('Student Registration page', () => {
     // Assert inputed data in modal window
     cy.get('#example-modal-sizes-title-lg')
       .should('contain.text', 'Thanks for submitting the form');
-    cy.chechTableDataByValue(`${user.firstName} ${user.lastName}`);
-    cy.chechTableDataByValue(user.email);
-    cy.chechTableDataByValue(user.gender);
-    cy.chechTableDataByValue(user.mobileNumber);
-    cy.chechBirthDate();
-    cy.chechTableDataBySelector('.css-12jo7m5');
-    cy.chechTableDataByValue(user.hobbie);
-    cy.chechTableDataByValue(user.address);
-    cy.chechTableDataBySelector('#state');
-    cy.chechTableDataBySelector('#city');
+    cy.checkTableDataByValue(`${user.firstName} ${user.lastName}`);
+    cy.checkTableDataByValue(user.email);
+    cy.checkTableDataByValue(user.gender);
+    cy.checkTableDataByValue(user.mobileNumber);
+    cy.checkBirthDate();
+    cy.checkTableDataBySelector('.css-12jo7m5');
+    cy.checkTableDataByValue(user.hobbie);
+    cy.checkTableDataByValue(user.address);
+    cy.checkTableDataBySelector('#state');
+    cy.checkTableDataBySelector('#city');
   });
 });
