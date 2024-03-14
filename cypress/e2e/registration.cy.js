@@ -2,15 +2,13 @@
 const { generateUser } = require('../support/generate');
 
 describe('Student Registration page', () => {
-  // before(() => {
-  //   cy.visit('https://demoqa.com/automation-practice-form');
-  // });
+  before(() => {
+    cy.visit('https://demoqa.com/automation-practice-form');
+  });
 
   const user = generateUser();
 
   it('should provide an ability to register a user', () => {
-    cy.visit('https://demoqa.com/automation-practice-form');
-
     cy.get('#firstName').type(user.firstName);
 
     cy.get('#lastName').type(user.lastName);
