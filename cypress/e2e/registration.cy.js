@@ -10,7 +10,7 @@ describe('Student Registration page', () => {
     cy.visit('/automation-practice-form');
   });
 
-  it('', () => {
+  it('should provide an opportunity to register a new user', () => {
     cy.get('h1')
       .should('contain.text', 'Practice Form');
 
