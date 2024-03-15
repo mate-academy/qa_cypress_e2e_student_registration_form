@@ -1,7 +1,15 @@
 /// <reference types='cypress' />
+const  { generateRandomString, 
+         generateRandomEmail,
+         generateRandomPhoneNumber,
+         generateRandomAddress,
+         getRandomGender,
+         getRandomHobby 
+        } = require('../support/generate');
 
 describe('Student Registration page', () => {
   let student;
+  const birthDate = '28 February,1982';
 
   before(() => {
     student = {
@@ -17,41 +25,6 @@ describe('Student Registration page', () => {
     cy.visit('https://demoqa.com/automation-practice-form');
   });
 
-  function generateRandomString() {
-    return Math.random().toString(36).substring(7);
-  }
-
-  function generateRandomEmail() {
-    return generateRandomString() + '@gmail.com';
-  }
-
-  function generateRandomPhoneNumber() {
-    return Math.floor(Math.random() * 10000000000).toString();
-  }
-
-  function generateRandomAddress() {
-    return (
-      Math.floor(Math.random() * 1000) +
-      ' ' +
-      generateRandomString() +
-      ' St, ' +
-      generateRandomString() +
-      ' City, ' +
-      generateRandomString() +
-      ' Country'
-    );
-  }
-
-  function getRandomGender() {
-    const genders = ['Male', 'Female', 'Other'];
-    return genders[Math.floor(Math.random() * genders.length)];
-  }
-
-  function getRandomHobby() {
-    const hobbies = ['Sports', 'Reading', 'Music'];
-    return hobbies[Math.floor(Math.random() * hobbies.length)];
-  }
-
   it('should provide an ability to register new student', () => {
     cy.get('#firstName')
       .type(student.firstName);
@@ -64,7 +37,7 @@ describe('Student Registration page', () => {
     cy.get('#userNumber')
       .type(student.mobileNumber);
     cy.get('#dateOfBirthInput')
-      .type('{selectAll}28 February, 1982{enter}');
+      .type('{selectAll}' + birthDate + '{enter}');
     cy.get('#subjectsContainer')
       .type('E{enter}');
     cy.contains('.custom-control-label', student.hobby)
@@ -90,7 +63,7 @@ describe('Student Registration page', () => {
       .should('be.visible');
     cy.contains('.modal-body', student.mobileNumber)
       .should('be.visible');
-    cy.contains('.modal-body', '28 February,1982')
+    cy.contains('.modal-body', birthDate)
       .should('be.visible');
     cy.contains('.modal-body', 'English')
       .should('be.visible');
