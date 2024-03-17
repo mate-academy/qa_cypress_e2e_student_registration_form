@@ -35,6 +35,7 @@ describe('Student Registration page', () => {
       expect(studentInfo).to.contain(user.hobby);
       expect(studentInfo).to.contain(user.mobile);
       expect(studentInfo).to.contain(user.birthAccertFormat);
+      // couldn't find a way to accert random hobbies
     });
   });
 });
