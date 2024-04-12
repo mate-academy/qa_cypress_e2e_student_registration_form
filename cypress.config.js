@@ -1,5 +1,5 @@
 const { defineConfig } = require('cypress');
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
 
 module.exports = defineConfig({
   e2e: {
@@ -14,10 +14,10 @@ module.exports = defineConfig({
           hobbies = ['Sports', 'Reading', 'Reading'];
           userEmail = faker.internet.email().toLowerCase();
           return {
-            firstName: faker.name.firstName(),
-            lastName: faker.name.lastName(),
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
             email: userEmail,
-            phoneNumber: faker.phone.phoneNumber('##########'),
+            mobileNumber: faker.phone.number('##########'),
             gender: genders[randomIndex],
             birth: {
               month: faker.date.month(),

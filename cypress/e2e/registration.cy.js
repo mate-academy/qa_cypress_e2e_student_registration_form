@@ -4,10 +4,10 @@ describe('Student Registration page', () => {
   let user;
 
   before(() => {
-    cy.visit('/');
     cy.task('generateUser').then(generateUser => {
       user = generateUser;
     });
+    cy.visit('/');
   });
 
   it('should register a new student', () => {
@@ -24,7 +24,7 @@ describe('Student Registration page', () => {
       .click();
 
     cy.findByPlaceholder('Mobile Number')
-      .type(user.phoneNumber);
+      .type(user.mobileNumber);
 
     cy.get('#dateOfBirthInput')
       .click();
@@ -69,7 +69,7 @@ describe('Student Registration page', () => {
       .should('contain', user.gender);
 
     cy.contains('tr', 'Mobile')
-      .should('contain', user.phoneNumber);
+      .should('contain', user.mobileNumber);
 
     cy.contains('tr', 'Date of Birth')
       .should('contain', `${user.birth.day} ${user.birth.month},${user.birth.year}`);
