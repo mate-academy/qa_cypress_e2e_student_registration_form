@@ -26,11 +26,9 @@ module.exports = defineConfig({
             subject,
             hobby: hobbies[randomIndex],
             address: faker.location.streetAddress()
-
           };
         }
       });
     }
   }
-
 });
