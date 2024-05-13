@@ -9,26 +9,26 @@ describe('Student Registration page', () => {
     it('should allow user to register filling all fields with valid data', () => {
       const {firstName, lastName, email, mobile, subject, hobbies, gender, address, state, city} = generateUser();
 
-      cy.get('input[placeholder*="First Name"]').as('firstNameInput').should('exist').type(firstName);                
-      cy.get('input[placeholder*="Last Name"]').as('lastNameInput').should('exist').type(lastName);                
-      cy.get('input[placeholder*="name@example.com"]').as('emailInput').should('exist').type(email);                
+      cy.get('input[placeholder*="First Name"]').as('firstNameInput').type(firstName);                
+      cy.get('input[placeholder*="Last Name"]').as('lastNameInput').type(lastName);                
+      cy.get('input[placeholder*="name@example.com"]').as('emailInput').type(email);                
       cy.get('.custom-control-label').contains(gender).click();                
 
-      cy.get('input[placeholder*="Mobile Number"]').as('mobileInput').should('exist').type(mobile);  
+      cy.get('input[placeholder*="Mobile Number"]').as('mobileInput').type(mobile);  
 
-      cy.get('.subjects-auto-complete__value-container').type(subject + '{enter}').should('exist');  
+      cy.get('.subjects-auto-complete__value-container').type(subject + '{enter}');  
 
       cy.get('.custom-control-label').contains(hobbies).click(); 
 
-      cy.get('#dateOfBirthInput').click().should('exist');                
-      cy.get('.react-datepicker__month-select').select('March').should('exist');
-      cy.get('.react-datepicker__year-select').select('1995').should('exist');
+      cy.get('#dateOfBirthInput').click();                
+      cy.get('.react-datepicker__month-select').select('March');
+      cy.get('.react-datepicker__year-select').select('1995');
       cy.get(':nth-child(5) > .react-datepicker__day--028').click();
 
-      cy.get('#currentAddress').as('addressInput').type(address).should('exist');
+      cy.get('#currentAddress').as('addressInput').type(address);
 
-      cy.get('.css-1wa3eu0-placeholder').contains('Select State').as('stateDropdown').should('exist').type(state + '{enter}');                        
-      cy.get('.css-1wa3eu0-placeholder').contains('Select City').as('cityDropdown').should('exist').type(city + '{enter}');
+      cy.get('.css-1wa3eu0-placeholder').contains('Select State').as('stateDropdown').type(state + '{enter}');                        
+      cy.get('.css-1wa3eu0-placeholder').contains('Select City').as('cityDropdown').type(city + '{enter}');
       
       cy.get('#submit').contains('Submit').should('exist').click();
 
