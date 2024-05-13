@@ -1,8 +1,8 @@
 const { faker } = require('@faker-js/faker');
 
-module.exports = registerNewUser;
+module.exports = registerUser;
 
-function registerNewUser() {
+function registerUser() {
   const randomIndex = Math.floor(Math.random() * 3);
   const randomStateIndex = Math.floor(Math.random() * 4);
   const genders = ['Male', 'Female', 'Other'];

@@ -1,6 +1,6 @@
 /// <reference types='cypress' />
 
-const registerNewUser = require('../support/generateNewUser');
+const registerUser = require('../e2e/generateUser');
 
 describe('Student Registration page', () => {
   before(() => {
@@ -20,7 +20,7 @@ describe('Student Registration page', () => {
       address,
       state,
       city
-    } = registerNewUser();
+    } = registerUser();
 
     cy.get('#firstName').type(firstName);
 
