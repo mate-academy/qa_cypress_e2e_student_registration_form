@@ -9,18 +9,21 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       on('task', {
         generateUser() {
+          const hobbies = ['Sports', 'Reading', 'Music'];
+          const randomIndex = Math.floor(Math.random() * 2);
+          const genders = ['Male', 'Female', 'Other'];
           return {
             firstName: faker.person.firstName(),
             lastName: faker.person.lastName(),
             email: faker.internet.email(),
-            randomGenderIndex: Math.floor(Math.random() * 3) + 1,
+            randomGender: genders[randomIndex],
             phone: faker.phone.number('##########'),
             birth: {
               month: faker.date.month(),
               year: Math.floor(2000 + Math.random() * 20),
               day: Math.ceil(Math.random() * 28)
             },
-            hobbies: Math.ceil(Math.random() * 3),
+            hobbie: hobbies[randomIndex],
             address: faker.location.streetAddress(true)
           };
         }

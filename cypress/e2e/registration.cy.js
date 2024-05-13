@@ -14,18 +14,17 @@ describe('Student Registration page', () => {
     cy.findByPlaceholder('First Name').type(user.firstName);
     cy.findByPlaceholder('Last Name').type(user.lastName);
     cy.findByPlaceholder('name@example.com').type(user.email);
-    cy.get(`#gender-radio-2`).click({ force: true });
+    cy.contains('.custom-control-label', `${user.randomGender}`).click();
 
     cy.findByPlaceholder('Mobile Number').type(user.phone);
     cy.get('#dateOfBirthInput').click();
-    cy.chooseDate('month-select').select(user.birth.month);
     cy.chooseDate('year-select').select(`${user.birth.year}`);
+    cy.chooseDate('month-select').select(user.birth.month);
     cy.chooseDate('day').contains(user.birth.day).click();
 
     cy.get('.subjects-auto-complete__value-container')
       .type('Ph{enter}' + 'a{downarrow}{enter}');
-    cy.get('#hobbies-checkbox-3').click({ force: true });
-
+    cy.contains('.custom-control-label', `${user.hobbie}`).click();
     cy.findByPlaceholder('Current Address').type(user.address);
     cy.get('#state').type('Ut{enter}');
     cy.get('#city').type('{downarrow}{enter}');
@@ -37,7 +36,7 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Student Email')
       .should('contain', user.email);
     cy.contains('tr', 'Gender')
-      .should('contain', 'Female');
+      .should('contain', `${user.randomGender}`);
     cy.contains('tr', 'Mobile')
       .should('contain', user.phone);
     cy.contains('tr', 'Date of Birth')
@@ -45,7 +44,7 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Subjects')
       .should('contain', 'Physics, Accounting');
     cy.contains('tr', 'Hobbies')
-      .should('contain', 'Music');
+      .should('contain', `${user.hobbie}`);
     cy.contains('tr', 'Address')
       .should('contain', user.address);
     cy.contains('tr', 'State and City')
