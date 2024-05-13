@@ -26,7 +26,7 @@ describe('Student Registration page', () => {
     cy.get('#state').type('nc{enter}');
     cy.get('#city').type('del{enter}');
     cy.get('[id="submit"]').click();
-
+    
     cy.get('.modal-content').should('exist');
     cy.get('.modal-header').should('contain', 'Thanks for submitting the form');
     cy.get('.modal-body').should('contain', 'BlablablaMay13');
