@@ -11,11 +11,11 @@ module.exports = defineConfig({
       on('task', {
         generateUser() {
           // eslint-disable-next-line no-undef
-          hobbies = ['Sports', 'Reading', 'Music'];
+          const hobbies = ['Sports', 'Reading', 'Music'];
           // eslint-disable-next-line no-undef
-          randomIndex = Math.floor(Math.random() * 2);
+          const randomIndex = Math.floor(Math.random() * 2);
           // eslint-disable-next-line no-undef
-          genders = ['Male', 'Female', 'Other'];
+          const genders = ['Male', 'Female', 'Other'];
           return {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
