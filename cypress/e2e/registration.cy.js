@@ -27,13 +27,11 @@ describe('Student Registration page', () => {
     cy.get('#subjectsInput').type(subject);
     cy.get('.subjects-auto-complete__menu-list').contains(subject).click();
 
-    cy.get('[for="hobbies-checkbox-2"]').click({ force: true }); // Assuming the second hobby is Music
+    cy.get('[for="hobbies-checkbox-2"]').click({ force: true });
     cy.get('[placeholder="Current Address"]').type(address);
 
-    // Вибір випадкового штату за допомогою клавішних команд
     cy.get('#state').type('S{downArrow}{enter}');
 
-    // Вибір випадкового міста за допомогою клавішних команд
     cy.get('#city').type('{downArrow}{enter}');
 
     cy.get('[id="submit"]').click();
