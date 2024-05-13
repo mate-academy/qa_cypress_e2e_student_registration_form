@@ -23,3 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('userInfo', () => {
+    const firstName = 'Tanjiro';
+    const lastName = 'Kamado';
+    const email = 'tanjirokamado213@gmail.com';
+    const phoneNumber = '0997548712';
+    const subject = 'English';
+    const adress = 'Japan, Kutomori';
+
+    return { firstName, lastName, email, phoneNumber, subject, adress };
+});
