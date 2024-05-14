@@ -29,7 +29,10 @@ const testData = {
   birthDay: (Math.floor(Math.random() * 28) + 1).toString(),
   birthMonth: Math.floor(Math.random() * 12),
   birthYear: (Math.floor(Math.random() * (2100 - 1900 + 1)) + 1900).toString(),
-  randomNum1to3: (Math.floor(Math.random() * 3) + 1).toString()
+  randomGender: (Math.floor(Math.random() * 3) + 1).toString(),
+  randomHabbit1: (Math.floor(Math.random() * 3) + 1).toString(),
+  randomHabbit2: (Math.floor(Math.random() * 3) + 1).toString(),
+  randomHabbit3: (Math.floor(Math.random() * 3) + 1).toString()
 };
 /// ---
 describe('Student Registration page', () => {
@@ -42,29 +45,33 @@ describe('Student Registration page', () => {
     cy.get('#lastName').type(testData.lastName);
     cy.get('#userEmail').type(testData.email);
 
-    cy.get(`[for="gender-radio-${testData.randomNum1to3}"]`).click();
+    cy.get(`[for="gender-radio-${testData.randomGender}"]`).click();
 
     cy.get('#userNumber').type(testData.mobileNumber);
 
-    /// --
+    cy.get('#dateOfBirthInput').click();
+    cy.birthDate('month-select').select(testData.birthMonth);
+    cy.birthDate('year-select').select(testData.birthYear);
+    cy.birthDate('month').contains(testData.birthDay).click();
 
-    // cy.get('#dateOfBirthInput').click();
-    // cy.get('.react-datepicker__month-select').select(testData.birthMonth);
-    // cy.get('.react-datepicker__year-select').select(testData.birthYear);
-    // cy.get('.react-datepicker__month').contains(testData.birthDay).click();
+    cy.get('.subjects-auto-complete__value-container').type(
+      'En{downarrow}{enter}' + 'En{enter}'
+    );
 
-    // cy.get('.subjects-auto-complete__value-container').type(
-    //   'En{downarrow}{enter}' + 'En{enter}'
-    // );
+    cy.hobbies(testData.randomHabbit1).click();
+    cy.hobbies(testData.randomHabbit2).click();
+    cy.hobbies(testData.randomHabbit3).click();
 
-    // cy.get('[for="hobbies-checkbox-1"]').click();
-    // cy.get('[for="hobbies-checkbox-2"]').click();
-    // cy.get('[for="hobbies-checkbox-3"]').click();
+    cy.get('#currentAddress').type(
+      `Name:${testData.firstName} ${testData.lastName};
+email:${testData.email}; mobile:${testData.mobileNumber};
+birthDay:${testData.birthDay}; birthMonth:${testData.birthMonth};
+birthYear:${testData.birthYear}; Gender:${testData.randomGender};
+Habbits:${testData.randomHabbit1},${testData.randomHabbit2},${testData.randomHabbit3}`
+    );
 
-    // cy.get('#currentAddress').type('Test Addres');
-
-    // cy.get('#state').type('{downarrow}{enter}');
-    // cy.get('#city').type('{downarrow}{enter}');
+    cy.get('#state').type('{downarrow}{enter}');
+    cy.get('#city').type('{downarrow}{enter}');
 
     // cy.get('#submit').click();
   });
