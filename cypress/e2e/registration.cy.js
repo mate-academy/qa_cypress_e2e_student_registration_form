@@ -6,7 +6,7 @@ describe('Student Registration page', () => {
   before(() => {
     cy.visit('https://demoqa.com/automation-practice-form');
     cy.task('generateUser').then((generateUser) => {
-      user= generateUser;
+      user = generateUser;
     });
   });
 
@@ -16,7 +16,7 @@ describe('Student Registration page', () => {
     cy.findByPlaceholder('name@example.com').type(user.email);
 
     cy.get(`#gender-radio-${user.randomGenderIndex}`).click({ force: true });
-    cy.findByPlaceholder('Mobile Number').type(user.mobileNumber)
+    cy.findByPlaceholder('Mobile Number').type(user.mobileNumber);
 
     cy.get('#dateOfBirthInput').click();
     cy.pickDate('month-select').select(user.birth.month);
@@ -24,7 +24,7 @@ describe('Student Registration page', () => {
     cy.pickDate('day').contains(user.birth.day).click();
 
     cy.get('.subjects-auto-complete__value-container')
-    .type('en{enter}' + 'ph{enter}');
+      .type('en{enter}' + 'ph{enter}');
 
     cy.get('.custom-control-label').contains(user.hobby).click();
 
@@ -35,10 +35,33 @@ describe('Student Registration page', () => {
     cy.get('#submit').click();
 
     cy.contains('tr', 'Student Name')
-    .should('contain', user.firstName)
-    .and('contain', user.lastName);
+      .should('contain', user.firstName)
+      .and('contain', user.lastName);
 
     cy.contains('tr', 'Student Email')
-    .should('contain', user.email);
+      .should('contain', user.email);
+
+    cy.contains('tr', 'Gender')
+      .should('contain', user.gender); 
+
+      cy.contains('td', 'Mobile')
+      .next() 
+      .should('contain', user.mobileNumber);
+
+      cy.contains('tr', 'Date of Birth')
+      .should('contain', user.birth.month)
+      .and('contain', user.birth.year)
+      .and('contain',user.birth.day);
+
+      cy.contains('tr', 'Subjects')
+      .should('contain.text', user.subjects.join(', '));
+
+      cy.contains('tr', 'Hobbies')
+      .should('contain', user.hobby);
+
+      cy.contains('tr', 'Address')
+      .should('contain', user.address);
+
+      cy.contains('td', 'State and City');
   });
 });
