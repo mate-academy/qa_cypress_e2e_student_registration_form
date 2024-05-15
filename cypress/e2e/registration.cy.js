@@ -62,6 +62,7 @@ describe('Student Registration page', () => {
       cy.contains('tr', 'Address')
       .should('contain', user.address);
 
-      cy.contains('td', 'State and City');
+      cy.contains('tr', 'State and City').should('contain.text', 'Uttar Pradesh Lucknow');
+
   });
 });

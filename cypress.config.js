@@ -10,6 +10,16 @@ module.exports = defineConfig({
           randomGenderIndex = Math.floor(Math.random() * 2) + 1;
           gender = ['Male', 'Female'][randomGenderIndex - 1]; 
           subjects = ['English', 'Physics'];
+          const state = ['NCR', 'Uttar Pradesh', 'Haryana', 'Rajasthan']; 
+          const cities = { 
+            NCR: ['Delhi', 'Gurgaon', 'Noida'], 
+            UttarPradesh: ['Agra', 'Lucknow', 'Merrut'], 
+            Haryana: ['Karnal', 'Panipat'],
+            Rajasthan: ['Jaipur', 'Jaiselmer']
+          };
+          const indexState = Math.floor(Math.random() * state.length);
+          const randomCity = cities[state[indexState]][Math.floor(Math.random() 
+            * cities[state[indexState]].length)];
 
           return {
             firstName: faker.name.firstName(),
@@ -26,6 +36,9 @@ module.exports = defineConfig({
             subjects: subjects,
             hobby: hobbies[randomGenderIndex - 1], 
             address: faker.address.streetAddress(),
+            state: state[indexState],
+            cities: randomCity, 
+            randomCity: randomCity
           };
         },
       });
