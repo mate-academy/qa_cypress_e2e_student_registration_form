@@ -23,3 +23,8 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// na wypadek nieobsługiwanego obiektu
+// Cypress.on('uncaught:exception', () => {
+//     return false
+//  });
