@@ -6,7 +6,7 @@ describe('Student Registration page', () => {
     cy.visit('');
   });
 
-  it('fills all required fields', () => {
+  it('filling out the form and confirming the results', () => {
     const {
       name,
       lastName,
