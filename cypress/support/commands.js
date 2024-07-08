@@ -27,22 +27,30 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('fillForm', (userData) => {
-  // enter firstname:
-  cy.get('#firstName').type(userData.firstName);
+  const {
+    gender,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    birthDate,
+    subjects,
+    hobbies,
+    address,
+    stateAndCity
+  } = userData;
 
-  // enter lastname:
-  cy.get('#lastName').type(userData.lastName);
+  cy.get('#firstName').type(firstName);
 
-  // enter email:
-  cy.get('#userEmail').type(userData.email);
+  cy.get('#lastName').type(lastName);
 
-  // select gender:
-  const userGender = userData.gender;
+  cy.get('#userEmail').type(email);
+
   let radioButtonId = 'gender-radio-';
 
-  if (userGender === 'Male') {
+  if (gender === 'Male') {
     radioButtonId += 1;
-  } else if (userGender === 'Female') {
+  } else if (gender === 'Female') {
     radioButtonId += 2;
   } else {
     radioButtonId += 3;
@@ -50,52 +58,34 @@ Cypress.Commands.add('fillForm', (userData) => {
 
   cy.get(`[for=${radioButtonId}]`).click();
 
-  // enter phone number:
-  const number = userData.phoneNumber;
+  cy.get('#userNumber').type(phoneNumber);
 
-  cy.get('#userNumber').type(number);
+  cy.get('#dateOfBirthInput').type(`{selectAll}` + birthDate + `{esc}`);
 
-  // enter birth date:
-  const userBirth = userData.birthDate;
-
-  cy.get('#dateOfBirthInput').type(`{selectAll}` + userBirth + `{esc}`);
-
-  // select subject:
-  const userSubject = userData.subjects;
-
-  cy.get('#subjectsInput').type(userSubject + `{enter}`);
-
-  // seelct hobbie:
-  const userHobbie = userData.hobbies;
+  cy.get('#subjectsInput').type(subjects + `{enter}`);
 
   let hobbieCheckbox = 'hobbies-checkbox-';
 
-  if (userHobbie === 'Sports') {
+  if (hobbies === 'Sports') {
     hobbieCheckbox += 1;
-  } else if (userHobbie === 'Reading') {
+  } else if (hobbies === 'Reading') {
     hobbieCheckbox += 2;
-  } else if (userHobbie === 'Music') {
+  } else if (hobbies === 'Music') {
     hobbieCheckbox += 3;
   }
 
   cy.get(`[for=${hobbieCheckbox}]`).click();
 
-  // enter address:
-  const userAdress = userData.address;
+  cy.get('#currentAddress').type(address);
 
-  cy.get('#currentAddress').type(userAdress);
-
-  // select state and city:
-  const statesData = userData.stateAndCity;
-
-  const statesLength = statesData.length;
+  const statesLength = stateAndCity.length;
   const randomState = Math.floor(Math.random() * statesLength);
 
-  const cityLength = statesData[randomState].cities.length;
+  const cityLength = stateAndCity[randomState].cities.length;
   const randomCity = Math.floor(Math.random() * cityLength);
 
-  const state = statesData[randomState].state;
-  const city = statesData[randomState].cities[randomCity];
+  const state = stateAndCity[randomState].state;
+  const city = stateAndCity[randomState].cities[randomCity];
 
   cy.get('#state').type(state + `{enter}`);
   cy.get('#city').type(city + `{enter}`);
@@ -104,16 +94,28 @@ Cypress.Commands.add('fillForm', (userData) => {
 });
 
 Cypress.Commands.add('verifyUserData', (userData, state, city) => {
+  const {
+    gender,
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    birthDate,
+    subjects,
+    hobbies,
+    address
+  } = userData;
+
   cy.get('.modal-dialog').within(() => {
-    cy.get('table').should('contain.text', userData.firstName)
-      .should('contain.text', userData.lastName)
-      .should('contain.text', userData.email)
-      .should('contain.text', userData.gender)
-      .should('contain.text', userData.phoneNumber)
-      .should('contain.text', userData.birthDate)
-      .should('contain.text', userData.subjects)
-      .should('contain.text', userData.hobbies)
-      .should('contain.text', userData.address)
+    cy.get('table').should('contain.text', firstName)
+      .should('contain.text', lastName)
+      .should('contain.text', email)
+      .should('contain.text', gender)
+      .should('contain.text', phoneNumber)
+      .should('contain.text', birthDate)
+      .should('contain.text', subjects)
+      .should('contain.text', hobbies)
+      .should('contain.text', address)
       .should('contain.text', state)
       .should('contain.text', city);
   });
