@@ -18,5 +18,5 @@ App for testing: `https://demoqa.com/automation-practice-form`
 **Your task** is to automate the next flow:
 
 1. Fill all fields in forms except "picture".
-1. Click on [Submit] button.
+2. Click on [Submit] button.
 1. Assert inputed data in modal window.
