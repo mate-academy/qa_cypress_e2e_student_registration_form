@@ -5,7 +5,5 @@ describe('Student Registration page', () => {
 
   });
 
-  it('', () => {
-
-  });
+  it('', () => {});
 });
