@@ -1,4 +1,3 @@
-
 const { defineConfig } = require("cypress");
 const { faker } = require('@faker-js/faker');
 
@@ -7,12 +6,8 @@ module.exports = defineConfig({
     baseUrl: 'https://demoqa.com/automation-practice-form',
     viewportHeight: 1280,
     viewportWidth: 1800,
-    //       retries: {
-    //       runMode: 2,
-    //       openMode: 2
-    //   },
     setupNodeEvents(on, config) {
-      on("task",{
+      on("task", {
         generateUser() {
           hobbies = ['Sports', 'Reading', 'Music'];
           randomIndex = Math.floor(Math.random() * 2);

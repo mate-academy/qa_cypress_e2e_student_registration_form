@@ -1,7 +1,6 @@
 /// <reference types='cypress' />
 
 const { RandomModule } = require("@faker-js/faker");
-
 describe('Student Registration page', () => {
   let user;
   before(() => {
@@ -14,7 +13,6 @@ describe('Student Registration page', () => {
     cy.findByPlaceholder('First Name').type(user.firstName);
     cy.findByPlaceholder('Last Name').type(user.lastName);
     cy.findByPlaceholder('name@example.com').type(user.email);
-
     cy.get(`#gender-radio-${user.randomGenderIndex}`).check({ force: true });
     cy.findByPlaceholder('Mobile Number').type(user.mobileNumber);
     cy.get('#dateOfBirthInput').click();
