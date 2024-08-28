@@ -15,12 +15,12 @@ describe('Student Registration page', () => {
     cy.get('#firstName').type(firstName);
     cy.get('#lastName').type(lastName);
     cy.get('#userEmail').type(email);
-    cy.get('#genterWrapper > div.col-md-9.col-sm-12').click(); // Select gender
+    cy.get('#genterWrapper > div.col-md-9.col-sm-12').click();
     cy.get('#userNumber').type(number);
     cy.get('#dateOfBirthInput')
       .invoke('val', '28 Aug 2024');
     cy.get('.subjects-auto-complete__value-container').type('M{enter}');
-    cy.get('#hobbiesWrapper > div.col-md-9.col-sm-12').click(); // Select hobbies
+    cy.get('#hobbiesWrapper > div.col-md-9.col-sm-12').click();
     cy.get('#currentAddress').type('Warszawa, Sandomierska 20');
     cy.get('#state').type(' {downarrow}{enter}');
     cy.get('#city').type(' {downarrow}{enter}');
