@@ -11,7 +11,7 @@ describe('Student Registration page', () => {
   it('should register a new student', () => {
     const subjects = 'English, Physics'
     const stateAndCity = 'NCR Delhi'
-    const userBirthYear = '1990'
+    const userBirthYear = '1991'
     const userBirthMonth = 'January'
 
     cy.get('#firstName').type(user.firstName)
@@ -42,7 +42,7 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Mobile')
       .should('contain', user.mobileNumber);
     cy.contains('tr', 'Date of Birth')
-      .should('contain', 1990); 
+      .should('contain', 1991); 
     cy.contains('tr', 'Hobbies')
       .should('contain', user.hobby);
     cy.contains('tr', 'Address')
