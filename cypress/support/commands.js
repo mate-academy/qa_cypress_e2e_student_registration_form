@@ -23,31 +23,29 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-import { faker } from '@faker-js/faker';
+const faker = require('@faker-js/faker');
+
+const genders = ['Male', 'Female', 'Other'];
+const hobbies = ['Sports', 'Reading', 'Music'];
+const subjects = ['Math', 'Science', 'History'];
 
 function generateUser() {
   const randomNumber = Math.round(Math.random() * 1000);
   const username = `user${randomNumber}`;
   const lastname = `user${randomNumber}${randomNumber}`;
   const email = `${username}@mail.com`;
-  const phone = Math.round(Math.random() * 10000000000);
-  const address = faker.location.streetAddress();
-  const gendersdate = ['Male', 'Female', 'Other'];
-  const hobbiesdate = ['Sports', 'Reading', 'Music'];
-  const subjectdate = ['Math', 'Science', 'History'];
-  const gender = gendersdate[Math.floor(Math.random() * gendersdate.length)];
-  const hobbies = hobbiesdate[Math.floor(Math.random() * hobbiesdate.length)];
-  const subject = subjectdate[Math.floor(Math.random() * subjectdate.length)];
-  // eslint-disable-next-line max-len
+  const phone = faker.phone.phoneNumber(); // Ensure to use faker for valid phone numbers
+  const randomIndexGender = Math.floor(Math.random() * genders.length);
+  const randomIndexHobby = Math.floor(Math.random() * hobbies.length);
+  const randomIndexSubject = Math.floor(Math.random() * subjects.length);
   return {
     email,
     username,
     phone,
     lastname,
-    address,
-    gender,
-    hobbies,
-    subject
+    gender: genders[randomIndexGender],
+    hobby: hobbies[randomIndexHobby],
+    subject: subjects[randomIndexSubject]
   };
 }
 
