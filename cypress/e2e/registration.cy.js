@@ -18,8 +18,8 @@ describe('Student Registration page', () => {
     cy.get('#currentAddress').type(address);
 
     // Update gender and hobby selections
-    cy.get(`#gender-wrapper input[value="${gender}"]`).check(); // Assuming radio buttons
-    cy.get(`#hobbies-wrapper input[value="${hobby}"]`).check(); // Assuming checkboxes
+    cy.get(`#gender-wrapper input[value="${gender}"]`).check();
+    cy.get(`#hobbies-wrapper input[value="${hobby}"]`).check();
 
     cy.get('.subjects-auto-complete__value-container').type(subject);
     cy.contains('#react-select-2-option-0', subject).click();
@@ -31,8 +31,8 @@ describe('Student Registration page', () => {
     cy.contains('.react-datepicker__day--009', '9').click();
 
     // State and City selection
-    cy.get('#state').select('Uttar Pradesh'); // Use .select() for more reliability
-    cy.get('#city').select('Lucknow'); // Use .select() for more reliability
+    cy.get('#state').select('Uttar Pradesh');
+    cy.get('#city').select('Lucknow');
 
     cy.get('#submit').click();
 
@@ -40,12 +40,12 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Student Name')
       .should('contain', username).and('contain', lastname);
     cy.contains('tr', 'Student Email').should('contain', email);
-    cy.contains('tr', 'Gender').should('contain', gender); // Use the actual gender value
+    cy.contains('tr', 'Gender').should('contain', gender);
     cy.contains('tr', 'Mobile').should('contain', phone);
     cy.contains('tr', 'Subject').should('contain', subject);
     cy.contains('tr', 'Date of Birth')
       .should('contain', 'November').and('contain', '1990');
-    cy.contains('tr', 'Hobbies').should('contain', hobby); // Use the actual hobby value
+    cy.contains('tr', 'Hobbies').should('contain', hobby);
     cy.contains('tr', 'Address').should('contain', address);
     cy.contains('tr', 'State and City')
       .should('contain', 'Uttar Pradesh Lucknow');

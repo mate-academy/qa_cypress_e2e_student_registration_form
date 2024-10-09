@@ -34,7 +34,7 @@ function generateUser() {
   const username = `user${randomNumber}`;
   const lastname = `user${randomNumber}${randomNumber}`;
   const email = `${username}@mail.com`;
-  const phone = faker.phone.phoneNumber(); // Ensure to use faker for valid phone numbers
+  const phone = faker.phone.phoneNumber();
   const randomIndexGender = Math.floor(Math.random() * genders.length);
   const randomIndexHobby = Math.floor(Math.random() * hobbies.length);
   const randomIndexSubject = Math.floor(Math.random() * subjects.length);
