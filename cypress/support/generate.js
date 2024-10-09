@@ -2,8 +2,8 @@ import { faker } from '@faker-js/faker';
 
 function generateUser() {
   const username = faker.internet.userName();
-  const firstName = faker.person.firstName();
-  const lastName = faker.person.lastName();
+  const firstName = faker.name.firstName();
+  const lastName = faker.name.lastName();
   const phone = faker.phone.number();
   const address = faker.location.streetAddress();
   const email = `${username}@mail.com`;
@@ -11,4 +11,4 @@ function generateUser() {
   return { email, firstName, lastName, phone, address };
 }
 
-module.exports = { generateUser };
+export { generateUser };

@@ -4,10 +4,11 @@ describe('Student Registration page', () => {
   before(() => {
     cy.visit('https://demoqa.com/automation-practice-form');
   });
-  const { email, firstName, lastName, address } = generateUser();
-  it('should enter vaild data to register', () => {
-    cy.visit('https://demoqa.com/automation-practice-form');
 
+  const { email, firstName, lastName, address } = generateUser();
+  const number = 1234567891;
+
+  it('should enter vaild data to register', () => {
     cy.get('#firstName').type(firstName);
 
     cy.get('#lastName').type(lastName);
@@ -18,7 +19,7 @@ describe('Student Registration page', () => {
       .get('#genterWrapper > .col-md-9 > :nth-child(1) > .custom-control-label')
       .click();
 
-    cy.get('#userNumber').type(1234567891);
+    cy.get('#userNumber').type(number);
 
     cy.get('.subjects-auto-complete__value-container').type('Eng');
 
