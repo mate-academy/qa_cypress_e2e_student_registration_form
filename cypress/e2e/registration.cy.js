@@ -35,13 +35,13 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Student Email').should('contain', email);
     cy.contains('tr', 'Gender').should('contain', 'Other');
     cy.contains('tr', 'Mobile').should('contain', phone);
-    cy.contains('tr', 'Subjects').should('contain', subject);
+    cy.contains('tr', 'Subject').should('contain', subject);
     cy.contains('tr', 'Date of Birth').should('contain', 'November');
     cy.contains('tr', 'Date of Birth').should('contain', '1990');
     cy.contains('tr', 'Hobbies').should('contain', 'Reading');
     cy.contains('tr', 'Address').should('contain', address);
-    cy.contains('tr', 'State and City')
-      .should('contain', 'Uttar Pradesh Lucknow');
+    const expectedStateCity = 'Uttar Pradesh Lucknow';
+    cy.contains('tr', 'State and City').should('contain', expectedStateCity);
     cy.contains('tr', 'Subject').should('contain', subject);
   });
 });
