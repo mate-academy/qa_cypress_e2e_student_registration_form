@@ -1,8 +1,7 @@
 /// <reference types='cypress' />
-
 describe('Automation Practice Form', () => {
-  it('should fill all fields except picture and submit the form', () => {
-    cy.visit('https://demoqa.com/automation-practice-form');
+  it('should successfully register a new user with valid data', () => {
+    cy.visit(Cypress.env('form_url'));
     cy.get('#firstName').type('John');
     cy.get('#lastName').type('Doe');
     cy.get('#userEmail').type('john.doe@example.com');
@@ -13,8 +12,8 @@ describe('Automation Practice Form', () => {
     cy.get('.react-datepicker__year-select').select('1990');
     cy.get('.react-datepicker__day--015').click();
     cy.get('#subjectsInput').type('Math{enter}');
-    cy.get('label[for="hobbies-checkbox-1"]').click(); // Sports
-    cy.get('label[for="hobbies-checkbox-2"]').click(); // Reading
+    cy.get('label[for="hobbies-checkbox-1"]').click();
+    cy.get('label[for="hobbies-checkbox-2"]').click();
     cy.get('#currentAddress').type('123 Main St, Springfield');
     cy.get('#state').click();
     cy.get('#react-select-3-option-0').click();
@@ -32,5 +31,6 @@ describe('Automation Practice Form', () => {
       cy.get('td').contains('123 Main St, Springfield').should('exist');
       cy.get('td').contains('NCR Delhi').should('exist');
     });
+    cy.get('.modal-header').should('contain', 'Thanks for submitting the form');
   });
 });
