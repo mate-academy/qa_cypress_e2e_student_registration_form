@@ -1,5 +1,5 @@
 /// <reference types='cypress' />
-// const { ExitStatus } = require("typescript") ;
+// const { ExitStatus } = require("typescript");
 let user;
 
 describe('Student Registration page', () => {
