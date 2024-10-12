@@ -1,15 +1,22 @@
 /// <reference types='cypress' />
 
-const user = {
-  firstName: 'George',
-  lastName: 'Gus',
-  email: 'testemail@gmail.com',
-  numberPhone: '1234567890',
-  addres: 'Shevchenko 12'
-};
+import { faker } from '@faker-js/faker';
+
+function generateUser() {
+  return {
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    email: faker.internet.email(),
+    numberPhone: faker.phone.number('##########'),
+    address: faker.address.streetAddress(),
+  };
+}
 
 describe('Student Registration page', () => {
+  let user;
+
   before(() => {
+    user = generateUser();
     cy.visit('https://demoqa.com/automation-practice-form');
   });
 
@@ -25,7 +32,7 @@ describe('Student Registration page', () => {
     cy.get('.react-datepicker__day').contains('5').click();
     cy.get('.subjects-auto-complete__value-container').type(`en{enter}`);
     cy.get('label[for="hobbies-checkbox-1"]').click();
-    cy.get('#currentAddress').type(user.addres);
+    cy.get('#currentAddress').type(user.address);
     cy.get('#state').type(`{downarrow}{enter}`);
     cy.get('#city').type(`{downarrow}{enter}`);
 
@@ -39,8 +46,7 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Date of Birth').should('contain', '05 February,2007');
     cy.contains('tr', 'Subjects').should('contain', 'English');
     cy.contains('tr', 'Hobbies').should('contain', 'Sports');
-    cy.contains('tr', 'Date of Birth').should('contain', '05 February,2007');
-    cy.contains('tr', 'Address').should('contain', user.addres);
+    cy.contains('tr', 'Address').should('contain', user.address);
     cy.contains('tr', 'State and City')
       .should('contain', 'Uttar Pradesh Lucknow');
   });
