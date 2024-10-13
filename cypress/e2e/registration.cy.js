@@ -19,7 +19,6 @@ describe('Student Registration page', () => {
 
     cy.get('#genterWrapper > .col-md-9').type(gender);
     cy.get('#hobbiesWrapper > .col-md-9').type(gender);
-
     cy.get('.subjects-auto-complete__value-container').type(subject);
     cy.contains('#react-select-2-option-0', subject).click();
 

@@ -27,7 +27,6 @@ const faker = require('@faker-js/faker').faker;
 const genders = ['Male', 'Female', 'Other'];
 const hobbies = ['Sports', 'Reading', 'Music'];
 const subjects = ['Math', 'Science', 'History'];
-
 function generateUser() {
   const randomNumber = Math.round(Math.random() * 1000);
   const username = `user${randomNumber}`;
@@ -49,5 +48,4 @@ function generateUser() {
     subject: subjects[randomIndexSubject]
   };
 }
-
 module.exports = { generateUser };
