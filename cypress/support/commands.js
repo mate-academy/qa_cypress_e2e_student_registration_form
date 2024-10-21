@@ -23,3 +23,23 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('selectRandomChild', (parentId) => {
+  cy.get(parentId).click();
+  cy.get('.css-11unzgr').children().then((children) => {
+    const length = children.length;
+    const randomIndex = Math.floor(Math.random() * length);
+    cy.get('.css-11unzgr').children().eq(randomIndex).click();
+  });
+});
+
+Cypress.Commands.add('selectBirthDate', (birthDate) => {
+  cy.get('#dateOfBirthInput').click();
+  cy.get('.react-datepicker__month-select').select(birthDate.month);
+  cy.get('.react-datepicker__year-select').select(birthDate.year);
+
+  const className = 'react-datepicker__day';
+  const day = birthDate.day.padStart(3, '0');
+
+  cy.get(`.${className}--${day}:not(.${className}--outside-month)`).click();
+});
