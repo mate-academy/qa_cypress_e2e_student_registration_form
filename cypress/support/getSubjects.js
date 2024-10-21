@@ -1,3 +1,5 @@
+const pickRandomly = require('./pickRandomly');
+
 const subjects = [
   'English',
   'Computer Science',
@@ -16,7 +18,7 @@ const subjects = [
 ];
 
 const getSubjects = () => {
-  return subjects.filter(() => Math.random() * 10 > 5);
+  return pickRandomly(subjects);
 };
 
 module.exports = getSubjects;

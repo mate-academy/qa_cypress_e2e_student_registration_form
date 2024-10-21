@@ -1,15 +1,12 @@
 const { faker } = require('@faker-js/faker');
 const getSubjects = require('./getSubjects');
 const getAddress = require('./getAddress');
+const pickRandomly = require('./pickRandomly');
 
 const generateUser = () => {
-  const countries = [0, 1, 2, 3];
   const personSex = faker.person.sex();
   const birthDate = faker.date.birthdate();
-  const hobbies = ['Sports', 'Reading', 'Music'].filter(
-    () => Math.random() * 10 > 5
-  );
-  const countryIndex = Math.floor(countries.length * Math.random());
+  const hobbies = pickRandomly(['Sports', 'Reading', 'Music']);
 
   return {
     firstName: faker.person.firstName(),
@@ -24,9 +21,7 @@ const generateUser = () => {
     hobbies,
     address: getAddress(),
     subjects: getSubjects(),
-    country: countries[countryIndex],
-    email: faker.internet.email(),
-    password: 'test1234'
+    email: faker.internet.email()
   };
 };
 
