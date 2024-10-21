@@ -19,11 +19,11 @@ describe('Automation Practice Form', () => {
     cy.get('#submit').click();
 
     cy.get('.modal-content').should('be.visible');
-    cy.contains('Dusia Dudu');
-    cy.contains('dusiadudu@example.com');
-    cy.contains('1234567890');
-    cy.contains('123 Main St');
-    cy.contains('Uttar Pradesh');
-    cy.contains('Lucknow');
+    cy.contains('Dusia Dudu').should('be.visible');
+    cy.contains('dusiadudu@example.com').should('be.visible');
+    cy.contains('1234567890').should('be.visible');
+    cy.contains('123 Main St').should('be.visible');
+    cy.contains('Uttar Pradesh').should('be.visible');
+    cy.contains('Lucknow').should('be.visible');
   });
 });
