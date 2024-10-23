@@ -8,7 +8,7 @@ describe('Student Registration page', () => {
   const currentAddress = 'Wilhelm-Kalle-Straße 18';
 
   before(() => {
-    cy.visit('');
+    cy.visit('https://demoqa.com/automation-practice-form');
   });
 
   it(`should fill all fields except "picture"`, () => {
@@ -19,7 +19,7 @@ describe('Student Registration page', () => {
     cy.get('label[for="gender-radio-1"]').click();
     cy.get('#userNumber').type(mobileNumber);
     cy.get('.subjects-auto-complete__value-container')
-      .type('Math{enter}');
+      .type('Maths{enter}');
     cy.get('#currentAddress').type(currentAddress);
 
     // Select date of birth
@@ -54,6 +54,9 @@ describe('Student Registration page', () => {
     cy.contains('tr', 'Address')
       .should('contain.text', currentAddress);
     cy.contains('tr', 'State and City')
-      .should('contain.text', 'Uttar Pradesh Merrut');
+      .should('contain.text', 'Uttar Pradesh');
+      cy.contains('tr', 'State and City')
+      .should('contain.text', 'Merrut');
+
   });
 });
