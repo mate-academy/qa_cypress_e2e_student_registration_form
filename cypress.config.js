@@ -5,6 +5,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
     },
     baseUrl: 'https://demoqa.com',
-    defaultCommandTimeout: 100000
+    defaultCommandTimeout: 5000
   }
 });

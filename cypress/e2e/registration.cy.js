@@ -11,6 +11,7 @@ describe('Student Registration page', () => {
       userName,
       email,
       mobile,
+      subject,
       currentAddress,
       state,
       city
@@ -23,6 +24,7 @@ describe('Student Registration page', () => {
     cy.findById('currentAddress').type(currentAddress);
     cy.findById('state').type(state);
     cy.findById('city').type(city);
+    cy.get('.subjects-auto-complete__placeholder').type(subject);
     cy.get(`input[value='Female']`).check();
     cy.get(`input[value='Female']`).should('be.checked');
     cy.get(`input[id='hobbies-checkbox-1']`).check();
@@ -33,6 +35,7 @@ describe('Student Registration page', () => {
     cy.get('.modal-dialog').contains(userName);
     cy.get('.modal-dialog').contains(email);
     cy.get('.modal-dialog').contains(mobile);
+    cy.get('.modal-dialog').contains(subject);
     cy.get('.modal-dialog').contains(currentAddress);
     cy.get('.modal-dialog').contains(state);
     cy.get('.modal-dialog').contains(city);
