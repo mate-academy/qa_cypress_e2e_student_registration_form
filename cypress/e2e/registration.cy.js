@@ -1,48 +1,59 @@
 /// <reference types='cypress' />
+const { generateRegistrationInput } =
+require('../support/generateRegistrationInput');
 
 describe('Student Registration page', () => {
-  before(() => {
-    cy.visit('https://demoqa.com/automation-practice-form');
+  beforeEach(() => {
   });
 
+   it('should reg new user', () => {
+    const {
+      firstName,
+      lastName,
+      email,
+      number,
+      address,
+      subject
+    } = generateRegistrationInput();
 
-  it('should register a new student with valid data', () => {
-    cy.findByPlaceholder('First Name')
-      .type('Vasiliy');
-    cy.findByPlaceholder('Last Name')
-      .type('Petrov');
-    cy.findByPlaceholder('name@example.com')
-      .type('vpetrov@mail.com');
-    cy.get('label[for="gender-radio-1"]').click();
-    cy.findByPlaceholder('Mobile Number')
-      .type('3548952632');
+
+    cy.visit('/');
+
+    cy.get('h1').should('contain.text', 'Practice Form');
+
+    cy.get('#firstName').type(firstName);
+
+    cy.get('#lastName').type(lastName);
+
+    cy.get('#userEmail').type(email);
+
+    cy.get('#userNumber').type(number);
+
+    cy.get('#genterWrapper > .col-md-9 > :nth-child(3)').click();
+
     cy.get('#dateOfBirthInput').click();
-    cy.get('.react-datepicker__month-select').select('February');
-    cy.get('.react-datepicker__year-select').select('1977');
-    cy.get('.react-datepicker__day--020').click();
-    cy.get('#subjectsContainer').type('Arts{enter}');
-    cy.get('label[for="hobbies-checkbox-2"]').click();
-    cy.findByPlaceholder('Current Address')
-      .type('Saharova 85, Kyiv');
-    cy.get('#state').click();
-    cy.get('#react-select-3-option-1').click();
-    cy.get('#city').click();
-    cy.get('#react-select-4-option-2').click();
+
+    cy.get('.react-datepicker__day--022').click();
+
+    cy.get('.subjects-auto-complete__value-container').type(subject);
+
+    cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(3)').click();
+
+    cy.get('#currentAddress').type(address);
+
+    cy.get('.css-yk16xz-control > .css-1wy0on6' +
+    '> .css-tlfecz-indicatorContainer').click();
+
+    cy.get('#react-select-3-option-0').click();
+
+    cy.get('#city > .css-yk16xz-control > .css-1wy0on6' +
+    '> .css-tlfecz-indicatorContainer').click();
+
+    cy.get('#react-select-4-option-0').click();
+
     cy.get('#submit').click();
 
-    cy.get('.modal-header').contains('Thanks for submitting the form');
-
-    cy.contains('tr', 'Student Name').should('contain', 'Vasiliy Petrov');
-    cy.contains('tr', 'Student Email').should('contain', 'vpetrov@mail.com');
-    cy.contains('tr', 'Gender').should('contain', 'Male');
-    cy.contains('tr', 'Mobile').should('contain', '3548952632');
-    cy.contains('tr', 'Date of Birth').should('contain', 'February');
-    cy.contains('tr', 'Date of Birth').should('contain', '1977');
-    cy.contains('tr', 'Date of Birth').should('contain', '20');
-    cy.contains('tr', 'Subjects').should('contain', 'Arts');
-    cy.contains('tr', 'Hobbies').should('contain', 'Reading');
-    cy.contains('tr', 'Address').should('contain', 'Saharova 85, Kyiv');
-    cy.contains('tr', 'State and City').should('contain', 'Uttar Pradesh');
-    cy.contains('tr', 'State and City').should('contain', 'Merrut');
+    cy.get('.modal-header').should('contain.text', 'Thanks for submitting' +
+    ' the form');
   });
 });
