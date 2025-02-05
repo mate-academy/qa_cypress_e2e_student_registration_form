@@ -1,3 +1,5 @@
+/// <reference types='cypress' />
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,3 +25,25 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('getGender', (generatedSex) => {
+  if (generatedSex === 'female') {
+    cy.get('label[for="gender-radio-2"]');
+  } else {
+    cy.get('label[for="gender-radio-1"]');
+  }
+});
+
+Cypress.Commands.add('randomCheck', (element) => {
+  if (element === 'Sports') {
+    cy.get('label[for="hobbies-checkbox-1"]');
+  } else if (element === 'Reading') {
+    cy.get('label[for="hobbies-checkbox-2"]');
+  } else {
+    cy.get('label[for="hobbies-checkbox-3"]');
+  }
+});
+
+Cypress.Commands.add('checkRow', (index) => {
+  cy.get('table tbody').find('tr').eq(index).find('td').eq(1);
+});
