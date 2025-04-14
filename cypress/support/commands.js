@@ -23,3 +23,27 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('getByPlaceholder', (placeholder) => {
+  cy.get(`[placeholder="${placeholder}"]`);
+});
+
+Cypress.Commands.add('getById', (id) => {
+  cy.get(`#${id}`);
+});
+
+Cypress.Commands.add('getInput', (name, value) => {
+  if (value === undefined) {
+    return cy.get(`input[name="${name}"]`);
+  } else {
+    return cy.get(`input[name="${name}"][value="${value}"]`);
+  }
+});
+
+Cypress.Commands.add('getButtonByText', (buttonText) => {
+  return cy.contains('.btn', buttonText);
+});
+
+Cypress.Commands.add('submitFormByButton', (buttonText) => {
+  cy.contains('button[type="submit"]', buttonText).click();
+});
