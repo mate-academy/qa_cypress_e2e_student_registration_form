@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('birthDate', (value) => {
+  cy.get(`.react-datepicker__${value}`);
+});
+
+Cypress.Commands.add('hobbies', (number) => {
+  cy.get(`[for="hobbies-checkbox-${number}"]`);
+});
