@@ -23,3 +23,29 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+const { convertShortMonthToFull } = require('./generate');
+
+Cypress.Commands.add('getAndTypeText', (selector, text) => {
+  cy.get(selector).type(text);
+});
+
+Cypress.Commands.add('checkTableDataBySelector', (selector) => {
+  cy.get(selector).then(function($value) {
+    const selectedValue = $value.text();
+    cy.get('td').should('contain.text', selectedValue);
+  });
+});
+
+Cypress.Commands.add('checkTableDataByValue', (value) => {
+  cy.get('td').should('contain.text', value);
+});
+
+Cypress.Commands.add('checkBirthDate', () => {
+  cy.get('#dateOfBirthInput').then(function($value) {
+    const fullMonth = $value.val().split(' ');
+    const month = convertShortMonthToFull(fullMonth[1]);
+    fullMonth[1] = ` ${month},`;
+    cy.get('td').should('contain.text', fullMonth.join(''));
+  });
+});
