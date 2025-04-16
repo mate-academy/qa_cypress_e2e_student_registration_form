@@ -7,7 +7,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
@@ -15,9 +15,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install dependencies for Cypress
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 libxcomposite1 libxrandr2 libxdamage1 libgbm-dev libasound2 libpangocairo-1.0-0 libpangoft2-1.0-0 fonts-liberation libappindicator3-1 xdg-utils
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm test
+    - run: npm install --legacy-peer-deps
+    - run: npx cypress run --browser chrome
