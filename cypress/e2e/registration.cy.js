@@ -2,7 +2,7 @@
 
 describe('Student Registration page', () => {
   beforeEach(() => {
-    cy.visit('/');
+    cy.visit('/automation-practice-form');
   });
 
   it('should fill in all input fields correctly', () => {
@@ -21,7 +21,7 @@ describe('Student Registration page', () => {
 
     cy.get('select.react-datepicker__year-select').select('2001');
 
-    cy.get('div.react-datepicker__day').contains(/^16$/).click();
+    cy.get('div.react-datepicker__day--016').contains('16').click();
 
     cy.get('div.subjects-auto-complete__value-container--is-multi').type(
       'Engl{enter}'
@@ -32,9 +32,7 @@ describe('Student Registration page', () => {
 
     cy.get('label[for="hobbies-checkbox-1"]').click();
 
-    cy.get('textarea')
-      .findByPlaceholder('Current Address')
-      .type('Current adress, 20D /6');
+    cy.get('textarea').type('Current adress, 20D /6');
 
     cy.get('div[id="state"]').type('Uttar{enter}');
     cy.get('div[id="city"]').type('Luck{enter}');
