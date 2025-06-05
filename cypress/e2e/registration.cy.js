@@ -24,10 +24,13 @@ describe('Student Registration page', () => {
     cy.get('#subjectsInput').type('English{enter}');
     cy.get('label[for="hobbies-checkbox-2"]').click();
     cy.get('#currentAddress').type('123 Cypress Street');
+
     cy.get('#state').click();
-    cy.get('#react-select-3-option-1').click();
+    cy.contains('.css-26l3qy-menu div', 'Uttar Pradesh').click();
+
     cy.get('#city').click();
-    cy.get('#react-select-4-option-1').click();
+    cy.contains('.css-26l3qy-menu div', 'Lucknow').click();
+
     cy.get('#submit').click();
 
     cy.get('#example-modal-sizes-title-lg', { timeout: 10000 })
