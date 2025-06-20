@@ -1,11 +1,12 @@
 /// <reference types='cypress' />
 
 const fillInput = (id, typedValue) => {
-  cy.get(`#${id}`).should("be.visible");
+  cy.get(`#${id}`, { timeout: 5000 }).scrollIntoView();
+
+  cy.get(`#${id}`).should("be.visible").clear();
   cy.get(`#${id}`).type(typedValue);
   cy.get(`#${id}`).should("have.value", typedValue);
 };
-
 const clickLabelFor = (forAttr) => {
   cy.get(`label[for="${forAttr}"]`).should("be.visible").click();
   cy.get(`#${forAttr}`).should("be.checked");
@@ -14,6 +15,7 @@ const clickLabelFor = (forAttr) => {
 describe("Student Registration page", () => {
   before(() => {
     cy.visit("https://demoqa.com/automation-practice-form");
+    cy.get("#userForm", { timeout: 5000 }).should("be.visible");
   });
 
   it("should allow to fill first name input", () => {
