@@ -9,7 +9,7 @@ describe('Student Registration page', () => {
   const day = '15 June,1995';
 
   before(() => {
-    cy.visit('/');
+    cy.visit('/automation-practice-form');
   });
 
   it('should submit the form', () => {
@@ -49,7 +49,7 @@ describe('Student Registration page', () => {
     cy.get('tbody').contains(userNumber);
     cy.get('tbody').contains(day);
     cy.get('tbody').contains('Math');
-    cy.get('tbody').contains('Reading, Music');
+    cy.get('tbody').contains('Reading,Music');
     cy.get('tbody').contains('NCR Delhi');
     cy.get('tbody').contains(currentAddress);
   });
