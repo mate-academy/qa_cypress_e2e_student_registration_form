@@ -88,10 +88,10 @@ describe('Student Registration Page', () => {
     cy.get(selectors.address).type(student.address);
 
     cy.get(selectors.stateDropdown).click();
-    cy.contains(selectors.stateOption, student.state).click();
+    cy.contains('#react-select-3-option-0', student.state).click();
 
     cy.get(selectors.cityDropdown).click();
-    cy.contains(selectors.cityOption, student.city).click();
+    cy.contains('#react-select-4-option-0', student.city).click();
 
     cy.get(selectors.submit).click();
 
