@@ -23,3 +23,28 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('clickRandomOption', (selectorExample) => {
+  return cy.get(selectorExample).then(($options) => {
+    const count = $options.length;
+    if (count > 0) {
+      const randomIndex = Math.floor(Math.random() * count);
+      const $selected = $options[randomIndex];
+      cy.wrap($selected).click();
+      // Wrap the value for Cypress chainability
+      return cy.wrap(Cypress.$($selected).text());
+    }
+    // If no options found, wrap undefined
+    return cy.wrap(undefined);
+  });
+});
+
+Cypress.Commands.add('getRandomLetter', () => {
+  const alphabet = 'abcdefghijlmnopqrstuvwxyz';
+  const randomIndex = Math.floor(Math.random() * alphabet.length);
+  return alphabet[randomIndex];
+});
+
+Cypress.Commands.add('assertModalData', (dataRowName, expecteddata) => {
+  cy.get('td').contains(dataRowName).parent().find('td')
+    .eq(1).should('have.text', expecteddata);
+});
