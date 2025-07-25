@@ -23,3 +23,31 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('setGender', () => {
+  cy.contains('label', 'Other').click();
+});
+
+Cypress.Commands.add('setDate', () => {
+  cy.get('#dateOfBirthInput').click();
+  cy.get(':nth-child(1) > .react-datepicker__day--002').click();
+});
+
+Cypress.Commands.add('setHobbies', () => {
+  cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(1)').click();
+});
+
+Cypress.Commands.add('setState', () => {
+  cy.get('#state > .css-yk16xz-control').click();
+  cy.get('#react-select-3-option-0').click();
+});
+
+Cypress.Commands.add('setCity', () => {
+  cy.get('#city > .css-yk16xz-control').click();
+  cy.get('#react-select-4-option-0').click();
+});
+
+Cypress.Commands.add('assertInputedData', () => {
+  cy.get('#example-modal-sizes-title-lg')
+    .should('contain.text', 'Thanks for submitting the form');
+});
