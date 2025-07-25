@@ -33,6 +33,13 @@ Cypress.Commands.add('setDate', () => {
   cy.get(':nth-child(1) > .react-datepicker__day--002').click();
 });
 
+Cypress.Commands.add('setSubjects', () => {
+  cy.get('.subjects-auto-complete__value-container').type('Maths');
+  cy.get('.subjects-auto-complete__menu')
+    .contains('Maths')
+    .click();
+});
+
 Cypress.Commands.add('setHobbies', () => {
   cy.get('#hobbiesWrapper > .col-md-9 > :nth-child(1)').click();
 });
