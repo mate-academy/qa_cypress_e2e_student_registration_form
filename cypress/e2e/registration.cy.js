@@ -32,7 +32,8 @@ describe('Student Registration page', () => {
   });
 
   it('should fill in Mobile', () => {
-    cy.get('#userNumber').type(randomNumber);
+    const validPhone = `9${Math.floor(100000000 + Math.random() * 900000000)}`;
+    cy.get('#userNumber').type(validPhone);
   });
 
   it('should fill in Date of Birth', () => {
