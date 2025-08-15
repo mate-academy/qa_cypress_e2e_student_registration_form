@@ -10,8 +10,7 @@ const person = {
   dateOfBirth: {
     day: '19',
     month: 'September',
-    year: '1998',
-    formatted: '15 Aug 1998'
+    year: '1998'
   },
 
   subjects: ['Maths', 'English'],
@@ -63,6 +62,25 @@ describe('Student Registration page', () => {
 
     cy.get('#submit').click();
 
-    cy.get('div').should('contain.text', 'Thanks for submitting the form');
+    cy.get('td').contains('Student Name').next()
+      .should('have.text', `${person.firstName} ${person.lastName}`);
+    cy.get('td').contains('Student Email').next()
+      .should('have.text', person.email);
+    cy.get('td').contains('Gender').next()
+      .should('have.text', person.gender);
+    cy.get('td').contains('Mobile').next()
+      .should('have.text', person.mobile);
+    cy.get('td').contains('Date of Birth').next().should('have.text',
+      `${person.dateOfBirth.day} ${person.dateOfBirth.month},${person.dateOfBirth.year}`);
+    cy.get('td').contains('Subjects').next()
+      .should('have.text', person.subjects.join(', '));
+    cy.get('td').contains('Hobbies').next()
+      .should('have.text', person.hobbies.join(', '));
+    cy.get('td').contains('Picture').next()
+      .should('have.text', '');
+    cy.get('td').contains('Address').next()
+      .should('have.text', person.currentAddress);
+    cy.get('td').contains('State and City').next()
+      .should('have.text', `${person.state} ${person.city}`);
   });
 });
