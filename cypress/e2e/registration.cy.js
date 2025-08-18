@@ -1,53 +1,64 @@
-/// <reference types="cypress" />
+/// <reference types='cypress' />
 
-describe('Student Registration Form', () => {
-  beforeEach(() => {
+describe('Student Registration page', () => {
+  const firstName = 'Vlad';
+  const lastName = 'Tkachuk';
+  const email = 'vlad@gmail.com';
+  const gender = 'Male';
+  const phone = '1234567890';
+  const birthDay = '23 July,2004';
+  const subjects = 'Maths';
+  const hobbies = ['Sports', 'Reading'];
+  const address = 'Current Address';
+  const state = 'NCR';
+  const city = 'Delhi';
+
+  before(() => {
     cy.visit('https://demoqa.com/automation-practice-form');
   });
 
-  it('should fill the form and assert modal', () => {
-    // Personal Info
-    cy.get('#firstName').type('John');
-    cy.get('#lastName').type('Doe');
-    cy.get('#userEmail').type('john.doe@example.com');
-    cy.get('[name="gender"][value="Male"]').check();
-    cy.get('#userNumber').type('1234567890');
+  it('should fill form and show correct data in the modal window', () => {
+    cy.get('#firstName').type(firstName);
+    cy.get('#lastName').type(lastName);
+    cy.get('#userEmail').type(email);
+    cy.contains('.custom-control-label', gender).click();
+    cy.get('#userNumber').type(phone);
 
-    // Date of Birth
     cy.get('#dateOfBirthInput').click();
-    cy.get('.react-datepicker__month-select').select('January');
-    cy.get('.react-datepicker__year-select').select('1990');
-    cy.get('.react-datepicker__day--001')
-      .not('.react-datepicker__day--outside-month')
-      .click();
+    cy.get('.react-datepicker__month-select').select('July');
+    cy.get('.react-datepicker__year-select').select('2004');
+    cy.get('.react-datepicker__day--023').click();
 
-    // Subjects
-    cy.get('#subjectsInput').type('Maths{enter}');
-    cy.get('#subjectsInput').type('Physics{enter}');
+    cy.get('.subjects-auto-complete__value-container').type(subjects);
+    cy.get('.subjects-auto-complete__menu').contains(subjects).click();
 
-    // Hobbies
-    cy.get('label[for="hobbies-checkbox-1"]').click();
-    cy.get('label[for="hobbies-checkbox-2"]').click();
+    hobbies.forEach((hobby) => {
+      cy.contains('.custom-control-label', hobby).click();
+    });
 
-    // State and City
+    cy.get('#currentAddress').type(address);
+
     cy.get('#state').click();
-    cy.get('#react-select-3-option-0').click(); // NCR
-    cy.get('#city').click();
-    cy.get('#react-select-4-option-0').click(); // Delhi
+    cy.get('.css-26l3qy-menu').contains(state).click();
 
-    // Submit
+    cy.get('#city').click();
+    cy.get('.css-26l3qy-menu').contains(city).click();
+
     cy.get('#submit').click();
 
-    // Assert modal
     cy.get('.modal-content').should('be.visible');
-    cy.get('td').contains('John').should('exist');
-    cy.get('td').contains('Doe').should('exist');
-    cy.get('td').contains('john.doe@example.com').should('exist');
-    cy.get('td').contains('Male').should('exist');
-    cy.get('td').contains('1234567890').should('exist');
-    cy.get('td').contains('01 January,1990').should('exist');
-    cy.get('td').contains('Maths, Physics').should('exist');
-    cy.get('td').contains('Sports, Reading').should('exist');
-    cy.get('td').contains('NCR Delhi').should('exist');
-  });
-});
+    cy.get('td').contains(`${firstName} ${lastName}`);
+    cy.get('td').contains(email);
+    cy.get('td').contains(gender);
+    cy.get('td').contains(phone);
+    cy.get('td').contains(birthDay);
+    cy.get('td').contains(subjects);
+
+    hobbies.forEach((hobby) => {
+      cy.get('td').contains(hobby);
+    });
+
+    cy.get('td').contains(address);
+    cy.get('td').contains(`${state} ${city}`);
+  }); // koniec it
+}); // koniec describe
