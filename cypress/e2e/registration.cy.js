@@ -1,9 +1,17 @@
+/* eslint-disable max-len */
 /// <reference types='cypress' />
 
 describe('Automation Practice Form', () => {
   beforeEach(() => {
     cy.visit('https://demoqa.com/automation-practice-form');
-    cy.viewport(1280, 720); // Чтобы элементы корректно отображались
+    cy.viewport(1280, 720);
+
+    // Убираем рекламу сразу, чтобы не мешала
+    cy.get('#adplus-anchor').then(($ad) => {
+      if ($ad.length) {
+        cy.wrap($ad).invoke('remove');
+      }
+    });
   });
 
   it('Заполняем форму и проверяем данные', () => {
@@ -19,7 +27,6 @@ describe('Automation Practice Form', () => {
     cy.get('#dateOfBirthInput').click();
     cy.get('.react-datepicker__month-select').select('November');
     cy.get('.react-datepicker__year-select').select('1988');
-    // eslint-disable-next-line max-len
     cy.get('.react-datepicker__day--004:not(.react-datepicker__day--outside-month)').click();
 
     // ====== Subjects ======
@@ -45,35 +52,50 @@ describe('Automation Practice Form', () => {
     // ====== Verification ======
     cy.get('.modal-content').should('be.visible');
 
-    // Проверка личной информации
-    cy.get('td').contains('Alexandr').should('exist');
-    cy.get('td').contains('Dyvak').should('exist');
-    cy.get('td').contains('dyvakaleksandr370@gmail.com').should('exist');
-    cy.get('td').contains('Male').should('exist');
-    cy.get('td').contains('0990454512').should('exist');
+    // Заголовок модалки
+    cy.get('.modal-title')
+      .should('be.visible')
+      .and('have.text', 'Thanks for submitting the form');
 
-    // Проверка даты рождения (формат сайта: DD Mon,YYYY)
-    cy.get('td').contains('04 November,1988').should('exist');
+    // ====== Проверки строк таблицы ======
 
-    // Проверка предметов
-    cy.get('td').contains('Maths, Physics').should('exist');
+    cy.get('tr').contains('td', 'Student Name')
+      .siblings('td')
+      .should('have.text', 'Alexandr Dyvak');
 
-    // Проверка хобби
-    cy.get('td').contains('Sports, Reading, Music').should('exist');
+    cy.get('tr').contains('td', 'Student Email')
+      .siblings('td')
+      .should('have.text', 'dyvakaleksandr370@gmail.com');
 
-    // Проверка адреса
-    cy.get('td').contains('Some street 123, Kyiv').should('exist');
+    cy.get('tr').contains('td', 'Gender')
+      .siblings('td')
+      .should('have.text', 'Male');
 
-    // Проверка State и City (выбраны в форме)
-    cy.get('td').contains('NCR Delhi').should('exist');
+    cy.get('tr').contains('td', 'Mobile')
+      .siblings('td')
+      .should('have.text', '0990454512');
+
+    cy.get('tr').contains('td', 'Date of Birth')
+      .siblings('td')
+      .should('have.text', '04 November,1988');
+
+    cy.get('tr').contains('td', 'Subjects')
+      .siblings('td')
+      .should('have.text', 'Maths, Physics');
+
+    cy.get('tr').contains('td', 'Hobbies')
+      .siblings('td')
+      .should('have.text', 'Sports, Reading, Music');
+
+    cy.get('tr').contains('td', 'Address')
+      .siblings('td')
+      .should('have.text', 'Some street 123, Kyiv');
+
+    cy.get('tr').contains('td', 'State and City')
+      .siblings('td')
+      .should('have.text', 'NCR Delhi');
 
     // ====== Закрыть модальное окно ======
-    cy.get('#adplus-anchor').then(($ad) => {
-      if ($ad.length) {
-        cy.wrap($ad).invoke('remove'); // удаляем рекламу
-      }
-    });
-
     // eslint-disable-next-line cypress/no-force
     cy.get('#closeLargeModal')
       .should('be.visible')
