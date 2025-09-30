@@ -12,7 +12,7 @@ describe('Student Registration page', () => {
     cy.get('#userEmail').type('john.doe@example.com');
 
     // Select gender
-    cy.get('label[for="gender-radio-1"]').click(); // safer than force:true
+    cy.get('label[for="gender-radio-1"]').click();
 
     // Mobile number
     cy.get('#userNumber').type('1234567890');
@@ -21,39 +21,64 @@ describe('Student Registration page', () => {
     cy.get('#dateOfBirthInput').click();
     cy.get('.react-datepicker__month-select').select('May');
     cy.get('.react-datepicker__year-select').select('1990');
-    cy.get('.react-datepicker__day--015').click();
+    cy.get(
+      '.react-datepicker__day--015:not(.react-datepicker__day--outside-month)'
+    ).click();
+    cy.get('#dateOfBirthInput').should('have.value', '15 May 1990');
 
     // Subjects
     cy.get('#subjectsInput').type('Maths{enter}');
 
     // Hobbies
-    cy.get('label[for="hobbies-checkbox-1"]').click(); // Sports
-    cy.get('label[for="hobbies-checkbox-2"]').click(); // Reading
+    cy.get('label[for="hobbies-checkbox-1"]').click();
+    cy.get('label[for="hobbies-checkbox-2"]').click();
 
-    // Current address
+    // Address
     cy.get('#currentAddress').type('123 Main St');
 
-    // State & City (split chains to avoid unsafe-to-chain errors)
+    // State & City
     cy.get('#state').click();
-    cy.contains('NCR').click();
-
+    cy.get('#stateCity-wrapper').contains('NCR').click();
     cy.get('#city').click();
-    cy.contains('Delhi').click();
+    cy.get('#stateCity-wrapper').contains('Delhi').click();
 
-    // Submit
+    // Submit button: scroll, assert visibility, then click
+    cy.get('#submit').scrollIntoView();
+    cy.get('#submit').should('be.visible');
     cy.get('#submit').click();
 
-    // Verify modal content
-    cy.get('.modal-content').within(() => {
-      cy.contains('John Doe');
-      cy.contains('john.doe@example.com');
-      cy.contains('Male');
-      cy.contains('1234567890');
-      cy.contains('15 May,1990');
-      cy.contains('Maths');
-      cy.contains('Sports, Reading');
-      cy.contains('123 Main St');
-      cy.contains('NCR Delhi');
+    // Assert modal
+    cy.get('.modal-content').should('be.visible');
+
+    // Table assertions: safe version
+    cy.get('table').within(() => {
+      cy.contains('td', 'Student Name').then(($el) => {
+        cy.wrap($el.next()).should('have.text', 'John Doe');
+      });
+      cy.contains('td', 'Student Email').then(($el) => {
+        cy.wrap($el.next()).should('have.text', 'john.doe@example.com');
+      });
+      cy.contains('td', 'Gender').then(($el) => {
+        cy.wrap($el.next()).should('have.text', 'Male');
+      });
+      cy.contains('td', 'Mobile').then(($el) => {
+        cy.wrap($el.next()).should('have.text', '1234567890');
+      });
+      cy.contains('td', 'Date of Birth').then(($el) => {
+        cy.wrap($el.next()).should('have.text', '15 May,1990');
+      });
+      cy.contains('td', 'Subjects').then(($el) => {
+        cy.wrap($el.next()).should('have.text', 'Maths');
+      });
+      cy.contains('td', 'Hobbies').then(($el) => {
+        cy.wrap($el.next()).should('have.text', 'Sports, Reading');
+      });
+      cy.contains('td', 'Address').then(($el) => {
+        cy.wrap($el.next()).should('have.text', '123 Main St');
+      });
+      cy.contains('td', 'State and City').then(($el) => {
+        cy.wrap($el.next()).should('have.text', 'NCR Delhi');
+      });
     });
 
     // Close modal
