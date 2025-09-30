@@ -18,70 +18,68 @@ describe('Student Registration page', () => {
     cy.get('#userNumber').type('1234567890');
 
     // Date of Birth
+    cy.get('#dateOfBirthInput').scrollIntoView();
     cy.get('#dateOfBirthInput').click();
     cy.get('.react-datepicker__month-select').select('May');
     cy.get('.react-datepicker__year-select').select('1990');
     cy.get(
       '.react-datepicker__day--015:not(.react-datepicker__day--outside-month)'
     ).click();
-    cy.get('#dateOfBirthInput').should('have.value', '15 May 1990');
+
+    // Verify input format (exact modal format = "15 May,1990")
+    cy.get('#dateOfBirthInput').should('have.value', '15 May,1990');
 
     // Subjects
     cy.get('#subjectsInput').type('Maths{enter}');
+    cy.get('.subjects-auto-complete__multi-value')
+      .should('contain.text', 'Maths');
 
     // Hobbies
-    cy.get('label[for="hobbies-checkbox-1"]').click();
-    cy.get('label[for="hobbies-checkbox-2"]').click();
+    cy.get('label[for="hobbies-checkbox-1"]').click(); // Sports
+    cy.get('label[for="hobbies-checkbox-2"]').click(); // Reading
 
-    // Address
+    // Current address
     cy.get('#currentAddress').type('123 Main St');
 
     // State & City
+    cy.get('#state').scrollIntoView();
     cy.get('#state').click();
     cy.get('#stateCity-wrapper').contains('NCR').click();
+
+    cy.get('#city').scrollIntoView();
     cy.get('#city').click();
     cy.get('#stateCity-wrapper').contains('Delhi').click();
 
-    // Submit button: scroll, assert visibility, then click
+    // Submit
     cy.get('#submit').scrollIntoView();
     cy.get('#submit').should('be.visible');
     cy.get('#submit').click();
 
-    // Assert modal
+    // Assert modal is visible
     cy.get('.modal-content').should('be.visible');
 
-    // Table assertions: safe version
+    // Verify table contents safely
     cy.get('table').within(() => {
-      cy.contains('td', 'Student Name').then(($el) => {
-        cy.wrap($el.next()).should('have.text', 'John Doe');
-      });
-      cy.contains('td', 'Student Email').then(($el) => {
-        cy.wrap($el.next()).should('have.text', 'john.doe@example.com');
-      });
-      cy.contains('td', 'Gender').then(($el) => {
-        cy.wrap($el.next()).should('have.text', 'Male');
-      });
-      cy.contains('td', 'Mobile').then(($el) => {
-        cy.wrap($el.next()).should('have.text', '1234567890');
-      });
-      cy.contains('td', 'Date of Birth').then(($el) => {
-        cy.wrap($el.next()).should('have.text', '15 May,1990');
-      });
-      cy.contains('td', 'Subjects').then(($el) => {
-        cy.wrap($el.next()).should('have.text', 'Maths');
-      });
-      cy.contains('td', 'Hobbies').then(($el) => {
-        cy.wrap($el.next()).should('have.text', 'Sports, Reading');
-      });
-      cy.contains('td', 'Address').then(($el) => {
-        cy.wrap($el.next()).should('have.text', '123 Main St');
-      });
-      cy.contains('td', 'State and City').then(($el) => {
-        cy.wrap($el.next()).should('have.text', 'NCR Delhi');
-      });
+      const assertCell = (label, value) => {
+        cy.contains('td', label).then(($el) => {
+          cy.wrap($el.next()).should('have.text', value);
+        });
+      };
+
+      assertCell('Student Name', 'John Doe');
+      assertCell('Student Email', 'john.doe@example.com');
+      assertCell('Gender', 'Male');
+      assertCell('Mobile', '1234567890');
+      assertCell('Date of Birth', '15 May,1990');
+      assertCell('Subjects', 'Maths');
+      assertCell('Hobbies', 'Sports, Reading');
+      assertCell('Picture', '');
+      assertCell('Address', '123 Main St');
+      assertCell('State and City', 'NCR Delhi');
     });
 
-    // Close modal
+    // Close modal and assert it is no longer visible
     cy.get('#closeLargeModal').click();
+    cy.get('.modal-content').should('not.exist');
   });
 });
