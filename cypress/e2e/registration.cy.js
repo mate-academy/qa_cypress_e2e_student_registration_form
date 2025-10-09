@@ -19,13 +19,16 @@ describe('Student Registration page', () => {
 
   before(() => {
     cy.visit('https://demoqa.com/automation-practice-form');
+
+    cy.get('#fixedban').invoke('remove');
+    cy.get('footer').invoke('remove');
   });
 
   it('should fill and submit the form successfully', () => {
     cy.get('#firstName').type(student.firstName);
     cy.get('#lastName').type(student.lastName);
     cy.get('#userEmail').type(student.email);
-    cy.get(`input[name="gender"][value="${student.gender}"]`).check({ force: true });
+    cy.get(`input[name="gender"][value="${student.gender}"]`).check();
     cy.get('#userNumber').type(student.mobile);
 
     cy.get('#dateOfBirthInput').click();
@@ -44,7 +47,7 @@ describe('Student Registration page', () => {
     cy.get('#state').click().contains(student.state).click();
     cy.get('#city').click().contains(student.city).click();
 
-    cy.get('#submit').click({ force: true });
+    cy.get('#submit').click();
 
     cy.get('#example-modal-sizes-title-lg')
       .should('contain.text', 'Thanks for submitting the form');
