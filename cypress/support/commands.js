@@ -23,3 +23,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('assertFormValues', (formIndex, formData) => {
+  cy.get(`tbody > :nth-child(${formIndex}) > :nth-child(2)`)
+    .should('contain.text', formData);
+});
+
+Cypress.Commands.add('chooseRandomHobbies', (randomIndex, hobbies) => {
+  cy.get('body').then(() => {
+    cy.get(`#hobbiesWrapper > .col-md-9 > :nth-child(${Number(randomIndex) + 1})`)
+      .click();
+    cy.get(`#hobbiesWrapper > .col-md-9 > :nth-child(${Number(randomIndex) + 1})`)
+      .invoke('text')
+      .then((hobby) => {
+        hobbies.push(hobby);
+      });
+  });
+});
