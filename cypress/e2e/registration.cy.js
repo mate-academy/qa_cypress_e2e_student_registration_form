@@ -107,14 +107,6 @@ describe('Student Registration page', {
           })
           .click();
       });
-      user.hobby = [];
-      hobbiesWrapper[0]
-        .querySelectorAll('input:checked')
-        .forEach((checkbox) => {
-          const checkboxName = checkbox.textContent;
-
-          user.hobby.push(checkboxName);
-        });
     });
     cy.get('[placeholder="Current Address"]')
       .type(`${user.address}`);
@@ -157,46 +149,41 @@ describe('Student Registration page', {
           const day = transformNumberFormat(user.birth.getDate(), true);
           const monthName = month[user.birth.getMonth()];
           const year = user.birth.getFullYear();
-          const userValue = Object.values(user);
 
-          for (let i = 0, userValueIndex = 0; i < rows.length; i++) {
+          for (let i = 0; i < rows.length; i++) {
             const label = rows[i].cells[0].textContent;
             const value = rows[i].cells[1].textContent;
 
             switch (label) {
               case 'Student Name':
                 expect(value, 'Student name').to.be.equal(`${user.name} ${user.surname}`);
-                userValueIndex += 2;
                 break;
               case 'Date of Birth':
                 expect(value, 'Student birth').to.be.equal(`${day} ${monthName},${year}`);
-                userValueIndex++;
                 break;
               case 'Picture':
                 expect(value, 'Student picture').to.be.equal('');
-                userValueIndex++;
                 break;
               case 'State and City':
                 expect(value, 'Student state and city').to.be.equal(`${user.state} ${user.city}`);
-                userValueIndex += 2;
                 break;
               case 'Subjects':
                 expect(value, 'Student subjects').to.be.equal(`${user.subject.join(', ')}`);
-                userValueIndex++;
                 break;
               case 'Hobbies':
                 expect(value, 'Student hobbies').to.be.equal(`${user.hobby.join(', ')}`);
-                userValueIndex++;
                 break;
               case 'Student Email':
                 expect(value, `Student email`).to.be.equal(user.email);
-                userValueIndex++;
                 break;
               case 'Gender':
+                expect(value, `Student ${label.toLowerCase()}`).to.be.equal(user.gender);
+                break;
               case 'Mobile':
+                expect(value, `Student ${label.toLowerCase()}`).to.be.equal(user.number);
+                break;
               case 'Address':
-                expect(value, `Student ${label.toLowerCase()}`).to.be.equal(userValue[userValueIndex]);
-                userValueIndex++;
+                expect(value, `Student ${label.toLowerCase()}`).to.be.equal(user.address);
                 break;
               default:
                 // eslint-disable-next-line no-console
