@@ -28,7 +28,7 @@ describe('Student Registration page', {
     const hobbyToChoose = generateNumberRandomTimes(3, 4, true, 40); // 1-3 x times (max 3)
     const stateToChoose = generateNumber(4);
     const date = [
-          `20${transformNumberFormat(generateNumber(25, true), true)}`, // 2001 - 2024
+          `20${generateNumber(3)}${generateNumber(10)}`, // 2001 - 2029
           `${generateNumber(12)}`, // 0 - 11 month index for Data
           `${generateNumber(32, true)}` // 1 - 31 day
     ];
@@ -146,7 +146,7 @@ describe('Student Registration page', {
       .within((modalWindow) => {
         cy.get('table').within((modalTable) => {
           const rows = modalTable[0].tBodies[0].rows;
-          const day = transformNumberFormat(user.birth.getDate(), true);
+          const day = (user.birth.getDate() > 9 && user.birth.getDate()) || `0${user.birth.getDate()}`;
           const monthName = month[user.birth.getMonth()];
           const year = user.birth.getFullYear();
 

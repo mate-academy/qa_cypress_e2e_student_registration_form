@@ -90,7 +90,7 @@ function transformNumberFormat(number = 1, shortVersion = false) {
   } else if (!shortVersion) {
     return `00${number}`;
   } else {
-    return `0${number}`;
+    return `${number}`;
   }
 }
 
