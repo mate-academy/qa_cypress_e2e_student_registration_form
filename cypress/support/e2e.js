@@ -44,6 +44,10 @@ function generateRandomNumber(rangeEnd = 2, fromOne = false) {
 
   const randomNumber = Math.floor(Math.random() * rangeEnd + oneIf);
 
+  if (randomNumber === rangeEnd) {
+    return randomNumber - 1;
+  }
+
   return randomNumber;
 }
 
