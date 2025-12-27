@@ -1,6 +1,7 @@
 /// <reference types='cypress' />
 
 const { createRandomUser } = require('../support/createRandomUser');
+const { formatDate } = require('../support/formatDate');
 
 describe('Student Registration Page', () => {
   let user;
@@ -125,9 +126,35 @@ describe('Student Registration Page', () => {
 
       cy.get('#example-modal-sizes-title-lg')
         .should('contain.text', 'Thanks for submitting the form');
-      cy.get('td').contains(user.firstName).should('exist');
-      cy.get('td').contains(user.lastName).should('exist');
-      cy.get('td').contains(user.email).should('exist');
+
+      cy.get('td').contains('Student Name').next('td').should('have.text', `${user.firstName} ${user.lastName}`);
+      cy.get('td').contains('Student Email').next('td').should('have.text', `${user.email}`);
+      cy.get('td').contains('Gender').next('td').should('have.text', `${user.gender}`);
+      cy.get('td').contains('Mobile').next('td').should('have.text', `${user.mobile}`);
+      cy.get('td')
+        .contains('Date of Birth')
+        .next('td')
+        .should('have.text', `${formatDate(user.dateOfBirth)}`);
+      cy.get('td')
+        .contains('Subjects')
+        .next('td')
+        .then(($td) => {
+          user.subjects.forEach((subject) => {
+            expect($td.text()).to.include(subject);
+          });
+        });
+      cy.get('td')
+        .contains('Hobbies')
+        .next('td')
+        .then(($td) => {
+          user.hobbies.forEach((hobbie) => {
+            expect($td.text()).to.include(hobbie);
+          });
+        });
+
+      cy.get('td').contains('Picture').next('td').should('have.text', '');
+      cy.get('td').contains('Address').next('td').should('have.text', `${user.address}`);
+      cy.get('td').contains('State and City').next('td').should('have.text', `${user.state} ${user.city}`);
     });
   });
 });

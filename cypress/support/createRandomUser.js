@@ -4,7 +4,7 @@ const createRandomUser = () => {
   const sex = faker.person.sexType();
   const firstName = faker.person.firstName(sex);
   const lastName = faker.person.lastName();
-  const email = faker.internet.exampleEmail({ firstName: name });
+  const email = faker.internet.exampleEmail({ firstName });
   const phoneNumber = faker.phone.number();
   const birthdate = faker.date.birthdate();
 
@@ -13,7 +13,7 @@ const createRandomUser = () => {
     lastName,
     email,
     gender: sex.slice(0, 1).toUpperCase() + sex.slice(1),
-    mobile: phoneNumber.replace(/[-\s]/g, ''),
+    mobile: phoneNumber.replace(/\D/g, '').slice(0, 10),
     dateOfBirth: birthdate,
     subjects: ['Biology', 'Art'],
     hobbies: ['Sports'],
