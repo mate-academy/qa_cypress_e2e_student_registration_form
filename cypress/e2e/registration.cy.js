@@ -4,8 +4,14 @@ describe('Student Registration Form', () => {
   beforeEach(() => {
     cy.visit('https://demoqa.com/automation-practice-form');
 
-    cy.get('#fixedban').then(($el) => $el.remove());
-    cy.get('footer').then(($el) => $el.remove());
+    cy.get('body').then(($body) => {
+      if ($body.find('#fixedban').length > 0) {
+        $body.find('#fixedban').remove();
+      }
+      if ($body.find('footer').length > 0) {
+        $body.find('footer').remove();
+      }
+    });
   });
 
   it('should fill the form and verify the submitted data', () => {
