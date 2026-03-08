@@ -38,10 +38,8 @@ describe('Student Registration Form', () => {
     cy.get('.react-datepicker__year-select').select(userData.birthYear);
     cy.get('.react-datepicker__month-select').select(userData.birthMonth);
 
-    cy.get(
-      `.react-datepicker__day--0${userData.birthDay}:not(.react-datepicker__day--outside-month)`
-    )
-      .first()
+    cy.get('.react-datepicker__day:not(.react-datepicker__day--outside-month)')
+      .contains(new RegExp(`^${userData.birthDay}$`))
       .click();
 
     userData.subjects.forEach((subject) => {
@@ -69,7 +67,7 @@ describe('Student Registration Form', () => {
 
     const fullDate = `${userData.birthDay} ${userData.birthMonth},${userData.birthYear}`;
 
-    const checks = [
+    const expectedRows = [
       ['Student Name', `${userData.firstName} ${userData.lastName}`],
       ['Student Email', userData.email],
       ['Gender', userData.gender],
@@ -81,7 +79,7 @@ describe('Student Registration Form', () => {
       ['State and City', `${userData.state} ${userData.city}`]
     ];
 
-    checks.forEach(([label, value]) => {
+    expectedRows.forEach(([label, value]) => {
       cy.get('.table-responsive')
         .contains('td', label)
         .next()
