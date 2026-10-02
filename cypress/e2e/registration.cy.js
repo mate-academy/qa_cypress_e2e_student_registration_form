@@ -1,6 +1,11 @@
 /// <reference types='cypress' />
 
 describe('Student Registration page', () => {
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
   const student = {
     firstName: 'Anna',
     lastName: 'Kowalska',
@@ -32,6 +37,8 @@ describe('Student Registration page', () => {
     cy.get('#dateOfBirthInput').click();
     cy.get('.react-datepicker__year-select').select(student.birthYear);
     cy.get('.react-datepicker__month-select').select(student.birthMonth);
+    cy.get('.react-datepicker__month-select').find('option:selected')
+      .should('have.text', monthNames[Number(student.birthMonth)]);
     cy.get('.react-datepicker__day--015')
       .not('.react-datepicker__day--outside-month')
       .click();
@@ -60,7 +67,7 @@ describe('Student Registration page', () => {
         'Student Email': student.email,
         Gender: student.gender,
         Mobile: student.mobile,
-        'Date of Birth': `${student.birthDay} May,${student.birthYear}`,
+        'Date of Birth': `${student.birthDay} ${monthNames[Number(student.birthMonth)]},${student.birthYear}`,
         Subjects: student.subjects.join(', '),
         Hobbies: student.hobbies.join(', '),
         Picture: '',
